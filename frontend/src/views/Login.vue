@@ -1,7 +1,8 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <div id="login-form-sub-container">
+         <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -21,6 +22,7 @@
         v-model="user.username"
         required
         autofocus
+        
       />
       <label for="password" class="sr-only">Password</label>
       <input
@@ -31,8 +33,11 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+       <button type="submit" id="login-form-sign-in-btn">Sign in</button>
+      </div>
+     
+      <router-link id="need-act-link" :to="{ name: 'register' }">Need an account?</router-link>
+     
     </form>
   </div>
 </template>
@@ -74,3 +79,46 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.form-signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#login-form-sign-in-btn {
+  width: 70%; 
+  margin: 1em 0 1em 0;
+
+}
+.form-control {
+  width: 100%;
+  margin: 1em 0 1em 0;
+
+}
+.form-control {
+  text-align: center;
+  
+}
+
+#login-form-sub-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #95B0B6;
+  margin: 10% 0 0 0;
+  border-radius: 5px;
+}
+.form-signin {
+  background-color: #569FAD;
+  height: 100vh;
+}
+
+#need-act-link {
+  color: white;
+  font-size: 1.2em;
+  margin: 1% 0 0 0;
+  text-decoration: underline;
+}
+
+</style>
