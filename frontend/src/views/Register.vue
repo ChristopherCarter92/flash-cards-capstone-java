@@ -1,8 +1,12 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
+      <div id="register-form-container">
+        <h1 id="header" class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <div 
+      id="error-msg"
+      class="alert alert-danger" 
+      role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
       <label for="username" class="sr-only">Username</label>
@@ -32,10 +36,12 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
+     
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="register-button">
+        Create 
       </button>
+      </div>
+       <router-link id="have-account-link" :to="{ name: 'login' }">Have an account?</router-link>
     </form>
   </div>
 </template>
@@ -90,4 +96,65 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+
+#header {
+  color: #324B50;
+  margin: 1em 0 0 0 ;
+}
+.form-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 10% 0 0 0;
+ 
+}
+
+#register-button {
+  width: 70%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  color: #324B50;
+  border: 1px solid transparent;
+  font-size: 100%;
+  color: white;
+  padding: 7px;
+ 
+  }
+
+#register-button:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+}  
+
+.form-control {
+  width: 97%;
+  margin: .5em 0 .5em 0;
+  text-align: center;
+  
+}
+
+#register-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #95B0B6;
+  height: 40vh;
+  border-radius: 5px;
+  border: 10px solid transparent;
+  margin: 1em 0 0 0 ;
+}
+
+#have-account-link {
+  color: #324B50;
+  font-size: 1.2em;
+  margin: 1% 0 0 0;
+  text-decoration: underline;
+  text-decoration-color: #324B50;
+}
+
+
+
+</style>
