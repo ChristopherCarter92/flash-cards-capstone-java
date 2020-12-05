@@ -2,7 +2,7 @@
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <div id="login-form-sub-container">
-         <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+         <h1 id="login-title-txt" class="h3 mb-3 font-weight-normal">Sign In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -33,7 +33,7 @@
         v-model="user.password"
         required
       />
-       <button type="submit" id="login-form-sign-in-btn">Sign in</button>
+       <b-button type="submit" id="login-form-sign-in-btn">Sign In</b-button>
       </div>
      
       <router-link id="need-act-link" :to="{ name: 'register' }">Need an account?</router-link>
@@ -86,18 +86,23 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+
+#login-title-txt {
+  margin: 1em 0 0 0;
+}
 #login-form-sign-in-btn {
   width: 70%; 
   margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
 
 }
-.form-control {
-  width: 100%;
-  margin: 1em 0 1em 0;
 
-}
 .form-control {
   text-align: center;
+  margin: 0.5em 0 0.5em 0 ;
+  width: 97%;
   
 }
 
@@ -108,14 +113,12 @@ export default {
   background-color: #95B0B6;
   margin: 10% 0 0 0;
   border-radius: 5px;
-}
-.form-signin {
-  background-color: #569FAD;
-  height: 100vh;
+  border: solid transparent 10px;
 }
 
+
 #need-act-link {
-  color: white;
+  color: #324B50;
   font-size: 1.2em;
   margin: 1% 0 0 0;
   text-decoration: underline;
