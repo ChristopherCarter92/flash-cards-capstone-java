@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @PreAuthorize("permitAll")
 @CrossOrigin
@@ -23,6 +25,11 @@ public class CardController {
     @GetMapping(path = "/cards/{id}")
     public Card fetchCardById(@PathVariable int id) {
         return cardDAO.getCard(id);
+    }
+
+    @GetMapping(path = "/cards")
+    public List<Card> fetchAllCards(){
+        return cardDAO.getCards();
     }
 
 
