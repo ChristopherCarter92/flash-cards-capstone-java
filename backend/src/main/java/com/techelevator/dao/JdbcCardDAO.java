@@ -35,7 +35,7 @@ public class JdbcCardDAO implements CardDAO {
         List<Card> myCards = new ArrayList<>();
         String sql = "SELECT id, question, answer, tags, user_id FROM cards;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
-        if (rowSet.next()) {
+        while (rowSet.next()) {
             Card newCard = mapRowToCard(rowSet);
             myCards.add(newCard);
         }
