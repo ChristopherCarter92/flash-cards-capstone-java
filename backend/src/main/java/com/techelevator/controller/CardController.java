@@ -2,13 +2,13 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.CardDAO;
+import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Card;
+import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -17,9 +17,11 @@ import java.util.List;
 public class CardController {
 
     private CardDAO cardDAO;
+    private UserDAO userDAO;
 
-    public CardController(CardDAO cardDAO) {
+    public CardController(CardDAO cardDAO, UserDAO userDAO) {
         this.cardDAO = cardDAO;
+        this.userDAO = userDAO;
     }
 
     @GetMapping(path = "/cards/{id}")
@@ -27,9 +29,11 @@ public class CardController {
         return cardDAO.getCard(id);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(path = "/cards")
-    public List<Card> fetchAllCards(){
-        return cardDAO.getCards();
+    public List<Card> fetchAllCards(Principal principal){
+        User currentUser = userDAO.findByUsername(principal.getName());
+        return cardDAO.getCards(currentUser.getId());
     }
 
 

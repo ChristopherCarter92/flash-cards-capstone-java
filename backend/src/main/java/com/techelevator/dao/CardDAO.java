@@ -9,6 +9,6 @@ public interface CardDAO {
 
     Card getCard(int cardId);
 
-    List<Card> getCards();
+    List<Card> getCards(long userID);
 
 }

@@ -61,6 +61,7 @@ export default {
 h2 {
   padding: 10vh;
   font-size: 5em;
+  text-align: center;
 }
 
 

@@ -31,10 +31,10 @@ public class JdbcCardDAO implements CardDAO {
     }
 
     @Override
-    public List<Card> getCards() {
+    public List<Card> getCards(long userID) {
         List<Card> myCards = new ArrayList<>();
-        String sql = "SELECT id, question, answer, tags, user_id FROM cards;";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT id, question, answer, tags, user_id FROM cards WHERE user_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userID);
         while (rowSet.next()) {
             Card newCard = mapRowToCard(rowSet);
             myCards.add(newCard);

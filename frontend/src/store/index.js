@@ -46,6 +46,14 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+
+    SET_CARDS(state, cards) {
+      state.cards = cards; 
+    },
+
+    GET_CARD(state, index ) {
+      return state.cards[index];
     }
   }
 })

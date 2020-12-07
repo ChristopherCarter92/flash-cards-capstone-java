@@ -1,16 +1,17 @@
 <template>
   <div class="home">
     <h1 id="home-title">Home</h1>
-    <cards-list id="cards-list-in-home"></cards-list>
+    <b-button>See Cards</b-button>
+    
   </div>
 </template>
 
 <script>
-import cardsList from '@/views/CardsList.vue';
+
 export default {
 
   components: {
-    cardsList
+    
   }
 };
 </script>
@@ -24,7 +25,7 @@ export default {
   grid-template-columns: 1fr;
   grid-template-areas: 
   "Title"
-  "Card-List";
+  
 }
 
 #home-title {
@@ -32,9 +33,6 @@ export default {
   justify-self: center;
 }
 
-#cards-list-in-home {
-  grid-area: Card-List;
-  justify-self: center;
-}
+
 
 </style>
