@@ -12,8 +12,8 @@ export default {
         return axios.post('/cards', card);
     },
 
-    getAllCards(user) {
-        return axios.get('/cards', user);
+    getAllCards() {
+        return axios.get('/cards');
     }
 
 }

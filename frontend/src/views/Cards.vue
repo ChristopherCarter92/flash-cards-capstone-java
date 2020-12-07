@@ -6,10 +6,35 @@
 </template>
 
 <script>
-import CardDetails from '../components/CardDetails.vue'
+import CardDetails from '../components/CardDetails.vue';
+import CardServices from '@/services/CardServices.js';
+
 export default {
     components: {
         CardDetails
+    },
+
+    data () {
+      return {
+        cards: [],
+        counter: 0,
+        currentCard: ''
+      }
+    },
+
+    created() {
+      CardServices.getAllCards().then(response => {
+        this.cards = response.data;
+        this.$store.commit('SET_CARDS', this.cards);
+      })
+
+
+    },
+
+    methods: {
+      handleGetStarted () {
+        this.currentCard = 0;
+      }
     }
 
 }
@@ -26,7 +51,8 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas: 
-  "card";
+  "card"
+  "button";
   height: 100vh;
 }
 
