@@ -37,9 +37,9 @@
         required
       />
      
-      <button class="btn btn-lg btn-primary btn-block" type="submit" id="register-button">
+      <b-button type="submit" id="register-button">
         Create 
-      </button>
+      </b-button>
       </div>
        <router-link id="have-account-link" :to="{ name: 'login' }">Have an account?</router-link>
     </form>
@@ -119,15 +119,14 @@ export default {
   color: #324B50;
   border: 1px solid transparent;
   font-size: 100%;
-  color: white;
   padding: 7px;
  
   }
 
-#register-button:hover {
+/* #register-button:hover {
   box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
   transform: translateY(-0.25em);
-}  
+}   */
 
 .form-control {
   width: 97%;
