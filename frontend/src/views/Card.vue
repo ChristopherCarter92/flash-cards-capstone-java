@@ -1,5 +1,8 @@
 <template>
-  <card-details />
+<div id="card-container-card-view">
+  <card-details id="card-details-card-view" />
+</div>
+  
 </template>
 
 <script>
@@ -12,6 +15,24 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+* {
+  box-sizing: border-box;
+}
+
+#card-container-card-view {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  "card";
+}
+
+#card-details-card-view {
+  grid-area: card;
+  justify-self: center;
+}
+
+
+
 
 </style>
