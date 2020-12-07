@@ -7,7 +7,7 @@
         class="alert alert-danger"
         role="alert"
         v-if="invalidCredentials"
-      >Invalid username and password!</div>
+      >Invalid username or password. Please try again or click below to create an account.</div>
       <div
         class="alert alert-success"
         role="alert"
