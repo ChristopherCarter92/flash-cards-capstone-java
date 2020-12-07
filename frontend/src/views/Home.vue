@@ -1,18 +1,32 @@
 <template>
   <div class="home">
     <h1 id="home-title">Home</h1>
-    <b-button id="show-cards-button" v-on:click="$router.push({name: 'cards', params: {cardId: '1'}})">See My Cards</b-button>
+    <b-button id="show-cards-button" v-on:click="$router.push({name: 'cards', params: {cardId: getFirstCardId}})">See My Cards</b-button>
     
   </div>
 </template>
 
 <script>
+import CardServices from '@/services/CardServices.js';
 
 export default {
+  data () {
+      return {
+        cards: [],
+      }
+    },
+    created() {
+      CardServices.getAllCards().then(response => {
+        this.cards = response.data;
+        this.$store.commit('SET_CARDS', response.data);
+      })
 
-  components: {
-    
-  }
+    },
+    computed: {
+      getFirstCardId() {
+        return parseInt(this.cards[0].cardId);
+      }
+    }
 };
 </script>
 <style scoped>
