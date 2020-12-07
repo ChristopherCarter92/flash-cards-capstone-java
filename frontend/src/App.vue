@@ -37,14 +37,24 @@ export default {};
   display: flex;
   background-color: #B68C71;
   align-items: center;
+  justify-content: space-between;
+  height: 10vh;
 }
 .nav-btn {
   margin: 0 0.5em 0 0;;
 }
 
-#logo img {
-  width: 55%;
+#logo {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-center;
+
+}
+#logo img{
+  max-width: 20vh;
+  max-height: 20vh;
   margin: 0.5em 0 0.5em 0.5em;
+  display: block;
 }
 #nav-btns {
   display: flex;
