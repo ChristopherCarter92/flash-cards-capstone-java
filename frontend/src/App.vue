@@ -19,7 +19,7 @@
       </div>
     </div>
     <div id="display-user-top">
-          <p v-if="$store.state.token != ''"> {{ `Welcome ${$store.state.user.username.toUpperCase()}` }} </p>
+          <p id="welcome-message" v-if="$store.state.token != ''"> {{ `Welcome ${$store.state.user.username.toUpperCase()}` }} </p>
         </div>
     <router-view />
   </div>
@@ -32,6 +32,9 @@ export default {};
 * {
  box-sizing: border-box; 
 
+}
+#welcome-message {
+  font-size: 3vh;
 }
 #nav {
   display: flex;
