@@ -1,5 +1,5 @@
 <template>
-  <form action="">
+  <form >
     <label for="question">Question: </label>
     <input v-model="newCard.question" type="text" />
     <label for="answer">Answer: </label>
@@ -26,9 +26,11 @@ export default {
 
   methods: {
     createCard() {
-      cardServices.addCard(newCard).then((response) => {
+      cardServices.addCard(this.newCard).then((response) => {
         if (response.status === 201) {
-          this.$router.push(`/card/${id}`);
+          this.$store.commit('ADD_CARD', response.data);
+          let parameter = this.$store.length -1;
+          this.$router.push(`/card/${parameter}`);
         }
     }).catch(error => {
         this.handleErrorResponse(error, 'adding')
