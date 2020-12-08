@@ -1,15 +1,22 @@
 <template>
   <div id="card-container-card-view">
-    <b-button v-on:click="$router.push({name: 'create'})">Add New Card</b-button>
-    <card-details v-bind:key="currentCardIndex" id="card-details-card-view" />
-    <b-button v-if="currentCardIndex > 0" v-on:click="handlePreviousButton()"
+    <div id="add-new-card-btn-cards-view">
+      <b-button class="cards-btns" id="b-btn-add-new" v-on:click="$router.push({name: 'create'})">Add New Card</b-button>
+    </div>
+    <div>
+      <card-details v-bind:key="currentCardIndex" id="card-details-card-view" />
+    </div>
+    <div>
+      <b-button class="cards-btns" v-if="currentCardIndex > 0" v-on:click="handlePreviousButton()"
       >Previous Card</b-button
     >
     <b-button
+      class="cards-btns"
       v-if="currentCardIndex < cards.length - 1"
       v-on:click="handleNextButton()"
       >Next Card</b-button
     >
+    </div>
   </div>
 </template>
 
@@ -62,13 +69,25 @@ export default {
   padding: 0;
 }
 
+.cards-btns {
+  width: 20%; 
+  margin: 1em 0 1em 1em;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+}
+
 #card-container-card-view {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "card"
-    "button";
+  display: flex;
+  flex-direction: column;
   height: 100vh;
+}
+
+
+#add-new-card-btn-cards-view {
+  display: flex;
+  flex-direction: column;
 }
 
 #card-details-card-view {
