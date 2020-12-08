@@ -53,6 +53,10 @@ export default new Vuex.Store({
 
     GET_CARD(state, index ) {
       return state.cards[index];
+    }, 
+
+    ADD_CARD(state, card) {
+      state.card.shift(card);
     }
   }
 })
