@@ -9,10 +9,15 @@
       <h2>{{ thisCard.answer }}</h2>
       <b-button class="flip-button" v-on:click.prevent="flipCard">Show Question</b-button>
     </div>
+    <div>
+    <b-button id="delete-button" v-on:click.prevent="deleteThisCard(thisCard.id)">Delete Card</b-button>
+    </div>
   </div>
 </template>
 
 <script>
+
+import cardServices from '@/services/CardServices.js';
 
 export default {
     data() {
@@ -20,6 +25,7 @@ export default {
             
             faceUp: true,
             thisCard: {
+              id: '',
               question: '',
               answer: '',
               tags: ''
@@ -35,11 +41,39 @@ export default {
       this.thisCard.question = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].question;
       this.thisCard.answer = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].answer;
       this.thisCard.tags = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].tags;
+      this.thisCard.id = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].cardId;
     },
 
   methods: {
     flipCard() {
       this.faceUp = !this.faceUp;
+    },
+
+    deleteThisCard(id) {
+      cardServices.deleteCard(id).then((response) => {
+        if (response.status === 200) {
+          this.$store.commit("DELETE_CARD", id);
+        }
+      }).catch(error => {
+        this.handleErrorResponse(error, 'deleting');
+      });
+      this.$router.push({ name: "home"});
+      },
+
+
+     handleErrorResponse(error, verb) {
+      if (error.response) {
+        console.log(error.response);
+        this.errorMsg =
+          'Error ' + verb + ' card. Response received was "' +
+          error.response.data.errors[0].defaultMessage + '".';
+      } else if (error.request) {
+        this.errorMsg =
+          'Error ' + verb + ' card. Server could not be reached.';
+      } else {
+        this.errorMsg =
+          'Error ' + verb + ' card. Request could not be created.';
+      }
     }
   },
  
@@ -78,6 +112,20 @@ h2 {
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
+}
+
+#delete-button { 
+  text-align: center;
+  margin: 0.5em 0 0.5em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 </style>

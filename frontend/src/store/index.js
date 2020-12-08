@@ -21,13 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     cards: [],
-    card: {
-      question: '',
-      answer: '',
-      user_id: '',
-      id: '',
-      tags: {}, 
-    }
+  
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -57,6 +51,13 @@ export default new Vuex.Store({
 
     ADD_CARD(state, card) {
       state.card.shift(card);
+    },
+
+    DELETE_CARD(state, id) {
+      state.cards.splice(
+      state.cards.findIndex(card => card.id === id, 1)
+      );
     }
+
   }
 })

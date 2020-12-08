@@ -14,6 +14,10 @@ export default {
 
     getAllCards() {
         return axios.get('/cards');
+    },
+
+    deleteCard(id) {
+        return axios.delete(`/cards/${id}`);
     }
 
 }
