@@ -11,4 +11,6 @@ public interface CardDAO {
 
     List<Card> getCards(long userID);
 
+    void deleteCard(long cardId);
+
 }

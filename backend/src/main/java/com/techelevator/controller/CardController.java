@@ -6,6 +6,7 @@ import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Card;
 import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -34,6 +35,12 @@ public class CardController {
     public List<Card> fetchAllCards(Principal principal){
         User currentUser = userDAO.findByUsername(principal.getName());
         return cardDAO.getCards(currentUser.getId());
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping(path = "/cards/{id}")
+    public void removeCard(@PathVariable int id) {
+        cardDAO.deleteCard(id);
     }
 
 
