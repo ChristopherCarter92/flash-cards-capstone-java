@@ -1,6 +1,6 @@
 <template>
   <div id="card-container-card-view">
-    <card-details id="card-details-card-view" />
+    <card-details v-bind:key="currentCardIndex" id="card-details-card-view" />
     <b-button v-if="currentCardIndex > 0" v-on:click="handlePreviousButton()"
       >Previous Card</b-button
     >

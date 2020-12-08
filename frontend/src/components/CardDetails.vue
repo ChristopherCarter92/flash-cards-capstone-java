@@ -20,6 +20,9 @@ export default {
             
             faceUp: true,
             thisCard: {
+              question: '',
+              answer: '',
+              tags: ''
             }
         }
     },
@@ -29,7 +32,9 @@ export default {
     },
 
     created() {
-      this.thisCard = this.$store.state.cards[parseInt(this.$route.params.cardId) -1];
+      this.thisCard.question = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].question;
+      this.thisCard.answer = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].answer;
+      this.thisCard.tags = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].tags;
     },
 
   methods: {
