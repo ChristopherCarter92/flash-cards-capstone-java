@@ -25,7 +25,18 @@
   </div>
 </template>
 <script>
-export default {};
+import CardServices from '@/services/CardServices.js';
+
+export default {
+  created() {
+      CardServices.getAllCards().then(response => {
+        this.$store.commit('SET_CARDS', response.data);
+      })
+
+    }
+
+
+};
 </script>
 <style>
 

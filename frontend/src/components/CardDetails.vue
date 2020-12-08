@@ -14,17 +14,12 @@
 
 <script>
 
-import cardServices from '@/services/CardServices.js'
-
 export default {
     data() {
         return {
-            currentCardId: '',
+            
             faceUp: true,
             thisCard: {
-              question: '',
-              answer: '',
-              tags: ''
             }
         }
     },
@@ -34,14 +29,8 @@ export default {
     },
 
     created() {
-
-       cardServices.getCard(this.$route.params.cardId).then(response => {
-        
-         this.thisCard = response.data;
-      
-       });
+      this.thisCard = this.$store.state.cards[parseInt(this.$route.params.cardId) -1];
     },
-
 
   methods: {
     flipCard() {

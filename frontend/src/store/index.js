@@ -24,10 +24,9 @@ export default new Vuex.Store({
     card: {
       question: '',
       answer: '',
-      userId: '',
-      cardId: '',
-      tags: {},
-      faceUp: true
+      user_id: '',
+      id: '',
+      tags: {}, 
     }
   },
   mutations: {
