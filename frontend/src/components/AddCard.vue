@@ -1,4 +1,5 @@
 <template>
+<div>
   <form v-on:submit.prevent="createCard">
     <label for="question">Question: </label>
     <input v-model="newCard.question" type="text" />
@@ -6,8 +7,11 @@
     <input v-model="newCard.answer" type="text" />
     <label for="tags">Tags: </label>
     <textarea v-model="newCard.tags" type="tags" />
-    <b-button>Add Card</b-button>
+    <b-button type="submit">Add Card</b-button>
   </form>
+  <p v-if="errorMsg !== ''"> {{ errorMsg }} </p>
+</div>
+  
 </template>
 
 <script>
@@ -16,6 +20,7 @@ import cardServices from "@/services/CardServices.js";
 export default {
   data() {
     return {
+      errorMsg: '',
       newCard: {
         question: "",
         answer: "",
