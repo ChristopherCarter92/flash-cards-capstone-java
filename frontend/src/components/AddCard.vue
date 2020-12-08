@@ -34,8 +34,8 @@ export default {
       cardServices.addCard(this.newCard).then((response) => {
         if (response.status === 201) {
           this.$store.commit('ADD_CARD', response.data);
-          let parameter = this.$store.length -1;
-          this.$router.push(`/card/${parameter}`);
+          let parameter = this.$store.state.cards.length;
+          this.$router.push(`/cards/${parameter}`);
         }
     }).catch(error => {
         this.handleErrorResponse(error, 'adding')

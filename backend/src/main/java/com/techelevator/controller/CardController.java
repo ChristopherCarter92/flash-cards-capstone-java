@@ -6,6 +6,7 @@ import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Card;
 import com.techelevator.model.CardDTO;
 import com.techelevator.model.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,7 @@ public class CardController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/cards")
+    @ResponseStatus(HttpStatus.CREATED)
     public Card addCard(@RequestBody CardDTO cardDTO, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
         return cardDAO.createCard(cardDTO, currentUser.getId().intValue());

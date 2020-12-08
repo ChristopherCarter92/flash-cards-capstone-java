@@ -1,5 +1,6 @@
 <template>
   <div id="card-details-container">
+    <p v-if="errorMsg !== ''">{{ errorMsg }}</p>
     <div class="card-face" v-show="faceUp">
       <h2>{{ thisCard.question }}</h2>
       <b-button class="flip-button" v-on:click.prevent="flipCard">Show me the answer</b-button>
@@ -10,7 +11,7 @@
       <b-button class="flip-button" v-on:click.prevent="flipCard">Show Question</b-button>
     </div>
     <div>
-    <b-button id="delete-button" v-on:click.prevent="deleteThisCard(thisCard.id)">Delete Card</b-button>
+    <b-button id="delete-button" v-on:click.prevent="deleteThisCard(thisCard.cardId)">Delete Card</b-button>
     </div>
   </div>
 </template>
@@ -22,26 +23,36 @@ import cardServices from '@/services/CardServices.js';
 export default {
     data() {
         return {
+            errorMsg: '',
+            faceUp: true
             
-            faceUp: true,
-            thisCard: {
-              id: '',
-              question: '',
-              answer: '',
-              tags: ''
-            }
         }
     },
 
     computed: {
+
+      thisCard() {
+       if (this.$store.state.cards.length > 0) {
+       return this.$store.state.cards[parseInt(this.$route.params.cardId) -1];
+       } else {
+         return {
+              id: '',
+              question: 'This is the window to your soul....',
+              answer: '...coding never ends...',
+              tags: 'spaghetti code'
+            };
+       }
+
+      }
+
      
     },
 
     created() {
-      this.thisCard.question = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].question;
-      this.thisCard.answer = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].answer;
-      this.thisCard.tags = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].tags;
-      this.thisCard.id = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].cardId;
+      // this.thisCard.question = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].question;
+      // this.thisCard.answer = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].answer;
+      // this.thisCard.tags = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].tags;
+      // this.thisCard.id = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].cardId;
     },
 
   methods: {
@@ -50,6 +61,9 @@ export default {
     },
 
     deleteThisCard(id) {
+      if (this.$store.state.cards.length < 1) {
+        this.$router.push({ name: "home"});
+      }
       cardServices.deleteCard(id).then((response) => {
         if (response.status === 200) {
           this.$store.commit("DELETE_CARD", id);
@@ -57,10 +71,11 @@ export default {
       }).catch(error => {
         this.handleErrorResponse(error, 'deleting');
       });
-      this.$router.push({ name: "home"});
+       cardServices.getAllCards().then(response => {
+        this.$store.commit('SET_CARDS', response.data);
+       });
       },
-
-
+    
      handleErrorResponse(error, verb) {
       if (error.response) {
         console.log(error.response);

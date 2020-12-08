@@ -50,7 +50,7 @@ export default new Vuex.Store({
     }, 
 
     ADD_CARD(state, card) {
-      state.card.shift(card);
+      state.cards.push(card);
     },
 
     DELETE_CARD(state, id) {
