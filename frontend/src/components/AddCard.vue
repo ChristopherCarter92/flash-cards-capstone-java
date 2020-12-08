@@ -1,17 +1,17 @@
 <template>
-  <form >
+  <form v-on:submit.prevent="createCard">
     <label for="question">Question: </label>
     <input v-model="newCard.question" type="text" />
     <label for="answer">Answer: </label>
     <input v-model="newCard.answer" type="text" />
     <label for="tags">Tags: </label>
     <textarea v-model="newCard.tags" type="tags" />
-    <button v-on:click.prevent="createCard">Add Card</button>
+    <b-button>Add Card</b-button>
   </form>
 </template>
 
 <script>
-import cardServices from "@/services/CardServices.vue";
+import cardServices from "@/services/CardServices.js";
 
 export default {
   data() {
@@ -19,7 +19,7 @@ export default {
       newCard: {
         question: "",
         answer: "",
-        tags: {},
+        tags: "",
       },
     };
   },

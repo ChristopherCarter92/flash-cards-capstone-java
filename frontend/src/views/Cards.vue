@@ -1,5 +1,6 @@
 <template>
   <div id="card-container-card-view">
+    <b-button v-on:click="$router.push({name: 'create'})">Add New Card</b-button>
     <card-details v-bind:key="currentCardIndex" id="card-details-card-view" />
     <b-button v-if="currentCardIndex > 0" v-on:click="handlePreviousButton()"
       >Previous Card</b-button
