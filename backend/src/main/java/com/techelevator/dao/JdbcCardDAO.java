@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 
 import com.techelevator.model.Card;
+import com.techelevator.model.CardDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -46,6 +47,19 @@ public class JdbcCardDAO implements CardDAO {
     public void deleteCard(long cardId) {
         String sql = "DELETE FROM cards WHERE id = ?;";
         jdbcTemplate.update(sql, cardId);
+    }
+
+    @Override
+    public Card createCard(CardDTO cardDTO, int userId) {
+        String sql = "INSERT INTO cards (question, answer, tags, user_id) VALUES (?, ?, ?, ?) RETURNING id;";
+        Long id =jdbcTemplate.queryForObject(sql, Long.class, cardDTO.getQuestion(), cardDTO.getAnswer(), cardDTO.getTags(), userId);
+        Card myCard = new Card();
+        myCard.setCardId(id.intValue());
+        myCard.setAnswer(cardDTO.getAnswer());
+        myCard.setQuestion(cardDTO.getQuestion());
+        myCard.setTags(cardDTO.getTags());
+        myCard.setUserId(userId);
+        return myCard;
     }
 
     private Card mapRowToCard(SqlRowSet rowSet) {
