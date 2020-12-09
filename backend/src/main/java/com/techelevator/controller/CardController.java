@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.security.Principal;
 import java.util.List;
@@ -41,8 +42,12 @@ public class CardController {
 
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping(path = "/cards/{id}")
-    public void removeCard(@PathVariable int id) {
-        cardDAO.deleteCard(id);
+    public void removeCard(@PathVariable int id, Principal principal) {
+        User currentUser = userDAO.findByUsername(principal.getName());
+        boolean deleted = cardDAO.deleteCard(id, currentUser.getId());
+        if(!deleted) {
+            throw new ResourceAccessException("You are not authorized to delete that card");
+        }
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -57,7 +62,13 @@ public class CardController {
     @PutMapping("/cards/{id}")
     public Card changeCard(@PathVariable int id, Principal principal, @RequestBody CardDTO cardDTO) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        return cardDAO.updateCard(cardDTO, currentUser.getId().intValue(), id);
+        Card result = cardDAO.updateCard(cardDTO, currentUser.getId().intValue(), id);
+        if(result == null){
+            throw new ResourceAccessException("You are not authorized to update that card.");
+        }else {
+            return result;
+        }
+
     }
 
 

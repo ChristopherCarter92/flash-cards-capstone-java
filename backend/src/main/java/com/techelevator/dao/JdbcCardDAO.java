@@ -45,9 +45,16 @@ public class JdbcCardDAO implements CardDAO {
     }
 
     @Override
-    public void deleteCard(long cardId) {
-        String sql = "DELETE FROM cards WHERE id = ?;";
-        jdbcTemplate.update(sql, cardId);
+    public boolean deleteCard(long cardId, long userId) {
+        String sql = "DELETE FROM cards WHERE id = ? AND user_id = ?;";
+        int returnedValue = jdbcTemplate.update(sql, cardId, userId);
+        boolean canDelete = false;
+        if(returnedValue == 1){
+            canDelete = true;
+        }
+        return canDelete;
+
+        //will return zero for not deleted and 1 for deleted. make this return a boolean and then throw error in controller
     }
 
     @Override
@@ -65,13 +72,16 @@ public class JdbcCardDAO implements CardDAO {
 
     @Override
     public Card updateCard(@Valid CardDTO cardDTO, int userId, int cardId) {
-       String sql = "UPDATE cards SET question = ?, answer = ?, tags = ?, user_id = ?WHERE id = ? AND user_id = ?;";
-       jdbcTemplate.update(sql, cardDTO.getQuestion(), cardDTO.getAnswer(), cardDTO.getTags(), userId, cardId, userId);
-       SqlRowSet rowset = jdbcTemplate.queryForRowSet("SELECT user_id, id, question, answer, tags FROM cards WHERE id = ?;", cardId );
-       if(rowset.next()) {
-           Card myCard = mapRowToCard(rowset);
-           return myCard;
-       }
+            String sql = "UPDATE cards SET question = ?, answer = ?, tags = ?, user_id = ?WHERE id = ? AND user_id = ?;";
+            int returnedValue = jdbcTemplate.update(sql, cardDTO.getQuestion(), cardDTO.getAnswer(), cardDTO.getTags(), userId, cardId, userId);
+            if(returnedValue == 1) {
+            SqlRowSet rowset = jdbcTemplate.queryForRowSet("SELECT user_id, id, question, answer, tags FROM cards WHERE id = ?;", cardId );
+            if(rowset.next()) {
+                Card myCard = mapRowToCard(rowset);
+                return myCard;
+            }
+        }
+
         return null;
 
     }
