@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class JdbcCardDAO implements CardDAO {
     }
 
     @Override
-    public Card createCard(CardDTO cardDTO, int userId) {
+    public Card createCard(@Valid CardDTO cardDTO, int userId) {
         String sql = "INSERT INTO cards (question, answer, tags, user_id) VALUES (?, ?, ?, ?) RETURNING id;";
         Long id =jdbcTemplate.queryForObject(sql, Long.class, cardDTO.getQuestion(), cardDTO.getAnswer(), cardDTO.getTags(), userId);
         Card myCard = new Card();
@@ -60,6 +61,19 @@ public class JdbcCardDAO implements CardDAO {
         myCard.setTags(cardDTO.getTags());
         myCard.setUserId(userId);
         return myCard;
+    }
+
+    @Override
+    public Card updateCard(@Valid CardDTO cardDTO, int userId, int cardId) {
+       String sql = "UPDATE cards SET question = ?, answer = ?, tags = ?, user_id = ?WHERE id = ? AND user_id = ?;";
+       jdbcTemplate.update(sql, cardDTO.getQuestion(), cardDTO.getAnswer(), cardDTO.getTags(), userId, cardId, userId);
+       SqlRowSet rowset = jdbcTemplate.queryForRowSet("SELECT user_id, id, question, answer, tags FROM cards WHERE id = ?;", cardId );
+       if(rowset.next()) {
+           Card myCard = mapRowToCard(rowset);
+           return myCard;
+       }
+        return null;
+
     }
 
     private Card mapRowToCard(SqlRowSet rowSet) {

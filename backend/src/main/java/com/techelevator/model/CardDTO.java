@@ -1,8 +1,13 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotEmpty;
+
 public class CardDTO {
+    @NotEmpty
     private String question;
+    @NotEmpty
     private String answer;
+    @NotEmpty
     private String tags;
 
     public String getQuestion() {

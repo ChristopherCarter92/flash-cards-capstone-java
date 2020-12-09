@@ -53,5 +53,12 @@ public class CardController {
         return cardDAO.createCard(cardDTO, currentUser.getId().intValue());
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping("/cards/{id}")
+    public Card changeCard(@PathVariable int id, Principal principal, @RequestBody CardDTO cardDTO) {
+        User currentUser = userDAO.findByUsername(principal.getName());
+        return cardDAO.updateCard(cardDTO, currentUser.getId().intValue(), id);
+    }
+
 
 }

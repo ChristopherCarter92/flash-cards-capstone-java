@@ -16,4 +16,6 @@ public interface CardDAO {
 
     Card createCard(CardDTO cardDTO, int userId);
 
+    Card updateCard(CardDTO cardDTO, int userId, int cardId);
+
 }
