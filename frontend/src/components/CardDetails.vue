@@ -12,6 +12,7 @@
     </div>
     <div id="delete-button">
     <b-button id="actual-delete-card-btn" v-on:click.prevent="deleteThisCard(thisCard.cardId)">Delete Card</b-button>
+    <b-button id="actual-delete-card-btn" v-on:click.prevent="updateThisCard(thisCard.cardId)">Edit Card</b-button>
     </div>
   </div>
 </template>
@@ -74,6 +75,10 @@ export default {
        cardServices.getAllCards().then(response => {
         this.$store.commit('SET_CARDS', response.data);
        });
+      },
+
+      updateThisCard(id) {
+        this.$router.push({name: "update"});
       },
     
      handleErrorResponse(error, verb) {

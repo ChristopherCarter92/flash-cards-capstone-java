@@ -9,6 +9,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Cards from '../views/Cards.vue'
 import CreateCards from '@/views/CreateCards.vue'
+import EditCards from '@/views/EditCards.vue'
 
 Vue.use(Router)
 
@@ -70,6 +71,15 @@ const router = new Router({
       path: '/create',
       name: 'create',
       component: CreateCards,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+    {
+      path: '/update',
+      name: 'update',
+      component: EditCards,
       meta: {
         requiresAuth: true
       }
