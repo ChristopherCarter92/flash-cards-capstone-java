@@ -23,6 +23,7 @@ export default {
     return {
       errorMsg: '',
       
+      
 
     };
   },
@@ -55,10 +56,22 @@ export default {
 
       },
 
+      findCurrentCardIndex(){
+        let currentIndex = '';
+        let arrayOfCards = this.$store.state.cards;
+        for(let i = 0; i < this.$store.state.cards.length -1; i++) {
+          if (arrayOfCards[i].cardId === this.thisCard.cardId) {
+            currentIndex = i;
+          }
+        }
+        return currentIndex;
+      },
+
         editCard() {
         CardServices.updateCard(this.thisCard).then((response) => { 
              if (response.status === 200) {
-             this.$router.push(`/cards/${this.thisCard.cardId}`);
+               //update store
+             this.$router.push(`/cards/${this.findCurrentCardIndex()}`);
          } 
          }).catch(error => {
              this.handleErrorResponse(error, 'updating')
