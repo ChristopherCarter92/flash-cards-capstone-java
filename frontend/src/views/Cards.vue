@@ -70,6 +70,7 @@ export default {
   padding: 0;
 }
 
+
 #current-card-index {
   display: flex;
   align-content: center;
@@ -81,14 +82,6 @@ export default {
   justify-content: center;
 }
 
-#previous-card-index {
-  display: flex;
-}
-
-#next-card-index {
-  display: flex;
-}
-
 .cards-btns {
   width: 20%; 
   margin: 1em 0 1em 1em;
@@ -96,7 +89,6 @@ export default {
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
-  text-align: center;
 }
 
 #card-container-card-view {
@@ -105,16 +97,10 @@ export default {
   box-sizing: border-box;
 }
 
-
-#add-new-card-btn-cards-view {
-  display: flex;
-  flex-direction: column;
-}
-
 #card-details-card-view {
   grid-area: card;
   justify-self: center;
-  height: 50vh;
+  height: 50%;
   width: auto;
 }
 </style>
