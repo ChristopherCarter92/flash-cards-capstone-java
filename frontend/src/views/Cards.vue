@@ -3,15 +3,16 @@
     <div id="add-new-card-btn-cards-view">
       <b-button class="cards-btns" id="b-btn-add-new" v-on:click="$router.push({name: 'create'})">Add New Card</b-button>
     </div>
-    <div>
+    <div id="current-card-index">
       <card-details v-bind:key="currentCardIndex" id="card-details-card-view" />
     </div>
-    <div>
-      <b-button class="cards-btns" v-if="currentCardIndex > 0" v-on:click="handlePreviousButton()"
+    <div id="btn-to-change-current-index">
+      <b-button class="cards-btns" id="previous-card-index" v-if="currentCardIndex > 0" v-on:click="handlePreviousButton()"
       >Previous Card</b-button
     >
     <b-button
       class="cards-btns"
+      id="next-card-index"
       v-if="currentCardIndex < cards.length - 1"
       v-on:click="handleNextButton()"
       >Next Card</b-button
@@ -69,6 +70,26 @@ export default {
   padding: 0;
 }
 
+#current-card-index {
+  display: flex;
+  align-content: center;
+  align-self: center;
+}
+
+#btn-to-change-current-index {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+#previous-card-index {
+  display: flex;
+}
+
+#next-card-index {
+  display: flex;
+}
+
 .cards-btns {
   width: 20%; 
   margin: 1em 0 1em 1em;
@@ -82,6 +103,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  box-sizing: border-box;
 }
 
 
