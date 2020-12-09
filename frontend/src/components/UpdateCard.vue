@@ -2,11 +2,11 @@
   <div>
   <form v-on:submit.prevent="editCard">
     <label for="question">Question: </label>
-    <input v-model="thisCard.question" type="text" />
+    <input v-model="thisCard.question" type="text" id="question" />
     <label for="answer">Answer: </label>
-    <input v-model="thisCard.answer" type="text" />
+    <input v-model="thisCard.answer" type="text" id="answer" />
     <label for="tags">Tags: </label>
-    <textarea v-model="thisCard.tags" type="tags" />
+    <textarea v-model="thisCard.tags" type="tags" id="tags" />
     <b-button type="submit">Edit Card</b-button>
   </form>
   <p v-if="errorMsg !== ''"> {{ errorMsg }} </p>
@@ -28,9 +28,11 @@ export default {
 
   computed: {
 
-      thisCard() {
+      thisCard() { //returns an array of objects (should only have one object)
        if (this.$store.state.cards.length > 0) {
-       return this.$store.state.cards[parseInt(this.$route.params.cardId) -1];
+         let currentCardId = this.$route.params.cardId;
+         return this.findCardById(currentCardId);
+        
        } else {
          return {
               id: '',
@@ -41,11 +43,16 @@ export default {
        }
 
       }
-
-     
     },
 
     methods: {
+
+      findCardById(cardId){
+        let currentCard = this.$store.state.cards.find(card => card.cardId === cardId);
+
+        return currentCard;
+
+      },
 
         editCard() {
         CardServices.updateCard(this.thisCard).then((response) => { 

@@ -77,7 +77,7 @@ const router = new Router({
     },
 
     {
-      path: '/update',
+      path: '/update/:cardId',
       name: 'update',
       component: EditCards,
       meta: {

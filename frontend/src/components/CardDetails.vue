@@ -78,7 +78,7 @@ export default {
       },
 
       updateThisCard() {
-        this.$router.push({name: "update"});
+        this.$router.push({name: "update", params: { cardId: this.thisCard.cardId}});
       },
     
      handleErrorResponse(error, verb) {
