@@ -78,8 +78,7 @@ export default {
 
 #btn-to-change-current-index {
   display: flex;
-  flex-direction: row;
-  align-content: center;
+  justify-content: center;
 }
 
 #previous-card-index {
@@ -97,12 +96,12 @@ export default {
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
+  text-align: center;
 }
 
 #card-container-card-view {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   box-sizing: border-box;
 }
 

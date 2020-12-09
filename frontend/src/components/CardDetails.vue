@@ -10,8 +10,8 @@
       <h2>{{ thisCard.answer }}</h2>
       <b-button class="flip-button" v-on:click.prevent="flipCard">Show Question</b-button>
     </div>
-    <div>
-    <b-button id="delete-button" v-on:click.prevent="deleteThisCard(thisCard.cardId)">Delete Card</b-button>
+    <div id="delete-button">
+    <b-button id="actual-delete-card-btn" v-on:click.prevent="deleteThisCard(thisCard.cardId)">Delete Card</b-button>
     </div>
   </div>
 </template>
@@ -112,11 +112,9 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10% 0 0 0;
+  margin: 2em 1em 0 1em;
   border-radius: 5px;
   border: solid  #95B0B6 5px;
-  height: 70vh;
-  width: 70vh;
   justify-content: center;
 }
 
@@ -130,16 +128,19 @@ h2 {
 }
 
 #delete-button { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#actual-delete-card-btn {
   text-align: center;
-  margin: 0.5em 0 0.5em 0;
+  margin: 1em 0 0 0;
   background-color: #569FAD;
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 50%;
 
 }
 
