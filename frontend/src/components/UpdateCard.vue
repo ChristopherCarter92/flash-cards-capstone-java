@@ -50,7 +50,7 @@ export default {
         editCard() {
         CardServices.updateCard(this.thisCard).then((response) => { 
              if (response.status === 200) {
-             this.$router.push(`/cards/${parameter}`);
+             this.$router.push(`/cards/${this.thisCard.cardId}`);
          } 
          }).catch(error => {
              this.handleErrorResponse(error, 'updating')

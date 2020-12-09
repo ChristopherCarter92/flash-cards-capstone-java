@@ -77,7 +77,7 @@ export default {
        });
       },
 
-      updateThisCard(id) {
+      updateThisCard() {
         this.$router.push({name: "update"});
       },
     
