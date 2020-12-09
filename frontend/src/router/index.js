@@ -11,6 +11,8 @@ import Cards from '../views/Cards.vue'
 import CreateCards from '@/views/CreateCards.vue'
 import EditCards from '@/views/EditCards.vue'
 
+import DeckList from '@/components/DeckList.vue'
+
 Vue.use(Router)
 
 /**
@@ -80,6 +82,14 @@ const router = new Router({
       path: '/update/:cardId',
       name: 'update',
       component: EditCards,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/decks',
+      name: 'decks',
+      component: DeckList,
       meta: {
         requiresAuth: true
       }
