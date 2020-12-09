@@ -59,19 +59,20 @@ export default {
       findCurrentCardIndex(){
         let currentIndex = '';
         let arrayOfCards = this.$store.state.cards;
+        let currentCardId = this.$route.params.cardId;
         for(let i = 0; i < this.$store.state.cards.length -1; i++) {
-          if (arrayOfCards[i].cardId === this.thisCard.cardId) {
+          if (arrayOfCards[i].cardId === currentCardId) {
             currentIndex = i;
           }
         }
         return currentIndex;
       },
 
-        editCard() {
+       editCard() {
         CardServices.updateCard(this.thisCard).then((response) => { 
              if (response.status === 200) {
                //update store
-             this.$router.push(`/cards/${this.findCurrentCardIndex()}`);
+             this.$router.push(`/cards/${this.findCurrentCardIndex() + 1}`);
          } 
          }).catch(error => {
              this.handleErrorResponse(error, 'updating')
