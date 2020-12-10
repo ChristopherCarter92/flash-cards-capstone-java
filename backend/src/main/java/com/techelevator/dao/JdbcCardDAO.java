@@ -24,7 +24,7 @@ public class JdbcCardDAO implements CardDAO {
     @Override
     public Card getCard(int id) {
         Card newCard = new Card();
-        String sql = "SELECT id, question, answer, tags, user_id FROM cards WHERE id = ?;";
+        String sql = "SELECT card_id, question, answer, tags, user_id FROM cards WHERE card_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
         while (rowSet.next()) {
             newCard = mapRowToCard(rowSet);
@@ -35,7 +35,7 @@ public class JdbcCardDAO implements CardDAO {
     @Override
     public List<Card> getCards(long userID) {
         List<Card> myCards = new ArrayList<>();
-        String sql = "SELECT id, question, answer, tags, user_id FROM cards WHERE user_id = ?;";
+        String sql = "SELECT card_id, question, answer, tags, user_id FROM cards WHERE user_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userID);
         while (rowSet.next()) {
             Card newCard = mapRowToCard(rowSet);
@@ -46,7 +46,7 @@ public class JdbcCardDAO implements CardDAO {
 
     @Override
     public boolean deleteCard(long cardId, long userId) {
-        String sql = "DELETE FROM cards WHERE id = ? AND user_id = ?;";
+        String sql = "DELETE FROM cards WHERE card_id = ? AND user_id = ?;";
         int returnedValue = jdbcTemplate.update(sql, cardId, userId);
         boolean canDelete = false;
         if(returnedValue == 1){
@@ -59,7 +59,7 @@ public class JdbcCardDAO implements CardDAO {
 
     @Override
     public Card createCard(@Valid CardDTO cardDTO, int userId) {
-        String sql = "INSERT INTO cards (question, answer, tags, user_id) VALUES (?, ?, ?, ?) RETURNING id;";
+        String sql = "INSERT INTO cards (question, answer, tags, user_id) VALUES (?, ?, ?, ?) RETURNING card_id;";
         Long id =jdbcTemplate.queryForObject(sql, Long.class, cardDTO.getQuestion(), cardDTO.getAnswer(), cardDTO.getTags(), userId);
         Card myCard = new Card();
         myCard.setCardId(id.intValue());
@@ -72,10 +72,10 @@ public class JdbcCardDAO implements CardDAO {
 
     @Override
     public Card updateCard(@Valid CardDTO cardDTO, int userId, int cardId) {
-            String sql = "UPDATE cards SET question = ?, answer = ?, tags = ?, user_id = ?WHERE id = ? AND user_id = ?;";
+            String sql = "UPDATE cards SET question = ?, answer = ?, tags = ?, user_id = ?WHERE card_id = ? AND user_id = ?;";
             int returnedValue = jdbcTemplate.update(sql, cardDTO.getQuestion(), cardDTO.getAnswer(), cardDTO.getTags(), userId, cardId, userId);
             if(returnedValue == 1) {
-            SqlRowSet rowset = jdbcTemplate.queryForRowSet("SELECT user_id, id, question, answer, tags FROM cards WHERE id = ?;", cardId );
+            SqlRowSet rowset = jdbcTemplate.queryForRowSet("SELECT user_id, card_id, question, answer, tags FROM cards WHERE card_id = ?;", cardId );
             if(rowset.next()) {
                 Card myCard = mapRowToCard(rowset);
                 return myCard;
@@ -88,7 +88,7 @@ public class JdbcCardDAO implements CardDAO {
 
     private Card mapRowToCard(SqlRowSet rowSet) {
         Card newCard = new Card();
-        newCard.setCardId(rowSet.getInt("id"));
+        newCard.setCardId(rowSet.getInt("card_id"));
         newCard.setQuestion(rowSet.getString("question"));
         newCard.setAnswer(rowSet.getString("answer"));
         newCard.setTags(rowSet.getString("tags"));
