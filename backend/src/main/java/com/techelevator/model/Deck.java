@@ -8,7 +8,7 @@ public class Deck {
     private int deckId;
     private String title;
     private String username;
-    private List<Card> cards;
+    private List<Integer> allCardIds;
 
     public int getDeckId() {
         return deckId;
@@ -34,11 +34,11 @@ public class Deck {
         this.username = username;
     }
 
-    public List<Card> getCards() {
-        return cards;
+    public List<Integer> getCards() {
+        return null;
     }
 
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
+    public void setCards(List<Integer> cards) {
+        this.allCardIds = cards;
     }
 }
