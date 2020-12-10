@@ -1,14 +1,15 @@
 <template>
 <div>
-    <ul v-for="decks in $store.state.decks" v-bind:key="decks.deckId">
-        <li>{{decks}}</li>
-        
-    </ul>
+    <div v-for="decks in $store.state.decks" v-bind:key="decks.deckId">
+        <b-button v-on:click="$router.push('/decks/:id')">{{decks.title}}</b-button>
+       
+    </div>
 </div>
   
 </template>
 
 <script>
+
 
 export default {
     data() {
@@ -17,6 +18,13 @@ export default {
         username: '',
         title: ''
     }
+    },
+
+    methods: {
+        getDeckId(title) {
+            
+            
+        }
     }
 
 }
