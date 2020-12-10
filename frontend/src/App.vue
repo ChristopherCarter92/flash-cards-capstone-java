@@ -26,12 +26,17 @@
 </template>
 <script>
 import CardServices from '@/services/CardServices.js';
+import DeckServices from '@/services/DeckServices.js';
 
 export default {
   created() {
+    // const dummyDecks = [{title: 'Dummy Deck 1'}, {title: 'Dummy Deck 2'}]
     if (this.$store.state.token !== '') {
       CardServices.getAllCards().then(response => {
         this.$store.commit('SET_CARDS', response.data);
+      });
+      DeckServices.getAllDecks().then( (response)=> {
+        this.$store.commit('SET_DECKS', response.data);
       });
     }
   }

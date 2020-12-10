@@ -21,6 +21,11 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     cards: [],
+    decks: [],
+    deck: {
+      
+    }
+    
   
   },
   mutations: {
@@ -45,9 +50,6 @@ export default new Vuex.Store({
       state.cards = cards; 
     },
 
-    GET_CARD(state, index ) {
-      return state.cards[index];
-    }, 
 
     ADD_CARD(state, card) {
       state.cards.push(card);
@@ -57,7 +59,13 @@ export default new Vuex.Store({
       state.cards.splice(
       state.cards.findIndex(card => card.id === id, 1)
       );
+    },
+
+    SET_DECKS(state, decks) {
+      state.decks = decks;
     }
+
+    
 
   }
 })

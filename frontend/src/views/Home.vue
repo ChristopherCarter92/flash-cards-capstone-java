@@ -4,17 +4,23 @@
     <h1 id="home-title">Home</h1>
     <b-button id="show-cards-button" v-on:click="$router.push({name: 'cards', params: {cardId: 1}})">See My Cards</b-button>
     <div>
-      <h1 id="allCards">All Cards</h1>
-          <card-list></card-list>
+      <!-- <h1 id="allCards">All Cards</h1>
+          <card-list></card-list> -->
+      <h1 id="allDecks">All Decks</h1>
+      <b-button id="add-deck-button" v-on:click="$router.push({name: 'deckForm'})">Add Deck</b-button>
+          <deck-list></deck-list>
     </div>
   </div>
 </template>
 
 <script>
-import CardList from '@/components/CardList.vue';
+
+import DeckList from '@/components/DeckList.vue';
+// import CardList from '@/components/CardList.vue';
 export default {
   components: {
-    CardList
+    // CardList,
+    DeckList
   },
   data() {
       return {

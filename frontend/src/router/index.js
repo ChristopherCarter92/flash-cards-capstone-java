@@ -1,17 +1,19 @@
 // @ts-nocheck
 
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Logout from '../views/Logout.vue'
-import Register from '../views/Register.vue'
-import store from '../store/index'
-import Cards from '../views/Cards.vue'
-import CreateCards from '@/views/CreateCards.vue'
-import EditCards from '@/views/EditCards.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from '../views/Home.vue';
+import Login from '../views/Login.vue';
+import Logout from '../views/Logout.vue';
+import Register from '../views/Register.vue';
+import store from '../store/index';
+import Cards from '../views/Cards.vue';
+import CreateCards from '@/views/CreateCards.vue';
+import EditCards from '@/views/EditCards.vue';
+import CreateDecks from '@/views/CreateDecks.vue';
 
-import DeckList from '@/components/DeckList.vue'
+import DeckList from '@/components/DeckList.vue';
+
 
 Vue.use(Router)
 
@@ -90,6 +92,14 @@ const router = new Router({
       path: '/decks',
       name: 'decks',
       component: DeckList,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/form/:deckId',
+      name: 'deckForm',
+      component: CreateDecks,
       meta: {
         requiresAuth: true
       }
