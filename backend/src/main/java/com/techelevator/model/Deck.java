@@ -38,7 +38,7 @@ public class Deck {
         return null;
     }
 
-    public void setCards(List<Integer> cards) {
-        this.allCardIds = cards;
+    public void setCards(int cardId) {
+        allCardIds.add(cardId);
     }
 }
