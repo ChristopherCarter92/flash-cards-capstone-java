@@ -1,7 +1,7 @@
 <template>
 <div>
     <div v-for="decks in $store.state.decks" v-bind:key="decks.deckId">
-        <b-button v-on:click="$router.push('/decks/:id')">{{decks.title}}</b-button>
+        <b-button v-on:click="$router.push({name: 'currentDeck', params: {deckId: decks.deckId}})">{{decks.title}}</b-button>
        
     </div>
 </div>
@@ -20,12 +20,6 @@ export default {
     }
     },
 
-    methods: {
-        getDeckId(title) {
-            
-            
-        }
-    }
 
 }
 </script>

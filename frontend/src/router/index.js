@@ -11,6 +11,7 @@ import Cards from '../views/Cards.vue';
 import CreateCards from '@/views/CreateCards.vue';
 import EditCards from '@/views/EditCards.vue';
 import CreateDecks from '@/views/CreateDecks.vue';
+import Deck from '@/views/Deck.vue';
 
 import DeckList from '@/components/DeckList.vue';
 
@@ -100,6 +101,14 @@ const router = new Router({
       path: '/form/:deckId',
       name: 'deckForm',
       component: CreateDecks,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/decks/:deckId',
+      name: 'currentDeck',
+      component: Deck,
       meta: {
         requiresAuth: true
       }
