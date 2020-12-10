@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Deck;
+import com.techelevator.model.DeckDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -45,12 +46,15 @@ public class JdbcDeckDAO implements DeckDAO{
     }
 
     @Override
-    public List<String> getDeckTitles(String username) {
-        List<String> list = new ArrayList<>();
-        String sql = "SELECT title FROM decks WHERE username = ?;";
+    public List<DeckDTO> getDecksInfo(String username) {
+        List<DeckDTO> list = new ArrayList<>();
+        String sql = "SELECT title, deck_id FROM decks WHERE username = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
         while (rowSet.next()) {
-            list.add(rowSet.getString("title"));
+            DeckDTO deckDTO = new DeckDTO();
+            deckDTO.setDeckId(rowSet.getInt("deck_id"));
+            deckDTO.setTitle(rowSet.getString("title"));
+            list.add(deckDTO);
         }
         return list;
     }

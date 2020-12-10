@@ -2,6 +2,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.DeckDAO;
 import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Deck;
+import com.techelevator.model.DeckDTO;
 import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,9 +33,9 @@ public class DeckController {
     }
 
     @GetMapping(path="/decks")
-    public List<String> fetchDeckTitles(Principal principal) {
+    public List<DeckDTO> fetchDecksInfo(Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        return deckDAO.getDeckTitles(currentUser.getUsername());
+        return deckDAO.getDecksInfo(currentUser.getUsername());
     }
 
 
