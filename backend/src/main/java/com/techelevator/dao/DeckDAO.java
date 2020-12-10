@@ -6,7 +6,7 @@ public interface DeckDAO {
 
     public Deck createDeck();
 
-    public Deck getDeck(int deckId);
+    public Deck getDeck(int deckId, String username);
 
     public Deck updateDeck();
 

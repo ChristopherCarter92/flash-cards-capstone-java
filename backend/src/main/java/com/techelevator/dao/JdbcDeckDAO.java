@@ -5,6 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class JdbcDeckDAO implements DeckDAO{
 
@@ -23,16 +26,21 @@ public class JdbcDeckDAO implements DeckDAO{
     }
 
     @Override
-    public Deck getDeck(int deckId) {
+    public Deck getDeck(int deckId, String username) {
         Deck deck = new Deck();
         String sql = "SElECT decks.deck_id, title, username, card_deck.card_id " +
                      "FROM decks JOIN card_deck ON decks.deck_id = card_deck.deck_id " +
-                     "WHERE decks.deck_id = ?;";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, deckId);
-
-        while (rowSet.next()) {
-            deck = mapRowToDeck(rowSet);
+                     "WHERE decks.deck_id = ? AND username = ?;";
+        SqlRowSet rowSet1 = jdbcTemplate.queryForRowSet(sql, deckId, username.trim());
+        SqlRowSet rowSet2 = jdbcTemplate.queryForRowSet(sql, deckId, username.trim());
+        List<Integer> list = new ArrayList<>();
+        while (rowSet1.next()) {
+            mapRowToDeck(rowSet1, deck);
         }
+        while (rowSet2.next()) {
+            list.add(rowSet2.getInt("card_id"));
+        }
+        deck.setCardsList(list);
         return deck;
     }
 
@@ -47,14 +55,11 @@ public class JdbcDeckDAO implements DeckDAO{
     }
 
 
-    private Deck mapRowToDeck(SqlRowSet rowSet) {
-        Deck mappedDeck = new Deck();
+    private void mapRowToDeck(SqlRowSet rowSet, Deck deck) {
 
-        mappedDeck.setDeckId(rowSet.getInt("deck_id"));
-        mappedDeck.setTitle(rowSet.getNString("title"));
-        mappedDeck.setUsername(rowSet.getString("username"));
-        mappedDeck.setCards(rowSet.getInt("card_id"));
+        deck.setDeckId(rowSet.getInt("deck_id"));
+        deck.setTitle(rowSet.getString("title"));
+        deck.setUsername(rowSet.getString("username"));
 
-        return mappedDeck;
     }
 }
