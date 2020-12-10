@@ -45,6 +45,17 @@ public class JdbcDeckDAO implements DeckDAO{
     }
 
     @Override
+    public List<String> getDeckTitles(String username) {
+        List<String> list = new ArrayList<>();
+        String sql = "SELECT title FROM decks WHERE username = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
+        while (rowSet.next()) {
+            list.add(rowSet.getString("title"));
+        }
+        return list;
+    }
+
+    @Override
     public Deck updateDeck() {
         return null;
     }

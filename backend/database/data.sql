@@ -7,6 +7,10 @@ INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (2, '
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (3, 'water', 'H2O', 'Science', 1);
 
 INSERT INTO public.decks (deck_id, username, title) VALUES (1, 'Test', 'mathTestDeck');
+INSERT INTO public.decks (deck_id, username, title) VALUES (2, 'Test', 'scienceTestDeck');
+
+INSERT INTO public.card_deck (deck_id, card_id) VALUES (2, 3);
+
 
 INSERT INTO public.card_deck (deck_id, card_id) VALUES (1, 1);
 INSERT INTO public.card_deck (deck_id, card_id) VALUES (1, 2);

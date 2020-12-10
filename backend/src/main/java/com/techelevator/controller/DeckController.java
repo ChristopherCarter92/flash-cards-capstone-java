@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -28,6 +29,12 @@ public class DeckController {
     public Deck fetchDeckById(@PathVariable int deckId, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
         return deckDAO.getDeck(deckId, currentUser.getUsername());
+    }
+
+    @GetMapping(path="/decks")
+    public List<String> fetchDeckTitles(Principal principal) {
+        User currentUser = userDAO.findByUsername(principal.getName());
+        return deckDAO.getDeckTitles(currentUser.getUsername());
     }
 
 
