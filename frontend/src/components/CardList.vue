@@ -1,11 +1,16 @@
 <template>
-  <div>
-
-  </div>
+<ul>
+  <li v-for="card in $store.state.cards" v-bind:key="card.cardId">
+      {{card.question}}
+      
+      
+  </li>
+  </ul>
 </template>
 
 <script>
-import Cards from '@/views/Cards.vue';
+
+
 export default {
     data() {
         return {
@@ -17,22 +22,7 @@ export default {
     },
 
     methods: {
-        retrieveCards() {
-            cardServices
-            .getAllCards()
-            .then(response => {
-                this.id = response.data.id;
-                this.$store.commit('GET_CARDS', response.data.cards);
-            })
-            .catch(error => {
-                if (error.response && error.response.status === 404) {
-                    alert(
-                        'Not loading cards-- could be deleted or not found'
-                    );
-                    this.$router.push({name: 'home'})
-                }
-            })
-        }
+        
     }
 
 

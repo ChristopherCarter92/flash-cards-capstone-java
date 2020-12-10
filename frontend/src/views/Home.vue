@@ -1,16 +1,24 @@
 <template>
+
   <div class="home">
     <h1 id="home-title">Home</h1>
     <b-button id="show-cards-button" v-on:click="$router.push({name: 'cards', params: {cardId: 1}})">See My Cards</b-button>
-    
+    <div>
+      <h1 id="allCards">All Cards</h1>
+          <card-list></card-list>
+    </div>
   </div>
 </template>
 
 <script>
-
+import CardList from '@/components/CardList.vue';
 export default {
-  data () {
+  components: {
+    CardList
+  },
+  data() {
       return {
+        
        
       }
     },
@@ -28,12 +36,22 @@ export default {
   box-sizing: border-box;
 }
 
-.home {
+/* .home {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas: 
   "Title"
   
+} */
+
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+.allCards {
+  display: flex;
+  flex-direction: column;
 }
 
 #home-title {
