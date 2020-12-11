@@ -13,9 +13,7 @@
         <p>{{ `Tag(s): ${card.tags}` }}</p>
       </div>
       <div>
-        <b-button v-on:click.prevent="addCardIdToNewdeck(card.cardId)"
-          >Add To Deck</b-button
-        >
+        <b-button v-on:click.prevent="addCardIdToNewdeck(card.cardId)">Add To Deck</b-button>
         <b-button>Delete Card</b-button>
         <b-button>Edit Card</b-button>
       </div>
@@ -37,7 +35,7 @@ export default {
   data() {
     return {
       newDeck: {
-        title: "",
+        title: "New Deck",
         username: this.$store.state.user.username,
         cardsInNewDeck: [],
       },
@@ -47,6 +45,7 @@ export default {
   methods: {
     createDeck() {
       DeckServices.addDeck(this.newDeck);
+      //add DeckService method to add to joiner table
     },
 
     addTitle(title) {
