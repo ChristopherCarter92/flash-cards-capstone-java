@@ -1,5 +1,6 @@
 <template>
   <div>
+      <b-button>Start A Study Session</b-button>
     <div v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId">
       <div>
         <p>{{ `Question: ${card.question}` }}</p>
@@ -7,7 +8,7 @@
         <p>{{ `Tag(s): ${card.tags}` }}</p>
       </div>
       <div>
-        <b-button>Delete Card</b-button>
+        <b-button>Remove From Deck</b-button>
         <b-button>Edit Card</b-button>
       </div>
     </div>
@@ -25,24 +26,26 @@ export default {
     };
   },
 
+   props: ["currentDeckId"],
+
   created() {
-    this.currentDeck = DeckServices.getDeck(parseInt(this.currentDeckId)).then(
+    DeckServices.getDeck(parseInt(this.currentDeckId)).then(
       (response) => {
         if (response.status === 200) {
-            this.cardsInCurrentDeck = 'Yay!';
-        //   for (let card in this.$store.state.cards) {
-        //     if (this.currentDeck.allCardIds.includes(card.cardId)) {
-        //       this.cardsInCurrentDeck.push(card);
+            this.currentDeck = response.data;
+          for (let card of this.$store.state.cards) {
+            if (this.currentDeck.allCardIds.includes(card.cardId)) {
+              this.cardsInCurrentDeck.push(card);
               
-        //     }
+            }
 
-        //   }
+          }
         }
         
       }
     );
   },
-  props: ["currentDeckId"],
+ 
 };
 </script>
 

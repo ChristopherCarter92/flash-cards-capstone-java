@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export default {
 
-    getDeck(id) {
-        return axios.get(`/decks/${id}`);
+    getDeck(deckId) {
+        return axios.get(`/decks/${deckId}`);
     },
 
     getAllDecks() {
