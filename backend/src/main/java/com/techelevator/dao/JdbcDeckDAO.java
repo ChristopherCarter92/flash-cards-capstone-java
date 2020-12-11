@@ -1,11 +1,15 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Card;
+import com.techelevator.model.CardDTO;
 import com.techelevator.model.Deck;
 import com.techelevator.model.DeckDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +24,27 @@ public class JdbcDeckDAO implements DeckDAO{
 
 
     @Override
-    public Deck createDeck() {
-
-
-        return null;
+    public Deck createDeck(DeckDTO deckDTO, String username) {
+        String sql = "INSERT INTO decks (username, title) VALUES (?, ?) RETURNING deck_id;";
+        Long id = jdbcTemplate.queryForObject(sql, Long.class, username, deckDTO.getTitle());
+        Deck myDeck = new Deck();
+        myDeck.setDeckId(id.intValue());
+        myDeck.setUsername(username);
+        myDeck.setTitle(deckDTO.getTitle());
+        return myDeck;
     }
+
+
+
+    @Override
+    public boolean addCardToDeck(int cardId, int deckId) {
+        String sql = "INSERT INTO card_deck (deck_id, card_id) VALUES (?, ?);";
+        int count = jdbcTemplate.update(sql, deckId, cardId);
+        return count == 1;
+    }
+
+
+
 
     @Override
     public Deck getDeck(int deckId, String username) {

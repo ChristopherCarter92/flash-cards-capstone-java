@@ -1,14 +1,11 @@
 package com.techelevator.controller;
+import com.techelevator.dao.CardDAO;
 import com.techelevator.dao.DeckDAO;
 import com.techelevator.dao.UserDAO;
-import com.techelevator.model.Deck;
-import com.techelevator.model.DeckDTO;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -18,12 +15,14 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()")
 public class DeckController {
 
+    private CardDAO cardDAO;
     private DeckDAO deckDAO;
     private UserDAO userDAO;
 
-    public DeckController(DeckDAO deckDAO, UserDAO userDAO) {
+    public DeckController(DeckDAO deckDAO, UserDAO userDAO, CardDAO cardDAO) {
         this.deckDAO = deckDAO;
         this.userDAO = userDAO;
+        this.cardDAO = cardDAO;
     }
 
     @GetMapping(path="/decks/{deckId}")
@@ -38,5 +37,23 @@ public class DeckController {
         return deckDAO.getDecksInfo(currentUser.getUsername());
     }
 
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/decks")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Deck addDeck(@RequestBody DeckDTO deckDTO, Principal principal) {
+        User currentUser = userDAO.findByUsername(principal.getName());
+        return deckDAO.createDeck(deckDTO, currentUser.getUsername());
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/decks/{deckId}/cards")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Card addCardToDeck(@PathVariable int deckId, @RequestBody CardDTO cardDTO, Principal principal) {
+        User currentUser = userDAO.findByUsername(principal.getName());
+        Card card = cardDAO.createCard(cardDTO, currentUser.getId().intValue());
+        deckDAO.addCardToDeck(card.getCardId(), deckId);
+        return card;
+    }
 
 }
