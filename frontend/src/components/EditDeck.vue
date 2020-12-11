@@ -3,7 +3,6 @@
     <form>
       <label for="deckTitle">Title: </label>
       <input type="text" v-model="newDeck.title" id="deckTitle" />
-      <b-button v-on:click.prevent="addTitle">Add Title</b-button>
     </form>
     <br />
     <div v-for="card in this.$store.state.cards" v-bind:key="card.cardId">
@@ -18,6 +17,7 @@
         <b-button>Edit Card</b-button>
       </div>
     </div>
+    <b-button v-on:click.prevent="createDeck">Save Deck</b-button>
   </div>
 </template>
 
@@ -35,10 +35,13 @@ export default {
   data() {
     return {
       newDeck: {
+        deckId: 0,
         title: "New Deck",
-        username: this.$store.state.user.username,
-        cardsInNewDeck: [],
+        username: this.$store.state.user.username
       },
+
+      cardsInNewDeck: []
+
     };
   },
 
@@ -55,7 +58,7 @@ export default {
     addCardIdToNewdeck(cardId) {
       // for (let i of this.newDeck.cardsInNewDeck) {
       //   if (cardId !== i) {
-          this.newDeck.cardsInNewDeck.push(cardId);
+          this.cardsInNewDeck.push(cardId);
         //}
       //}
     },

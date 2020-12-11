@@ -1,13 +1,15 @@
 <template>
 <div>
-  <form v-on:submit.prevent="createCard">
+  <form >
     <label for="question">Question: </label>
     <input v-model="newCard.question" type="text" />
     <label for="answer">Answer: </label>
     <input v-model="newCard.answer" type="text" />
     <label for="tags">Tags: </label>
     <textarea v-model="newCard.tags" type="tags" />
-    <b-button type="submit">Add Card</b-button>
+    <b-button v-on:submit.prevent="createCard" type="submit">Add Card</b-button>
+    <b-button v-on:submit.prevent="" type="submit">Add Card To Deck</b-button>
+
   </form>
   <p v-if="errorMsg !== ''"> {{ errorMsg }} </p>
 </div>
@@ -16,6 +18,7 @@
 
 <script>
 import cardServices from "@/services/CardServices.js";
+import DeckServices from '@/services/DeckServices.js';
 
 export default {
   data() {
@@ -55,6 +58,10 @@ export default {
         this.errorMsg =
           'Error ' + verb + ' card. Request could not be created.';
       }
+    },
+
+    addNewCardToDeck(newCard) {
+      DeckServices.
     }
   },
 };
