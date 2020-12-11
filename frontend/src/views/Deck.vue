@@ -4,7 +4,6 @@
       <b-button>Edit Deck</b-button>
       <deck-list></deck-list>
       <card-list v-bind:currentDeckId="$route.params.deckId" v-bind:key="$route.params.deckId"></card-list>
-
   </div>
 </template>
 
