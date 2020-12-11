@@ -49,12 +49,6 @@ export default {
      
     },
 
-    created() {
-      // this.thisCard.question = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].question;
-      // this.thisCard.answer = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].answer;
-      // this.thisCard.tags = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].tags;
-      // this.thisCard.id = this.$store.state.cards[parseInt(this.$route.params.cardId) -1].cardId;
-    },
 
   methods: {
     flipCard() {

@@ -1,19 +1,19 @@
 <template>
 <div>
     <h1>Create New Deck</h1>
-    <add-deck></add-deck>
+    <edit-deck />
 </div>
 
   
 </template>
 
 <script>
-import addDeck from '@/components/AddDeck.vue';
+import EditDeck from '@/components/EditDeck.vue';
 
 export default {
 
     components: {
-        addDeck
+        EditDeck
     }
 }
 </script>
