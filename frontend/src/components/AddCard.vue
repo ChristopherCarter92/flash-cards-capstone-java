@@ -18,7 +18,7 @@
 
 <script>
 import cardServices from "@/services/CardServices.js";
-import DeckServices from '@/services/DeckServices.js';
+// import DeckServices from '@/services/DeckServices.js';
 
 export default {
   data() {
@@ -60,9 +60,7 @@ export default {
       }
     },
 
-    addNewCardToDeck(newCard) {
-      DeckServices.
-    }
+    
   },
 };
 </script>
