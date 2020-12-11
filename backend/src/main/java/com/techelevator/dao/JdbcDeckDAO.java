@@ -43,8 +43,15 @@ public class JdbcDeckDAO implements DeckDAO{
         return count == 1;
     }
 
+    @Override
+    public void addCardsToDeck(int deckId, List<Integer> cardIds) {
+        for (int cardId : cardIds) {
+            addCardToDeck(cardId, deckId);
+        }
 
+    }
 
+//mapping for remove card from deck, delete record from card_deck table
 
     @Override
     public Deck getDeck(int deckId, String username) {
@@ -80,8 +87,10 @@ public class JdbcDeckDAO implements DeckDAO{
     }
 
     @Override
-    public Deck updateDeck() {
+    public Deck updateDeck(DeckDTO deckDTO, String username, int deckId) {
+        String sql = "UPDATE decks SET title = ? WHERE username = ? AND deck_id = ?;";
         return null;
+        //need to finish this method!!!!
     }
 
     @Override

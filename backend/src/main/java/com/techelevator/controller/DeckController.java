@@ -6,8 +6,10 @@ import com.techelevator.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -54,6 +56,25 @@ public class DeckController {
         Card card = cardDAO.createCard(cardDTO, currentUser.getId().intValue());
         deckDAO.addCardToDeck(card.getCardId(), deckId);
         return card;
+    }
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/decks/{deckId}/cardIds")
+    public void addCardIdsToDeck(@PathVariable int deckId, @RequestBody List<Integer> cardIds, Principal principal) {
+        User currentUser = userDAO.findByUsername(principal.getName());
+        deckDAO.addCardsToDeck(deckId, cardIds);
+    }
+
+    //
+
+    @PutMapping("/decks/{deckId}")
+    public Deck updateDeck(@PathVariable int deckId, Principal principal, @RequestBody DeckDTO deckDTO) {
+        User currentUser = userDAO.findByUsername(principal.getName());
+        Deck deck = deckDAO.updateDeck(deckDTO, currentUser.getUsername(), deckId);
+        if (deck == null) {
+            throw new ResourceAccessException("You are not authorized to update this Deck");
+        }else {
+            return deck;
+        }
     }
 
 }

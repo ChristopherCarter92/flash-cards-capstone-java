@@ -10,16 +10,18 @@ import java.util.List;
 
 public interface DeckDAO {
 
-    public Deck createDeck(DeckDTO deckDTO, String username);
+    Deck createDeck(DeckDTO deckDTO, String username);
 
-    public boolean addCardToDeck(int cardId, int deckId);
+    boolean addCardToDeck(int cardId, int deckId);
 
-    public Deck getDeck(int deckId, String username);
+    Deck getDeck(int deckId, String username);
 
-    public List<DeckDTO> getDecksInfo(String username);
+    List<DeckDTO> getDecksInfo(String username);
 
-    public Deck updateDeck();
+    Deck updateDeck(DeckDTO deckDTO, String username, int deckId);
 
-    public boolean deleteDeck();
+    void addCardsToDeck(int deckId, List<Integer> cardIds);
+
+    boolean deleteDeck();
 
 }
