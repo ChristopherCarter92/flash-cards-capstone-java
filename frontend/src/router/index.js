@@ -97,8 +97,8 @@ const router = new Router({
       }
     },
     {
-      path: '/form/:deckId',
-      name: 'deckForm',
+      path: '/createDeck/0',
+      name: 'createDeck',
       component: CreateDeck,
       meta: {
         requiresAuth: true
