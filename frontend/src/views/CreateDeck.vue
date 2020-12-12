@@ -2,6 +2,7 @@
 <div>
     <h1>Create New Deck</h1>
     <edit-deck v-bind:defaultDeckId="defaultDeckId" />
+    
 </div>
 
   

@@ -8,8 +8,21 @@
     </div>
 
     <div id="add-card-ele-editDeck">
-      <b-button v-on:click.prevent="wantToAdd = true">Add Card</b-button>
-      <add-card v-show="wantToAdd" v-bind:deckId="currentDeckId"></add-card>
+      <div v-for="i in numOfBlankCards" v-bind:key="i.name">
+        <form>
+          <label for="question">Question: </label>
+          <input v-model="i.question" type="text" />
+          <label for="answer">Answer: </label>
+          <input v-model="i.answer" type="text" />
+          <label for="tags">Tags: </label>
+          <select option value="Math" v-model="i.tags" type="tags">
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="History">History</option>
+            <option value="English">English</option>
+          </select>  
+        </form>
+      </div>
     </div>
 
     <div id="all-cards-editDeck-ele">
@@ -34,17 +47,48 @@
 </template>
 
 <script>
-
 import DeckServices from "@/services/DeckServices.js";
-import AddCard from "@/components/AddCard.vue";
+
 
 export default {
   components: {
-    AddCard,
+    
   },
 
   data() {
     return {
+      numOfBlankCards: [
+         {
+          'name': 'card1', 
+          'question': '',
+          'answer': '',
+          'tags': ''
+        },
+        {
+          'name': 'card2', 
+          'question': '',
+          'answer': '',
+          'tags': ''
+        },
+        {
+          'name': 'card3', 
+          'question': '',
+          'answer': '',
+          'tags': ''
+        },
+        {
+          'name': 'card4', 
+          'question': '',
+          'answer': '',
+          'tags': ''
+        },
+        {
+          'name': 'card5', 
+          'question': '',
+          'answer': '',
+          'tags': ''
+        }
+      ],
       wantToAdd: false,
       currentDeck: {
         deckId: this.currentDeckId,
@@ -52,7 +96,13 @@ export default {
         username: this.$store.state.user.username,
       },
 
-      cardsInDeck: [],
+      newCardsToAdd: [
+
+      ],
+
+      cardsInDeck: [
+
+      ],
     };
   },
 
@@ -60,14 +110,14 @@ export default {
 
   methods: {
     createDeck() {
-      if(this.currentDeckId.deckId === 0) {
+      if (this.currentDeckId.deckId === 0) {
         //language for creating new deck
         DeckServices.addDeck(this.currentDeck.deckId, this.currentDeck);
       } else {
         //language for updating deck
         DeckServices.updateDeck(this.currentDeck.deckId, this.currentDeck);
       }
-      
+
       //TODO: add CardService method to add cards created on page
       //TODO: add DeckService method to add to joiner table
     },
@@ -78,7 +128,6 @@ export default {
 
     addCardIdToNewdeck(cardId) {
       this.cardsInDeck.push(cardId);
-    
     },
   },
 };
