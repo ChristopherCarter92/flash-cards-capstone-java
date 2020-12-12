@@ -224,5 +224,6 @@ INSERT INTO public.card_deck (deck_id, card_id) VALUES (7, 103);
 INSERT INTO public.card_deck (deck_id, card_id) VALUES (7, 104);
 
 SELECT pg_catalog.setval('public.cards_card_id_seq', 1000, true);
+SELECT pg_catalog.setval('public.decks_deck_id_seq', 1000, true);
 
 COMMIT TRANSACTION;

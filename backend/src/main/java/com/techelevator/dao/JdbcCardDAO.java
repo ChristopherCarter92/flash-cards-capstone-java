@@ -75,9 +75,9 @@ public class JdbcCardDAO implements CardDAO {
             String sql = "UPDATE cards SET question = ?, answer = ?, tags = ?, user_id = ?WHERE card_id = ? AND user_id = ?;";
             int returnedValue = jdbcTemplate.update(sql, cardDTO.getQuestion(), cardDTO.getAnswer(), cardDTO.getTags(), userId, cardId, userId);
             if(returnedValue == 1) {
-            SqlRowSet rowset = jdbcTemplate.queryForRowSet("SELECT user_id, card_id, question, answer, tags FROM cards WHERE card_id = ?;", cardId );
-            if(rowset.next()) {
-                Card myCard = mapRowToCard(rowset);
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet("SELECT user_id, card_id, question, answer, tags FROM cards WHERE card_id = ?;", cardId );
+            if(rowSet.next()) {
+                Card myCard = mapRowToCard(rowSet);
                 return myCard;
             }
         }
