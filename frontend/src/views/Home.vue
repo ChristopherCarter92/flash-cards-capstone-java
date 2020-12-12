@@ -4,7 +4,7 @@
     <h1 id="home-title">Home</h1>
     <div>
       <h1 id="allDecks">My Decks</h1>
-      <b-button id="add-deck-button" v-on:click="$router.push({name: 'deckForm'})">Add Deck</b-button>
+      <b-button id="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
           <deck-list></deck-list>
     </div>
   </div>
