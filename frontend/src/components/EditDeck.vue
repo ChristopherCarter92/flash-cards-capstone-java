@@ -6,9 +6,12 @@
         <input type="text" v-model="currentDeck.title" id="deckTitle" />
       </form>
     </div>
+    <div id="save-card-btn-editDeck-ele">
+      <b-button v-on:click.prevent="createDeck">Save Deck</b-button>
+    </div>
 
     <div id="add-card-ele-editDeck">
-      <div v-for="i in numOfBlankCards" v-bind:key="i.name">
+      <div v-for="i in newCards" v-bind:key="i.name">
         <form>
           <label for="question">Question: </label>
           <input v-model="i.question" type="text" />
@@ -40,9 +43,6 @@
       </div>
     </div>
 
-    <div id="save-card-btn-editDeck-ele">
-      <b-button v-on:click.prevent="createDeck">Save Deck</b-button>
-    </div>
   </div>
 </template>
 
@@ -57,7 +57,7 @@ export default {
 
   data() {
     return {
-      numOfBlankCards: [
+      newCards: [
          {
           'name': 'card1', 
           'question': '',
@@ -91,14 +91,9 @@ export default {
       ],
       wantToAdd: false,
       currentDeck: {
-        deckId: this.currentDeckId,
         title: "New Deck",
         username: this.$store.state.user.username,
       },
-
-      newCardsToAdd: [
-
-      ],
 
       cardsInDeck: [
 
@@ -106,16 +101,35 @@ export default {
     };
   },
 
-  props: ["currentDeckId"],
+  props: ['currentDeckId'],
 
   methods: {
     createDeck() {
-      if (this.currentDeckId.deckId === 0) {
+      if (this.currentDeckId === 0) {
         //language for creating new deck
-        DeckServices.addDeck(this.currentDeck.deckId, this.currentDeck);
+        DeckServices.addDeck(this.currentDeck, this.currentDeck).then(response => {
+          if (response.status === 201) {
+            for(let cardInfo of this.newCards ) {
+              if(cardInfo.question !== '' && cardInfo.answer !== '' && cardInfo.tags !== ''){
+                let cardDTO = {'question': cardInfo.question, 'answer': cardInfo.answer, 'tags': cardInfo.tags};
+                DeckServices.addNewCardToDeck(response.data.deckId, cardDTO).then(response2 => {
+                  if(response2.status === 200) {
+                    console.log("We done did it!")
+                  }else {
+                    console.log("We didn't do it yet.")
+                  }
+                });
+              }else {
+                console.log("An error occured when adding new cards to this deck.")
+              }
+            }
+
+          }
+        });
+
       } else {
         //language for updating deck
-        DeckServices.updateDeck(this.currentDeck.deckId, this.currentDeck);
+        DeckServices.updateDeck(this.currentDeckId, this.currentDeck);
       }
 
       //TODO: add CardService method to add cards created on page
@@ -139,8 +153,9 @@ export default {
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "title title"
+    "submit submit"
     "addNewCards addExisting"
-    "submit submit";
+    ;
 }
 
 #add-card-ele-editDeck {
