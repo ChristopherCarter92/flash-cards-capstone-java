@@ -3,13 +3,13 @@
     <div id="add-deck-title">
       <form>
         <label for="deckTitle">Title: </label>
-        <input type="text" v-model="newDeck.title" id="deckTitle" />
+        <input type="text" v-model="currentDeck.title" id="deckTitle" />
       </form>
     </div>
 
     <div id="add-card-ele-editDeck">
       <b-button v-on:click.prevent="wantToAdd = true">Add Card</b-button>
-      <add-card v-show="wantToAdd" v-bind:deckId="getDeckId"></add-card>
+      <add-card v-show="wantToAdd" v-bind:deckId="currentDeckId"></add-card>
     </div>
 
     <div id="all-cards-editDeck-ele">
@@ -47,7 +47,7 @@ export default {
     return {
       wantToAdd: false,
       currentDeck: {
-        deckId: 0,
+        deckId: this.currentDeckId,
         title: "New Deck",
         username: this.$store.state.user.username,
       },
@@ -62,10 +62,10 @@ export default {
     createDeck() {
       if(this.currentDeckId.deckId === 0) {
         //language for creating new deck
-        DeckServices.addDeck(this.currentDeckId, this.currentDeck);
+        DeckServices.addDeck(this.currentDeck.deckId, this.currentDeck);
       } else {
         //language for updating deck
-        DeckServices.updateDeck(this.currentDeckId, this.currentDeck);
+        DeckServices.updateDeck(this.currentDeck.deckId, this.currentDeck);
       }
       
       //TODO: add CardService method to add cards created on page

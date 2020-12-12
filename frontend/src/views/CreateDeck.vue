@@ -1,7 +1,7 @@
 <template>
 <div>
     <h1>Create New Deck</h1>
-    <edit-deck v-bind:currentDeckId="getDeckId" />
+    <edit-deck v-bind:defaultDeckId="defaultDeckId" />
 </div>
 
   
@@ -14,7 +14,7 @@ export default {
 
     data() {
         return {
-            
+            defaultDeckId: 0  
         }
     },
 
@@ -24,9 +24,7 @@ export default {
     },
 
     computed: {
-        getDeckId(){
-           return this.$route.params.deckId;
-        }
+        
     },
 
 }
