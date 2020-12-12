@@ -3,7 +3,7 @@
     <h1>Create New Deck</h1>
     <b-button v-on:click.prevent="wantToAdd = true">Add Card</b-button>
     <!-- fix routing of add card button press in the component -->
-    <add-card v-show="wantToAdd"></add-card>
+    <add-card v-show="wantToAdd" v-bind:deckId="getDeckId"></add-card>
     <edit-deck />
 </div>
 
@@ -25,6 +25,12 @@ export default {
     components: {
         EditDeck,
         AddCard
+    },
+
+    computed: {
+        getDeckId(){
+           return this.$route.params.deckId;
+        }
     }
 }
 </script>

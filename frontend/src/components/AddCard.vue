@@ -8,7 +8,7 @@
     <label for="tags">Tags: </label>
     <textarea v-model="newCard.tags" type="tags" />
     <b-button v-on:submit.prevent="createCard" type="submit">Add Card</b-button>
-    <b-button v-on:submit.prevent="" type="submit">Add Card To Deck</b-button>
+    <!-- <b-button v-on:submit.prevent="addNewCardToDeck" type="submit">Add Card To Deck</b-button> -->
 
   </form>
   <p v-if="errorMsg !== ''"> {{ errorMsg }} </p>
@@ -18,7 +18,7 @@
 
 <script>
 import cardServices from "@/services/CardServices.js";
-// import DeckServices from '@/services/DeckServices.js';
+import DeckServices from '@/services/DeckServices.js';
 
 export default {
   data() {
@@ -31,6 +31,8 @@ export default {
       },
     };
   },
+  
+  props: ['deckId'],
 
   methods: {
     createCard() {
@@ -43,6 +45,10 @@ export default {
     }).catch(error => {
         this.handleErrorResponse(error, 'adding')
     });
+    },
+
+    addNewCardToDeck(){
+      DeckServices.addNewCardToDeck(this.deckId, this.newCard);
     },
 
     handleErrorResponse(error, verb) {
