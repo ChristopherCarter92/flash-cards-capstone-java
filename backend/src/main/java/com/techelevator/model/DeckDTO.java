@@ -5,6 +5,15 @@ public class DeckDTO {
     private String title;
     private int deckId;
     private String username;
+    private int cardId;
+
+    public int getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
+    }
 
     public String getUsername() {
         return username;

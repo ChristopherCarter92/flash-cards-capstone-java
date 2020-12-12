@@ -22,6 +22,8 @@ public interface DeckDAO {
 
     void addCardsToDeck(int deckId, List<Integer> cardIds);
 
+    boolean removeCardsInDeck(DeckDTO deckDTO, String username, int deckId, int cardId);
+
     boolean deleteDeck();
 
 }
