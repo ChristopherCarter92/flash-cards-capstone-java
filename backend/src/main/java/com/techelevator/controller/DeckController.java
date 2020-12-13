@@ -99,14 +99,13 @@ public class DeckController {
         }
     }
 
+    @ResponseStatus(HttpStatus.GONE)
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/decks")
-    public void removeDeck( Principal principal, @RequestBody DeckDTO deckDTO) {
+    public void removeDeck( Principal principal, @RequestBody Integer deckId) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        boolean deleted = deckDAO.deleteDeck(deckDTO, currentUser.getUsername());
-        if(!deleted) {
-            throw new ResourceAccessException("You are not authorized to remove that card");
-        }
+        deckDAO.deleteDeck(deckId);
+
     }
 
 }

@@ -10,7 +10,7 @@
       "
       >Edit Deck</b-button
     >
-    <b-button v-on:click.prevent="deleteThisDeck($route.params.deckId)">Delete Deck</b-button>
+    <b-button v-on:click="deleteThisDeck">Delete Deck</b-button>
     <deck-list></deck-list>
     <card-list
       v-bind:currentDeckId="$route.params.deckId"
@@ -35,15 +35,12 @@ export default {
   },
 
   methods: {
-    deleteThisDeck(deckId) {
-      if (
-        window.confirm(
-          "Are you sure you want to delete this deck? You will not be able to undo this action."
-        )
-      ) {
+    deleteThisDeck() {
+      let deckId = this.$route.params.deckId;
+      if (confirm("Are you sure you want to delete this deck? You will not be able to undo this action.")) {
         DeckServices.deleteThisDeck(deckId)
           .then((response) => {
-            if (response.status === 200) {
+            if (response.status === 410) {
               this.$store.commit("DELETE_DECK", deckId);
               DeckServices.getAllDecks().then((response) => {
                 this.$store.commit("SET_DECKS", response.data);

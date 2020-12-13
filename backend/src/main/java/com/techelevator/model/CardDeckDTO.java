@@ -6,8 +6,6 @@ import java.util.List;
 public class CardDeckDTO {
 
     private int deckId;
-    private int cardId;
-
 
 
     public int getDeckId() {
@@ -18,13 +16,7 @@ public class CardDeckDTO {
         this.deckId = deckId;
     }
 
-    public int getCardId() {
-        return cardId;
-    }
 
-    public void setCardId(int cardId) {
-        this.cardId = cardId;
-    }
 
 
 }

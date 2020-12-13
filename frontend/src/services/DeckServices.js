@@ -25,6 +25,10 @@ export default {
 
     addMultipleCardsToDeck(deckId, cardIdList) {
         return axios.post(`/decks/${deckId}/cardIds`, cardIdList);
+    },
+
+    deleteThisDeck(deckId) {
+        return axios.delete(`/decks`, deckId);
     }
     
 
