@@ -53,7 +53,7 @@ export default {
               });
             }
           })
-          .catch((error) => {
+          .catch(() => {
             console.log("Error deleting.");
           });
       }
