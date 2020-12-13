@@ -12,11 +12,9 @@
 
     <div id="add-card-ele-editDeck">
       <div v-for="i in newCards" v-bind:key="i.name">
-        <form>
-          <label for="question">Question: </label>
-          <input v-model="i.question" type="text" />
-          <label for="answer">Answer: </label>
-          <input v-model="i.answer" type="text" />
+        <form id="new-card-form">
+          <textarea placeholder="Question" v-model="i.question" type="text" />
+          <textarea placeholder="Answer" v-model="i.answer" type="text" />
           <label for="tags">Tags: </label>
           <select option value="Math" v-model="i.tags" type="tags">
             <option value="Math">Math</option>
@@ -25,6 +23,7 @@
             <option value="English">English</option>
           </select>  
         </form>
+        <br>
       </div>
     </div>
 
@@ -208,5 +207,20 @@ export default {
   justify-content: center;
   border: solid black 1px;
   margin: 1em;
+}
+
+#new-card-form {
+  display: flex;
+  border: solid 1px black;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #95B0B6;
+  align-content: space-between;
+}
+
+@media screen and (max-width: 680px) {
+
+
+  
 }
 </style>

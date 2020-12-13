@@ -2,11 +2,9 @@
 
   <div class="home">
     <h1 id="home-title">Home</h1>
-    <div>
-      <h1 id="allDecks">My Decks</h1>
-      <b-button id="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
-          <deck-list></deck-list>
-    </div>
+    <h1 id="allDecks">My Decks</h1>
+    <b-button id="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
+    <deck-list></deck-list>
   </div>
 </template>
 
@@ -33,18 +31,12 @@ export default {
     }
 };
 </script>
+
 <style scoped>
+
 * {
   box-sizing: border-box;
 }
-
-/* .home {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas: 
-  "Title"
-  
-} */
 
 .home {
   display: flex;
@@ -54,11 +46,6 @@ export default {
 .allCards {
   display: flex;
   flex-direction: column;
-}
-
-#home-title {
-  grid-area: Title;
-  justify-self: center;
 }
 
 #show-cards-button {
@@ -71,6 +58,43 @@ export default {
   justify-self: center;
 }
 
+@media screen and (max-width: 680px) {
+
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  "title",
+  "myDecks",
+  "addDeckButton",
+  "deck";
+}
+
+#home-title { 
+  display: flex;
+  justify-content: center;
+  grid-area: "title";
+}
+
+#allDecks {
+  display: flex;
+  justify-content: center;
+  grid-area: "myDecks";
+}
+
+#add-deck-buttons {
+  display: flex;
+  justify-content: center;
+  grid-area: "addDeckButton";
+}
+
+deck-list {
+  display: flex;
+  justify-content: right;
+  grid-area: "deck";
+}
+  
+}
 
 
 </style>

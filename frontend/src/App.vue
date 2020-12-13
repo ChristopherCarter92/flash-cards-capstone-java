@@ -91,4 +91,10 @@ export default {
   justify-content: flex-end;
   margin: 0 0.5em 0 0;
 }
+
+@media screen and (max-width: 680px) {
+  #display-user-top {
+    justify-content: center;
+  }
+}
 </style>

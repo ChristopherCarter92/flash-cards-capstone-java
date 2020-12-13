@@ -2,7 +2,6 @@
 <div>
     <h1>Create New Deck</h1>
     <edit-deck v-bind:currentDeckId="defaultDeckId" />
-    
 </div>
 
   
@@ -32,6 +31,15 @@ export default {
 </script>
 
 <style>
+
+@media screen and (max-width: 680px) {
+
+  div h1 {
+      display: flex;
+      justify-content: center;
+  }
+  
+}
 
 
 </style>
