@@ -1,9 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Card;
-import com.techelevator.model.CardDTO;
-import com.techelevator.model.Deck;
-import com.techelevator.model.DeckDTO;
+import com.techelevator.model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -101,9 +98,9 @@ public class JdbcDeckDAO implements DeckDAO{
     }
 
     @Override
-    public boolean removeCardsInDeck(DeckDTO deckDTO, String username, int deckId, int cardId) {
-        String sql = "DELETE deck_id, card_id FROM card_deck WHERE username = ? deck_id = ? AND card_id = ?;";
-        int returnedValue = jdbcTemplate.update(sql, deckDTO.getCardId(), username, deckId, cardId);
+    public boolean removeCardsInDeck(int deckId, List<Integer> cardIds) {
+        String sql = "DELETE FROM card_deck WHERE deck_id = ? AND card_id = ?;";
+        int returnedValue = jdbcTemplate.update(sql, deckId, cardIds);
         boolean canDelete = false;
         if(returnedValue == 1){
             canDelete = true;
@@ -112,8 +109,14 @@ public class JdbcDeckDAO implements DeckDAO{
     }
 
     @Override
-    public boolean deleteDeck() {
-        return false;
+    public boolean deleteDeck(DeckDTO deckDTO, String username) {
+        String sql = "DELETE FROM card_deck WHERE deck_id = ?;";
+        int returnedValue = jdbcTemplate.update(sql, deckDTO.getDeckId(), deckDTO.getUsername());
+        boolean canDelete = false;
+        if(returnedValue == 1){
+            canDelete = true;
+        }
+        return canDelete;
     }
 
 

@@ -78,9 +78,19 @@ public class DeckController {
 
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/decks/{deckId}")
-    public void removeCardFromDeck(@PathVariable int deckId, int cardId, Principal principal, @RequestBody DeckDTO deckDTO) {
+    public void removeCardsFromDeck(@PathVariable int deckId, List<Integer> cardIds, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        boolean deleted = deckDAO.removeCardsInDeck(deckDTO, currentUser.getUsername(), deckId, cardId);
+        boolean deleted = deckDAO.removeCardsInDeck(deckId, cardIds);
+        if(!deleted) {
+            throw new ResourceAccessException("You are not authorized to remove that card");
+        }
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping("/decks")
+    public void removeDeck( Principal principal, @RequestBody DeckDTO deckDTO) {
+        User currentUser = userDAO.findByUsername(principal.getName());
+        boolean deleted = deckDAO.deleteDeck(deckDTO, currentUser.getUsername());
         if(!deleted) {
             throw new ResourceAccessException("You are not authorized to remove that card");
         }

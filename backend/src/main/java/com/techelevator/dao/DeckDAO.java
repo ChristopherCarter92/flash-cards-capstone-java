@@ -1,9 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Card;
-import com.techelevator.model.CardDTO;
-import com.techelevator.model.Deck;
-import com.techelevator.model.DeckDTO;
+import com.techelevator.model.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,8 +19,8 @@ public interface DeckDAO {
 
     void addCardsToDeck(int deckId, List<Integer> cardIds);
 
-    boolean removeCardsInDeck(DeckDTO deckDTO, String username, int deckId, int cardId);
+    boolean removeCardsInDeck(int deckId, List<Integer> cardIds);
 
-    boolean deleteDeck();
+    boolean deleteDeck(DeckDTO deckDTO, String username);
 
 }
