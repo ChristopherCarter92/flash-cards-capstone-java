@@ -32,6 +32,7 @@
       <div v-for="cardsInDeck in filteredCards" v-bind:key="cardsInDeck.tags" >
 
       </div>
+
       <div
         id="single-card-editDeck-ele"
         v-for="card in this.$store.state.cards"
@@ -41,7 +42,7 @@
           <p>{{ `Question: ${card.question}` }}</p>
           <p>{{ `Answer: ${card.answer}` }}</p>
           <p>{{ `Tag(s): ${card.tags}` }}</p>
-          <b-form-checkbox>In This Deck</b-form-checkbox>
+          <b-form-checkbox v-model="cardsInDeck" v-bind:value="card.cardId"  >In This Deck</b-form-checkbox>
         </div>
       </div>
     </div>
