@@ -29,6 +29,10 @@
     </div>
 
     <div id="all-cards-editDeck-ele">
+      <b-input type="text" v-model="search" placeholder="search cards"/>
+      <div v-for="cardsInDeck in filteredCards" v-bind:key="cardsInDeck.tags" >
+
+      </div>
       <div
         id="single-card-editDeck-ele"
         v-for="card in this.$store.state.cards"
@@ -95,13 +99,14 @@ export default {
         username: this.$store.state.user.username,
       },
 
-      cardsInDeck: [
-
-      ],
-    };
+      cardsInDeck: [],
+      search: ''
+    }
+    
   },
 
   props: ['currentDeckId'],
+  
 
   methods: {
     createDeck() {
@@ -143,7 +148,18 @@ export default {
     addCardIdToNewdeck(cardId) {
       this.cardsInDeck.push(cardId);
     },
+  //   computed: {
+  //   filteredCards: function(){
+  //     return this.cardsInDeck.filter((card) => {
+  //       if (this.card.tags.match(this.search)) {
+  //         return this.card;
+  //       }
+  //     });
+  //   }
+  // }
   },
+  
+
 };
 </script>
 
