@@ -153,24 +153,27 @@ export default {
         );
       } else {
         //language for updating deck
-        let updatedDeck = {"title": this.currentDeck.title, "deckId": this.currentDeckId, "username": this.currentDeck.username, "cardIds": this.cardsInDeck}
-        DeckServices.updateDeck(updatedDeck);
-        //add new cards to deck
-        for (let cardInfo of this.newCards) {
-                if (
-                  cardInfo.question !== "" &&
-                  cardInfo.answer !== "" &&
-                  cardInfo.tags !== ""
-                ) {
-                  let cardDTO = {
-                    question: cardInfo.question,
-                    answer: cardInfo.answer,
-                    tags: cardInfo.tags,
-                  };
-                  DeckServices.addNewCardToDeck(
-                    this.currentDeckId,
-                    cardDTO
-                  ).then((response4) => {
+        let updatedDeck = {
+          title: this.currentDeck.title,
+          deckId: this.currentDeckId,
+          username: this.currentDeck.username,
+          allCardIds: this.cardsInDeck,
+        };
+        DeckServices.updateDeck(updatedDeck).then((response5) => {
+          if ((response5.status === 200)) {
+            for (let cardInfo of this.newCards) {
+              if (
+                cardInfo.question !== "" &&
+                cardInfo.answer !== "" &&
+                cardInfo.tags !== ""
+              ) {
+                let cardDTO = {
+                  question: cardInfo.question,
+                  answer: cardInfo.answer,
+                  tags: cardInfo.tags,
+                };
+                DeckServices.addNewCardToDeck(this.currentDeckId, cardDTO).then(
+                  (response4) => {
                     if (response4.status === 200) {
                       console.log("New cards were added.");
                     } else {
@@ -178,32 +181,35 @@ export default {
                         "An error occured when adding new cards to this deck.No new cards to add."
                       );
                     }
-                  });
-                } else {
-                  console.log("No new cards to add.");
-                }
+                  }
+                );
+              } else {
+                console.log("No new cards to add.");
               }
+            }
+          }
+        });
+        
       }
-     
     },
 
     deleteThisDeck(deckId) {
       if (this.$store.state.decks.length < 1) {
-        this.$router.push({ name: "home"});
+        this.$router.push({ name: "home" });
       }
-      DeckServices.deleteThisDeck(deckId).then((response) => {
-        if (response.status === 200) {
-          this.$store.commit("DELETE_DECK", deckId);
-        }
-      }).catch(error => {
-        this.handleErrorResponse(error, 'deleting');
+      DeckServices.deleteThisDeck(deckId)
+        .then((response) => {
+          if (response.status === 200) {
+            this.$store.commit("DELETE_DECK", deckId);
+          }
+        })
+        .catch((error) => {
+          this.handleErrorResponse(error, "deleting");
+        });
+      DeckServices.getAllDecks().then((response) => {
+        this.$store.commit("SET_DECKS", response.data);
       });
-       DeckServices.getAllDecks().then(response => {
-        this.$store.commit('SET_DECKS', response.data);
-       });
-      },
-    
-      
+    },
   },
   // computed: {
   //     filteredCards: function(){
@@ -216,18 +222,15 @@ export default {
   //   },
 
   created() {
-    if(this.currentDeckId !== 0) {
-      DeckServices.getDeck(this.currentDeckId).then(response => {
-      this.cardsInDeck = response.data.allCardIds;
-      this.currentDeck.title = response.data.title;
-    });
-
+    if (this.currentDeckId !== 0) {
+      DeckServices.getDeck(this.currentDeckId).then((response) => {
+        this.cardsInDeck = response.data.allCardIds;
+        this.currentDeck.title = response.data.title;
+      });
     }
-    
 
     //api call to figur eout what cards are in this deck (get deck by id)
-    
-  }
+  },
 };
 </script>
 
