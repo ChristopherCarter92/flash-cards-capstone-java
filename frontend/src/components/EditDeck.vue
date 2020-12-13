@@ -21,17 +21,18 @@
             <option value="Science">Science</option>
             <option value="History">History</option>
             <option value="English">English</option>
-          </select>  
+          </select>
         </form>
-        <br>
+        <br />
       </div>
     </div>
 
     <div id="all-cards-editDeck-ele">
-      <b-input type="text" v-model="search" placeholder="search cards"/>
-      <div v-for="cardsInDeck in filteredCards" v-bind:key="cardsInDeck.tags" >
-
-      </div>
+      <b-input type="text" v-model="search" placeholder="search cards" />
+      <div
+        v-for="cardsInDeck in filteredCards"
+        v-bind:key="cardsInDeck.tags"
+      ></div>
 
       <div
         id="single-card-editDeck-ele"
@@ -42,56 +43,54 @@
           <p>{{ `Question: ${card.question}` }}</p>
           <p>{{ `Answer: ${card.answer}` }}</p>
           <p>{{ `Tag(s): ${card.tags}` }}</p>
-          <b-form-checkbox v-model="cardsInDeck" v-bind:value="card.cardId"  >In This Deck</b-form-checkbox>
+          <b-form-checkbox v-model="cardsInDeck" v-bind:value="card.cardId"
+            >In This Deck</b-form-checkbox
+          >
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import DeckServices from "@/services/DeckServices.js";
 
-
 export default {
-  components: {
-    
-  },
+  components: {},
 
   data() {
     return {
       newCards: [
-         {
-          'name': 'card1', 
-          'question': '',
-          'answer': '',
-          'tags': ''
+        {
+          name: "card1",
+          question: "",
+          answer: "",
+          tags: "",
         },
         {
-          'name': 'card2', 
-          'question': '',
-          'answer': '',
-          'tags': ''
+          name: "card2",
+          question: "",
+          answer: "",
+          tags: "",
         },
         {
-          'name': 'card3', 
-          'question': '',
-          'answer': '',
-          'tags': ''
+          name: "card3",
+          question: "",
+          answer: "",
+          tags: "",
         },
         {
-          'name': 'card4', 
-          'question': '',
-          'answer': '',
-          'tags': ''
+          name: "card4",
+          question: "",
+          answer: "",
+          tags: "",
         },
         {
-          'name': 'card5', 
-          'question': '',
-          'answer': '',
-          'tags': ''
-        }
+          name: "card5",
+          question: "",
+          answer: "",
+          tags: "",
+        },
       ],
       wantToAdd: false,
       currentDeck: {
@@ -100,38 +99,58 @@ export default {
       },
 
       cardsInDeck: [],
-      search: ''
-    }
-    
+      search: "",
+    };
   },
 
-  props: ['currentDeckId'],
-  
+  props: ["currentDeckId"],
 
   methods: {
     createDeck() {
       if (this.currentDeckId === 0) {
         //language for creating new deck
-        DeckServices.addDeck(this.currentDeck, this.currentDeck).then(response => {
-          if (response.status === 201) {
-            for(let cardInfo of this.newCards ) {
-              if(cardInfo.question !== '' && cardInfo.answer !== '' && cardInfo.tags !== ''){
-                let cardDTO = {'question': cardInfo.question, 'answer': cardInfo.answer, 'tags': cardInfo.tags};
-                DeckServices.addNewCardToDeck(response.data.deckId, cardDTO).then(response2 => {
-                  if(response2.status === 200) {
-                    console.log("We done did it!")
-                  }else {
-                    console.log("We didn't do it yet.")
-                  }
-                });
-              }else {
-                console.log("An error occured when adding new cards to this deck.")
+        DeckServices.addDeck(this.currentDeck, this.currentDeck).then(
+          (response) => {
+            if (response.status === 201) {
+              DeckServices.addMultipleCardsToDeck(
+                response.data.deckId,
+                this.cardsInDeck
+              ).then((response3) => {
+                if (response3.status === 200) {
+                  console.log("We did it!");
+                }
+              });
+
+              for (let cardInfo of this.newCards) {
+                if (
+                  cardInfo.question !== "" &&
+                  cardInfo.answer !== "" &&
+                  cardInfo.tags !== ""
+                ) {
+                  let cardDTO = {
+                    question: cardInfo.question,
+                    answer: cardInfo.answer,
+                    tags: cardInfo.tags,
+                  };
+                  DeckServices.addNewCardToDeck(
+                    response.data.deckId,
+                    cardDTO
+                  ).then((response2) => {
+                    if (response2.status === 200) {
+                      console.log("New cards were added.");
+                    } else {
+                      console.log(
+                        "An error occured when adding new cards to this deck.No new cards to add."
+                      );
+                    }
+                  });
+                } else {
+                  console.log("No new cards to add.");
+                }
               }
             }
-
           }
-        });
-
+        );
       } else {
         //language for updating deck
         DeckServices.updateDeck(this.currentDeckId, this.currentDeck);
@@ -148,18 +167,16 @@ export default {
     addCardIdToNewdeck(cardId) {
       this.cardsInDeck.push(cardId);
     },
-  //   computed: {
-  //   filteredCards: function(){
-  //     return this.cardsInDeck.filter((card) => {
-  //       if (this.card.tags.match(this.search)) {
-  //         return this.card;
-  //       }
-  //     });
-  //   }
-  // }
+    //   computed: {
+    //   filteredCards: function(){
+    //     return this.cardsInDeck.filter((card) => {
+    //       if (this.card.tags.match(this.search)) {
+    //         return this.card;
+    //       }
+    //     });
+    //   }
+    // }
   },
-  
-
 };
 </script>
 
@@ -170,8 +187,7 @@ export default {
   grid-template-areas:
     "title title"
     "submit submit"
-    "addNewCards addExisting"
-    ;
+    "addNewCards addExisting";
 }
 
 #add-card-ele-editDeck {
@@ -215,13 +231,10 @@ export default {
   border: solid 1px black;
   padding: 20px;
   border-radius: 10px;
-  background-color: #95B0B6;
+  background-color: #95b0b6;
   align-content: space-between;
 }
 
 @media screen and (max-width: 680px) {
-
-
-  
 }
 </style>
