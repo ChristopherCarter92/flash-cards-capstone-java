@@ -64,17 +64,30 @@ public class DeckController {
         deckDAO.addCardsToDeck(deckId, cardIds);
     }
 
+//    @PreAuthorize("isAuthenticated()")
+//    @PutMapping("/decks/{deckId}")
+//    public Deck updateDeck(@PathVariable int deckId, Principal principal, @RequestBody DeckDTO deckDTO) {
+//        User currentUser = userDAO.findByUsername(principal.getName());
+//        Deck deck = deckDAO.updateDeck(deckDTO, currentUser.getUsername(), deckId);
+//        if (deck == null) {
+//            throw new ResourceAccessException("You are not authorized to update this Deck");
+//        }else {
+//            return deck;
+//        }
+//    }
+
     @PreAuthorize("isAuthenticated()")
     @PutMapping("/decks/{deckId}")
-    public Deck updateDeck(@PathVariable int deckId, Principal principal, @RequestBody DeckDTO deckDTO) {
+    public Deck updateDeck(@PathVariable int deckId, Principal principal, @RequestBody Deck deck) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        Deck deck = deckDAO.updateDeck(deckDTO, currentUser.getUsername(), deckId);
-        if (deck == null) {
+        Deck myDeck = deckDAO.modifyDeck(deck, currentUser.getUsername());
+        if (myDeck == null) {
             throw new ResourceAccessException("You are not authorized to update this Deck");
-        }else {
-            return deck;
+        } else {
+            return myDeck;
         }
     }
+
 
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/decks/{deckId}")

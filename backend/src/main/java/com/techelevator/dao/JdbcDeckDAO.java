@@ -119,6 +119,22 @@ public class JdbcDeckDAO implements DeckDAO{
         return canDelete;
     }
 
+    @Override
+    public Deck modifyDeck(Deck deck, String username) {
+        String sql = "UPDATE decks SET title = ? WHERE username = ? AND deck_id = ?;";
+        jdbcTemplate.update(sql, deck.getTitle(), username, deck.getDeckId());
+
+        String sql2 = "DELETE FROM card_deck WHERE deck_id = ?;";
+        jdbcTemplate.update(sql2, deck.getDeckId());
+
+        String sql3 = "INSERT INTO card_deck (deck_id, card_id) VALUES (?, ?);";
+        for(int cardId : deck.getAllCardIds()) {
+            jdbcTemplate.update(sql3, deck.getDeckId(), cardId );
+        }
+
+        return getDeck(deck.getDeckId(), deck.getUsername());
+    }
+
 
     private void mapRowToDeck(SqlRowSet rowSet, Deck deck) {
 

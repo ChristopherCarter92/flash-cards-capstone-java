@@ -23,4 +23,6 @@ public interface DeckDAO {
 
     boolean deleteDeck(DeckDTO deckDTO, String username);
 
+    Deck modifyDeck(Deck deck, String username);
+
 }
