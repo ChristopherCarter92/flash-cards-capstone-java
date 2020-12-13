@@ -193,23 +193,7 @@ export default {
       }
     },
 
-    deleteThisDeck(deckId) {
-      if (this.$store.state.decks.length < 1) {
-        this.$router.push({ name: "home" });
-      }
-      DeckServices.deleteThisDeck(deckId)
-        .then((response) => {
-          if (response.status === 200) {
-            this.$store.commit("DELETE_DECK", deckId);
-          }
-        })
-        .catch((error) => {
-          this.handleErrorResponse(error, "deleting");
-        });
-      DeckServices.getAllDecks().then((response) => {
-        this.$store.commit("SET_DECKS", response.data);
-      });
-    },
+    
   },
   // computed: {
   //     filteredCards: function(){
