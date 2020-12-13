@@ -63,6 +63,12 @@ export default new Vuex.Store({
 
     SET_DECKS(state, decks) {
       state.decks = decks;
+    },
+
+    DELETE_DECK(state, deckId) {
+      state.decks.splice(
+        state.decks.findIndex(deck => deck.deckId === deckId, 1)
+      );
     }
 
     
