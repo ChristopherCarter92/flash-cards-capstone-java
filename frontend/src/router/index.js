@@ -13,6 +13,7 @@ import EditCards from '@/views/EditCards.vue';
 import CreateDeck from '@/views/CreateDeck.vue';
 import Deck from '@/views/Deck.vue';
 import DeckList from '@/components/DeckList.vue';
+import ModifyDeck from '@/views/ModifyDeck.vue';
 
 
 Vue.use(Router)
@@ -100,6 +101,14 @@ const router = new Router({
       path: '/createDeck/0',
       name: 'createDeck',
       component: CreateDeck,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/modifyDeck/:deckId',
+      name: 'modifyDeck',
+      component: ModifyDeck,
       meta: {
         requiresAuth: true
       }

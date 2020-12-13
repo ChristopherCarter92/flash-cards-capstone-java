@@ -19,8 +19,8 @@ export default {
         return axios.post(`/decks/${deckId}/cards`, card );
     },
 
-    updateDeck(deckId, deck) {
-        return axios.put(`/decks/${deckId}`, deck);
+    updateDeck(deck) {
+        return axios.put(`/decks/${deck.deckId}`, deck);
     },
 
     addMultipleCardsToDeck(deckId, cardIdList) {

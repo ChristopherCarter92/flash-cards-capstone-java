@@ -153,20 +153,41 @@ export default {
         );
       } else {
         //language for updating deck
-        DeckServices.updateDeck(this.currentDeckId, this.currentDeck);
+        let updatedDeck = {"title": this.currentDeck.title, "deckId": this.currentDeckId, "username": this.currentDeck.username, "cardIds": this.cardsInDeck}
+        DeckServices.updateDeck(updatedDeck);
+        //add new cards to deck
+        for (let cardInfo of this.newCards) {
+                if (
+                  cardInfo.question !== "" &&
+                  cardInfo.answer !== "" &&
+                  cardInfo.tags !== ""
+                ) {
+                  let cardDTO = {
+                    question: cardInfo.question,
+                    answer: cardInfo.answer,
+                    tags: cardInfo.tags,
+                  };
+                  DeckServices.addNewCardToDeck(
+                    this.currentDeckId,
+                    cardDTO
+                  ).then((response4) => {
+                    if (response4.status === 200) {
+                      console.log("New cards were added.");
+                    } else {
+                      console.log(
+                        "An error occured when adding new cards to this deck.No new cards to add."
+                      );
+                    }
+                  });
+                } else {
+                  console.log("No new cards to add.");
+                }
+              }
+        
       }
-
-      //TODO: add CardService method to add cards created on page
-      //TODO: add DeckService method to add to joiner table
+     
     },
-
-    addTitle(title) {
-      this.newDeck.title = title;
-    },
-
-    addCardIdToNewdeck(cardId) {
-      this.cardsInDeck.push(cardId);
-    },
+    
     //   computed: {
     //   filteredCards: function(){
     //     return this.cardsInDeck.filter((card) => {
@@ -177,6 +198,20 @@ export default {
     //   }
     // }
   },
+
+  created() {
+    if(this.currentDeckId !== 0) {
+      DeckServices.getDeck(this.currentDeckId).then(response => {
+      this.cardsInDeck = response.data.allCardIds;
+      this.currentDeck.title = response.data.title;
+    });
+
+    }
+    
+
+    //api call to figur eout what cards are in this deck (get deck by id)
+    
+  }
 };
 </script>
 
