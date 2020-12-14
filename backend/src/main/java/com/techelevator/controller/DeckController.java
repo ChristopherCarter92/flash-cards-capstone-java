@@ -100,10 +100,10 @@ public class DeckController {
         }
     }
 
-    @ResponseStatus(HttpStatus.GONE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/decks")
-    public void removeDeck( Principal principal, @RequestBody Integer deckId) {
+    public void removeDeck(@PathVariable int deckId, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
         deckDAO.deleteDeck(deckId);
 
