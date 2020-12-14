@@ -45,6 +45,7 @@
 <script>
 import authService from "../services/AuthService";
 import CardServices from "@/services/CardServices.js";
+import DeckServices from '@/services/DeckServices.js';
 
 export default {
   name: 'login',
@@ -67,9 +68,8 @@ export default {
             this.$store.commit('SET_AUTH_TOKEN', response.data.token);
             this.$store.commit('SET_USER', response.data.user);
             this.$router.push('/');
-            CardServices.getAllCards().then(response => {
-              this.$store.commit('SET_CARDS', response.data);
-            });
+            CardServices.getAllCards();
+            DeckServices.getAllDecks();
           }
         })
         .catch(error => {

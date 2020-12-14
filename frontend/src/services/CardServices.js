@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '@/store/index.js';
 
 
 export default {
@@ -12,7 +13,9 @@ export default {
     },
 
     getAllCards() {
-        return axios.get('/cards');
+        return axios.get('/cards').then(response => {
+            store.commit('SET_CARDS', response.data);
+        });
     },
 
     deleteCard(id) {

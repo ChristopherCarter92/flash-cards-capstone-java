@@ -51,11 +51,12 @@ public class DeckController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/decks/{deckId}/cards")
     @ResponseStatus(HttpStatus.CREATED)
-    public Card addCardToDeck(@PathVariable int deckId, @RequestBody CardDTO cardDTO, Principal principal) {
+    public void addCardsToDeck(@PathVariable int deckId, @RequestBody List<CardDTO> cardDTOs, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        Card card = cardDAO.createCard(cardDTO, currentUser.getId().intValue());
-        deckDAO.addCardToDeck(card.getCardId(), deckId);
-        return card;
+        for(CardDTO item : cardDTOs) {
+            Card card = cardDAO.createCard(item, currentUser.getId().intValue());
+            deckDAO.addCardToDeck(card.getCardId(), deckId);
+        }
     }
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/decks/{deckId}/cardIds")

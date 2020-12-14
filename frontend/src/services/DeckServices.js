@@ -1,13 +1,17 @@
 import axios from 'axios';
+import store from '@/store/index.js';
 
 export default {
 
     getDeck(deckId) {
-        return axios.get(`/decks/${deckId}`);
+        return axios.get(`/decks/${deckId}`)
     },
 
     getAllDecks() {
-        return axios.get('/decks');
+        return axios.get('/decks').then(response => {
+            store.commit('SET_DECKS', response.data);
+            return response;
+        });
     },
 
     addDeck(deck) {
@@ -15,8 +19,8 @@ export default {
         return axios.post('/decks', deck);
     },
 
-    addNewCardToDeck(deckId, card) {
-        return axios.post(`/decks/${deckId}/cards`, card );
+    addNewCardsToDeck(deckId, cardList) {
+        return axios.post(`/decks/${deckId}/cards`, cardList );
     },
 
     updateDeck(deck) {

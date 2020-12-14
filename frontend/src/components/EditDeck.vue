@@ -103,6 +103,26 @@ export default {
   props: ["currentDeckId"],
 
   methods: {
+    handleCreateCardDTOs() {
+      let cardObjectList = [];
+      for (let cardInfo of this.newCards) {
+        if (
+          cardInfo.question !== "" &&
+          cardInfo.answer !== "" &&
+          cardInfo.tags !== ""
+        ) {
+          let cardDTO = {
+            question: cardInfo.question,
+            answer: cardInfo.answer,
+            tags: cardInfo.tags,
+          };
+
+          cardObjectList.push(cardDTO);
+        }
+      }
+      return cardObjectList;
+    },
+
     createDeck() {
       if (this.currentDeckId === 0) {
         //language for creating new deck
@@ -118,33 +138,21 @@ export default {
                 }
               });
 
-              for (let cardInfo of this.newCards) {
-                if (
-                  cardInfo.question !== "" &&
-                  cardInfo.answer !== "" &&
-                  cardInfo.tags !== ""
-                ) {
-                  let cardDTO = {
-                    question: cardInfo.question,
-                    answer: cardInfo.answer,
-                    tags: cardInfo.tags,
-                  };
-                  DeckServices.addNewCardToDeck(
-                    response.data.deckId,
-                    cardDTO
-                  ).then((response2) => {
-                    if (response2.status === 200) {
-                      console.log("New cards were added.");
-                    } else {
-                      console.log(
-                        "An error occured when adding new cards to this deck.No new cards to add."
-                      );
-                    }
-                  });
+              let cardArray = this.handleCreateCardDTOs();
+              DeckServices.addNewCardsToDeck(
+                response.data.deckId,
+                cardArray
+              ).then((response2) => {
+                if (response2.status === 200) {
+                  console.log("New cards were added.");
                 } else {
-                  console.log("No new cards to add.");
+                  console.log(
+                    "An error occured when adding new cards to this deck.No new cards to add."
+                  );
                 }
-              }
+              });
+            } else {
+              console.log("No new cards to add.");
             }
           }
         );
@@ -157,7 +165,7 @@ export default {
           allCardIds: this.cardsInDeck,
         };
         DeckServices.updateDeck(updatedDeck).then((response5) => {
-          if ((response5.status === 200)) {
+          if (response5.status === 200) {
             for (let cardInfo of this.newCards) {
               if (
                 cardInfo.question !== "" &&
@@ -186,21 +194,18 @@ export default {
             }
           }
         });
-        
       }
     },
-
-    
   },
   computed: {
-      filteredCards: function(){
-        return this.$store.state.cards.filter((card) => {
-          if (card.tags.toLowerCase().match(this.search.toLowerCase())) {
-            return card;
-          }
-        });
-      }
+    filteredCards: function () {
+      return this.$store.state.cards.filter((card) => {
+        if (card.tags.toLowerCase().match(this.search.toLowerCase())) {
+          return card;
+        }
+      });
     },
+  },
 
   created() {
     if (this.currentDeckId !== 0) {

@@ -44,6 +44,8 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+      state.cards= [];
+      state.decks=[];
     },
 
     SET_CARDS(state, cards) {

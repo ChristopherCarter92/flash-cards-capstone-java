@@ -32,12 +32,9 @@ export default {
   created() {
     
     if (this.$store.state.token !== '') {
-      CardServices.getAllCards().then(response => {
-        this.$store.commit('SET_CARDS', response.data);
-      });
-      DeckServices.getAllDecks().then( (response)=> {
-        this.$store.commit('SET_DECKS', response.data);
-      });
+      CardServices.getAllCards();
+      DeckServices.getAllDecks();
+      
     }
   }
 
