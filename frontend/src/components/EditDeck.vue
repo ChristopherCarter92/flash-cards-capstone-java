@@ -51,6 +51,7 @@
 
 <script>
 import DeckServices from "@/services/DeckServices.js";
+import CardServices from '@/services/CardServices.js';
 
 export default {
   components: {},
@@ -132,27 +133,19 @@ export default {
               DeckServices.addMultipleCardsToDeck(
                 response.data.deckId,
                 this.cardsInDeck
-              ).then((response3) => {
-                if (response3.status === 200) {
-                  console.log("We did it!");
-                }
+              ).then(() => {
+                let cardArray = this.handleCreateCardDTOs();
+                DeckServices.addNewCardsToDeck(
+                  response.data.deckId,
+                  cardArray
+                ).then(() => {
+                  DeckServices.getAllDecks().then(() => {
+                    CardServices.getAllCards().then(() => {
+                      this.$router.push({ name: "home" });
+                    });
+                  });
+                });
               });
-
-              let cardArray = this.handleCreateCardDTOs();
-              DeckServices.addNewCardsToDeck(
-                response.data.deckId,
-                cardArray
-              ).then((response2) => {
-                if (response2.status === 200) {
-                  console.log("New cards were added.");
-                } else {
-                  console.log(
-                    "An error occured when adding new cards to this deck.No new cards to add."
-                  );
-                }
-              });
-            } else {
-              console.log("No new cards to add.");
             }
           }
         );
