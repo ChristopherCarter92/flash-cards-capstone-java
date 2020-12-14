@@ -54,8 +54,9 @@ export default {
        editCard() {
         CardServices.updateCard(this.$route.params.cardId, this.currentCard).then((response) => { 
              if (response.status === 200) {
-               //update store
-             this.$router.push({name: 'home'});
+             CardServices.getAllCards().then(() => {
+             this.$router.push({name: 'currentDeck', params: {deckId: this.$route.params.deckId}});
+             })
          } 
          }).catch(error => {
              this.handleErrorResponse(error, 'updating')

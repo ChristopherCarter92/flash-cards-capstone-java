@@ -82,7 +82,7 @@ const router = new Router({
     },
 
     {
-      path: '/update/:cardId',
+      path: '/update/:deckId/:cardId',
       name: 'update',
       component: EditCards,
       meta: {

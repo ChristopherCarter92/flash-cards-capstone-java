@@ -9,7 +9,7 @@
       </div>
       <div>
         <b-button v-on:click="
-        $router.push({name: 'update', params: {cardId: card.cardId}})
+        $router.push({name: 'update', params: {deckId: currentDeckId, cardId: card.cardId}})
       ">Edit Card</b-button>
       </div>
     </div>
