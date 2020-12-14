@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 v-bind:key="$route.params.deckId">{{findCurrentDeckTitle}}</h1>
+    <h1>{{findCurrentDeckTitle}}</h1>
     <b-button
       v-on:click="
         $router.push({

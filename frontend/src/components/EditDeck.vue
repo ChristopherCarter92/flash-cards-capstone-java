@@ -8,6 +8,7 @@
     </div>
     <div id="save-card-btn-editDeck-ele">
       <b-button v-on:click.prevent="createDeck">Save Deck</b-button>
+      <p v-show="errorMsg !== ''">{{ errorMsg }}</p>
     </div>
 
     <div id="add-card-ele-editDeck">
@@ -16,12 +17,11 @@
           <textarea placeholder="Question" v-model="i.question" type="text" />
           <textarea placeholder="Answer" v-model="i.answer" type="text" />
           <label for="tags">Tags: </label>
-          <select option value="Math" v-model="i.tags" type="tags">
-            <option value="Math">Math</option>
-            <option value="Science">Science</option>
-            <option value="History">History</option>
-            <option value="English">English</option>
-          </select>
+          <input 
+            v-on:change="updateTags($event,i)"
+            placeholder="keyword1 keyword2 keyword3 etc"
+            id="tags"
+          />
         </form>
         <br />
       </div>
@@ -58,6 +58,7 @@ export default {
 
   data() {
     return {
+      errorMsg: '',
       newCards: [
         {
           name: "card1",
@@ -104,21 +105,34 @@ export default {
   props: ["currentDeckId"],
 
   methods: {
+    updateTags(event, info){
+     
+      let tags = event.target.value.toLowerCase().replaceAll(/[^a-z ]/g,'');
+      tags = tags.replaceAll(/ +/g, ' ');
+      info.tags = tags;
+      event.target.value = tags;
+
+    },
+
     handleCreateCardDTOs() {
       let cardObjectList = [];
       for (let cardInfo of this.newCards) {
+        
         if (
           cardInfo.question !== "" &&
           cardInfo.answer !== "" &&
-          cardInfo.tags !== ""
+          cardInfo.tags !== "" 
         ) {
           let cardDTO = {
             question: cardInfo.question,
             answer: cardInfo.answer,
-            tags: cardInfo.tags,
+            tags: cardInfo.tags.toLowerCase(),
           };
 
           cardObjectList.push(cardDTO);
+        } else {
+          this.errorMsg = 'Make sure your cards have questions, answers, and tags that are keywords separated by spaces.'
+
         }
       }
       return cardObjectList;
