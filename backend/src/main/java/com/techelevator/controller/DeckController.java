@@ -90,15 +90,15 @@ public class DeckController {
     }
 
 
-    @PreAuthorize("isAuthenticated()")
-    @DeleteMapping("/decks/{deckId}")
-    public void removeCardsFromDeck(@PathVariable int deckId, List<Integer> cardIds, Principal principal) {
-        User currentUser = userDAO.findByUsername(principal.getName());
-        boolean deleted = deckDAO.removeCardsInDeck(deckId, cardIds);
-        if(!deleted) {
-            throw new ResourceAccessException("You are not authorized to remove that card");
-        }
-    }
+//    @PreAuthorize("isAuthenticated()")
+//    @DeleteMapping("/decks/{deckId}")
+//    public void removeCardsFromDeck(@PathVariable int deckId, List<Integer> cardIds, Principal principal) {
+//        User currentUser = userDAO.findByUsername(principal.getName());
+//        boolean deleted = deckDAO.removeCardsInDeck(deckId, cardIds);
+//        if(!deleted) {
+//            throw new ResourceAccessException("You are not authorized to remove that card");
+//        }
+//    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("isAuthenticated()")

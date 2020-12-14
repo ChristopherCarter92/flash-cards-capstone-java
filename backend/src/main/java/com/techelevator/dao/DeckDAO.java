@@ -19,7 +19,7 @@ public interface DeckDAO {
 
     void addCardsToDeck(int deckId, List<Integer> cardIds);
 
-    boolean removeCardsInDeck(int deckId, List<Integer> cardIds);
+//    boolean removeCardsInDeck(int deckId, List<Integer> cardIds);
 
     void deleteDeck(int deckId);
 

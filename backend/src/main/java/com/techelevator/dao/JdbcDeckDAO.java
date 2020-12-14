@@ -96,16 +96,16 @@ public class JdbcDeckDAO implements DeckDAO {
         return null;
     }
 
-    @Override
-    public boolean removeCardsInDeck(int deckId, List<Integer> cardIds) {
-        String sql = "DELETE FROM card_deck WHERE deck_id = ? AND card_id = ?;";
-        int returnedValue = jdbcTemplate.update(sql, deckId, cardIds);
-        boolean canDelete = false;
-        if (returnedValue == 1) {
-            canDelete = true;
-        }
-        return canDelete;
-    }
+//    @Override
+//    public boolean removeCardsInDeck(int deckId, List<Integer> cardIds) {
+//        String sql = "DELETE FROM card_deck WHERE deck_id = ? AND card_id = ?;";
+//        int returnedValue = jdbcTemplate.update(sql, deckId, cardIds);
+//        boolean canDelete = false;
+//        if (returnedValue == 1) {
+//            canDelete = true;
+//        }
+//        return canDelete;
+//    }
 
     @Override
     public void deleteDeck(int deckId) {
