@@ -8,8 +8,9 @@
         <p>{{ `Tag(s): ${card.tags}` }}</p>
       </div>
       <div>
-        <b-button>Remove From Deck</b-button>
-        <b-button>Edit Card</b-button>
+        <b-button v-on:click="
+        $router.push({name: 'update', params: {cardId: card.cardId}})
+      ">Edit Card</b-button>
       </div>
     </div>
   </div>

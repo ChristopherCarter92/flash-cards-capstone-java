@@ -2,12 +2,13 @@
   <div>
   <form v-on:submit.prevent="editCard">
     <label for="question">Question: </label>
-    <input v-model="thisCard.question" type="text" id="question" />
+    <textarea v-model="currentCard.question" type="text" id="question" />
     <label for="answer">Answer: </label>
-    <input v-model="thisCard.answer" type="text" id="answer" />
+    <textarea v-model="currentCard.answer" type="text" id="answer" />
     <label for="tags">Tags: </label>
-    <textarea v-model="thisCard.tags" type="tags" id="tags" />
-    <b-button type="submit">Edit Card</b-button>
+    <textarea v-model="currentCard.tags" type="tags" id="tags" />
+    <b-button v-on:click.prevent="editCard">Update Card</b-button>
+    <!-- button to call to update api then refresh store with updated cards SET CARDS -->
   </form>
   <p v-if="errorMsg !== ''"> {{ errorMsg }} </p>
 </div>
@@ -22,57 +23,39 @@ export default {
     data() {
     return {
       errorMsg: '',
-      
-      
-
+      currentCard: {
+        question: '',
+        answer: '',
+        tags: ''
+      }
     };
   },
 
-  computed: {
+  created() {
 
-      thisCard() { //returns an array of objects (should only have one object)
        if (this.$store.state.cards.length > 0) {
-         let currentCardId = this.$route.params.cardId;
-         return this.findCardById(currentCardId);
-        
+        let editedCard = this.$store.state.cards.find(card => card.cardId === this.$route.params.cardId);
+        this.currentCard.cardId = editedCard.cardId;
+        this.currentCard.question = editedCard.question;
+        this.currentCard.answer = editedCard.answer;
+        this.currentCard.tags = editedCard.tags;
+
        } else {
-         return {
-              id: '',
-              question: 'This is the window to your soul....',
-              answer: '...coding never ends...',
-              tags: 'spaghetti code'
-            };
+
+            this.currentCard.question = 'This is the window to your soul....';
+            this.currentCard.answer ='...coding never ends...';
+            this.currentCard.tags = 'spaghetti code';
        }
-
-      }
-    },
-
+     },
+    
+    
     methods: {
 
-      findCardById(cardId){
-        let currentCard = this.$store.state.cards.find(card => card.cardId === cardId);
-
-        return currentCard;
-
-      },
-
-      findCurrentCardIndex(){
-        let currentIndex = '';
-        let arrayOfCards = this.$store.state.cards;
-        let currentCardId = this.$route.params.cardId;
-        for(let i = 0; i < this.$store.state.cards.length -1; i++) {
-          if (arrayOfCards[i].cardId === currentCardId) {
-            currentIndex = i;
-          }
-        }
-        return currentIndex;
-      },
-
        editCard() {
-        CardServices.updateCard(this.thisCard).then((response) => { 
+        CardServices.updateCard(this.$route.params.cardId, this.currentCard).then((response) => { 
              if (response.status === 200) {
                //update store
-             this.$router.push(`/cards/${this.findCurrentCardIndex() + 1}`);
+             this.$router.push({name: 'home'});
          } 
          }).catch(error => {
              this.handleErrorResponse(error, 'updating')

@@ -21,7 +21,7 @@ public interface DeckDAO {
 
     boolean removeCardsInDeck(int deckId, List<Integer> cardIds);
 
-   void deleteDeck(int deckId);
+    void deleteDeck(int deckId);
 
     Deck modifyDeck(Deck deck, String username);
 

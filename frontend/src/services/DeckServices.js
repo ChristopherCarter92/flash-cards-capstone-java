@@ -28,7 +28,7 @@ export default {
     },
 
     deleteThisDeck(deckId) {
-        return axios.delete(`/decks`, deckId);
+        return axios.delete('/decks', deckId);
     }
     
 
