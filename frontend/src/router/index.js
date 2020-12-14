@@ -7,8 +7,8 @@ import Login from '../views/Login.vue';
 import Logout from '../views/Logout.vue';
 import Register from '../views/Register.vue';
 import store from '../store/index';
-import Cards from '../views/Cards.vue';
-import CreateCards from '@/views/CreateCards.vue';
+//import Cards from '../views/Cards.vue';
+import Study from '@/views/Study.vue';
 import EditCards from '@/views/EditCards.vue';
 import CreateDeck from '@/views/CreateDeck.vue';
 import Deck from '@/views/Deck.vue';
@@ -64,23 +64,13 @@ const router = new Router({
       }
     },
     {
-      path: '/cards/:cardId',
-      name: 'cards',
-      component: Cards,
+      path: '/study-session/:deckId',
+      name: 'study-session',
+      component: Study,
       meta: {
         requiresAuth: true
       }
     },
-
-    {
-      path: '/create',
-      name: 'create',
-      component: CreateCards,
-      meta: {
-        requiresAuth: true
-      }
-    },
-
     {
       path: '/update/:deckId/:cardId',
       name: 'update',

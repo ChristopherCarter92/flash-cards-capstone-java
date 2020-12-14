@@ -12,6 +12,12 @@
     >
     <b-button v-on:click="deleteThisDeck">Delete Deck</b-button>
     <deck-list></deck-list>
+    <b-button v-on:click.prevent="
+        $router.push({
+          name: 'study-session',
+          params: {deckId: $route.params.deckId},
+        })
+      ">Start A Study Session</b-button>
     <card-list
       v-bind:currentDeckId="$route.params.deckId"
       v-bind:key="$route.params.deckId"

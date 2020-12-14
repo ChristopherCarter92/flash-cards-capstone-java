@@ -1,34 +1,27 @@
 <template>
-  <div>
+  <div id="card-container-card-view">
     <div v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId">
-      <div>
-        <p>{{ `Question: ${card.question}` }}</p>
-        <p>{{ `Answer: ${card.answer}` }}</p>
-        <p>{{ `Tag(s): ${card.tags}` }}</p>
-      </div>
-      <div>
-        <b-button v-on:click="
-        $router.push({name: 'update', params: {deckId: currentDeckId, cardId: card.cardId}})
-      ">Edit Card</b-button>
-      </div>
+        <card-details v-bind:this-card="card" />
     </div>
   </div>
 </template>
 
 <script>
-import DeckServices from "@/services/DeckServices.js";
+import DeckServices from '@/services/DeckServices.js';
+import CardDetails from '../components/CardDetails.vue';
 
 export default {
-  data() {
+  components: { CardDetails },
+
+data() {
     return {
-      currentDeck: "",
-      cardsInCurrentDeck: [],
+      currentDeckId: this.$route.params.deckId,
+      cardsInCurrentDeck: []
     };
   },
 
-   props: ["currentDeckId"],
-
-  created() {
+  
+   created() {
     DeckServices.getDeck(parseInt(this.currentDeckId)).then(
       (response) => {
         if (response.status === 200) {
@@ -45,10 +38,11 @@ export default {
       }
     );
   },
+}
+
  
-};
 </script>
 
 <style>
-</style>
 
+</style>

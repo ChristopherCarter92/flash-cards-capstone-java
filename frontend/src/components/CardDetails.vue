@@ -1,6 +1,5 @@
 <template>
   <div id="card-details-container">
-    <p v-if="errorMsg !== ''">{{ errorMsg }}</p>
     <div class="card-face" v-show="faceUp">
       <h2>{{ thisCard.question }}</h2>
       <b-button class="flip-button" v-on:click.prevent="flipCard">Show me the answer</b-button>
@@ -9,10 +8,6 @@
     <div class="card-face" v-show="!faceUp">
       <h2>{{ thisCard.answer }}</h2>
       <b-button class="flip-button" v-on:click.prevent="flipCard">Show Question</b-button>
-    </div>
-    <div id="delete-button">
-    <b-button id="actual-delete-card-btn" v-on:click.prevent="deleteThisCard(thisCard.cardId)">Delete Card</b-button>
-    <b-button id="actual-delete-card-btn" v-on:click.prevent="updateThisCard(thisCard.cardId)">Edit Card</b-button>
     </div>
   </div>
 </template>
@@ -24,31 +19,11 @@ import cardServices from '@/services/CardServices.js';
 export default {
     data() {
         return {
-            errorMsg: '',
             faceUp: true
-            
         }
     },
 
-    computed: {
-
-      thisCard() {
-       if (this.$store.state.cards.length > 0) {
-       return this.$store.state.cards[parseInt(this.$route.params.cardId) -1];
-       } else {
-         return {
-              id: '',
-              question: 'This is the window to your soul....',
-              answer: '...coding never ends...',
-              tags: 'spaghetti code'
-            };
-       }
-
-      }
-
-     
-    },
-
+  props: ['thisCard'],
 
   methods: {
     flipCard() {
