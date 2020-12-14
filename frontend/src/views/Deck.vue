@@ -23,6 +23,7 @@
 import CardList from "@/components/CardList.vue";
 import DeckList from "@/components/DeckList.vue";
 import DeckServices from "@/services/DeckServices.js";
+import CardServices from '@/services/CardServices.js';
 
 export default {
   components: {
@@ -37,16 +38,18 @@ export default {
   methods: {
     deleteThisDeck() {
       let deckId = this.$route.params.deckId;
-      if (confirm("Are you sure you want to delete this deck? You will not be able to undo this action.")) {
+      if (
+        confirm(
+          "Are you sure you want to delete this deck? You will not be able to undo this action."
+        )
+      ) {
         DeckServices.deleteThisDeck(deckId)
           .then((response) => {
             if (response.status === 204) {
-              this.$store.commit("DELETE_DECK", deckId);
-              DeckServices.getAllDecks().then((response) => {
-                this.$store.commit("SET_DECKS", response.data);
-                if (this.$store.state.decks.length < 1) {
-                  this.$router.push({ name: "home" });
-                }
+              DeckServices.getAllDecks().then(() => {
+                CardServices.getAllCards().then(() =>
+                  this.$router.push({ name: "home" })
+                );
               });
             }
           })
