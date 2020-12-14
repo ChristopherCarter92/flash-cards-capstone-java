@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Decks</h1>
+    <h1 v-bind:key="$route.params.deckId">{{findCurrentDeckTitle}}</h1>
     <b-button
       v-on:click="
         $router.push({
@@ -32,7 +32,30 @@ export default {
   },
 
   data() {
-    return {};
+    return {
+      
+    };
+  },
+
+  computed: {
+    findCurrentDeckTitle() {
+      for (let item of this.decksArrayFromStore) {
+        if(item.deckId === this.$route.params.deckId ) {
+          return item.title;
+        }  
+    }
+    return null;
+    },
+
+    decksArrayFromStore() {
+      return this.$store.state.decks;
+    }
+
+    
+
+
+    
+
   },
 
   methods: {
