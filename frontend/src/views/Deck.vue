@@ -73,7 +73,9 @@ export default {
 
     decksArrayFromStore() {
       return this.$store.state.decks;
-    }
+    }, 
+
+    
 
   },
 
