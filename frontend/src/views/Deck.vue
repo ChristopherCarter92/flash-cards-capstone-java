@@ -1,11 +1,11 @@
 <template>
 
-  <div >
+  
 
-    <div class="deck-div">
-    <h1 id="deck-title" >{{findCurrentDeckTitle}}</h1>
+    <main class="deck-div">
     
-    <div class="buttons" >
+    
+    <section class="buttons" >
       <b-button id="study-session-button" v-on:click.prevent="
         $router.push({
           name: 'study-session',
@@ -21,8 +21,11 @@
       "
       >Edit Deck</b-button>
     <b-button id="delete-deck-button" v-on:click="deleteThisDeck">Delete Deck</b-button>
+    </section>
+    <section>
+      <h1 id="deck-title" >{{findCurrentDeckTitle}}</h1>
     <deck-list ></deck-list>
-      </div>
+      
       
 
       <div id="card-list">
@@ -30,10 +33,12 @@
       v-bind:currentDeckId="$route.params.deckId"
       v-bind:key="$route.params.deckId"
     ></card-list>
+    
     </div>
-    </div>
+    </section>
+    </main>
 
-  </div>
+  
 </template>
 
 <script>
@@ -97,7 +102,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+
 #deck-title {
   color: #324B50;
   display: flex;
@@ -106,36 +113,6 @@ export default {
 
 }
 
-#edit-deck-button {
-  width: 20%;
-  margin: 1em 0 1em 0;
-  background-color: #569FAD;
-  border: 1px solid transparent;
-  padding: 7px;
-  color: #324B50;
-  
-
-}
-
-#delete-deck-button {
-  width: 20%;
-  margin: 1em 0 1em 0;
-  background-color: #569FAD;
-  border: 1px solid transparent;
-  padding: 7px;
-  color: #324B50;
-  
-}
-
-#study-session-button {
-  width: 20%;
-  margin: 1em 0 1em 0;
-  background-color: #569FAD;
-  border: 1px solid transparent;
-  padding: 7px;
-  color: #324B50;
-  
-}
 
 #deck-list {
   
@@ -148,11 +125,12 @@ export default {
 
 }
 
-.deck-div {
+main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 }
+
 #card-list {
   display: flex;
   flex-direction: row;
@@ -161,7 +139,20 @@ export default {
 .buttons {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 33%;
+ 
+
+}
+
+button {
+  
+  margin-bottom: 20px;
+  width: 80%;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
 }
 
 
@@ -173,37 +164,10 @@ export default {
   justify-content: center;
 
 }
-
-#edit-deck-button {
+button {
   width: 70%;
-  margin: 1em 0 1em 0;
-  background-color: #569FAD;
-  border: 1px solid transparent;
-  padding: 7px;
-  color: #324B50;
-  
-
 }
 
-#delete-deck-button {
-  width: 70%;
-  margin: 1em 0 1em 0;
-  background-color: #569FAD;
-  border: 1px solid transparent;
-  padding: 7px;
-  color: #324B50;
-  
-}
-
-#study-session-button {
-   width: 70%;
-  margin: 1em 0 1em 0;
-  background-color: #569FAD;
-  border: 1px solid transparent;
-  padding: 7px;
-  color: #324B50;
-  
-}
 
 #deck-list {
    width: 70%; 
