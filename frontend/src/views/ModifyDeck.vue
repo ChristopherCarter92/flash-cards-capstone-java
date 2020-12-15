@@ -17,4 +17,10 @@ export default {
 
 <style>
 
+div h1 {
+ color: #324B50;
+  display: flex;
+  justify-content: center;
+}
+
 </style>
