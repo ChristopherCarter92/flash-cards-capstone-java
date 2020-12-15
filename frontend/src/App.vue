@@ -57,9 +57,9 @@ export default {
 }
 #nav {
   display: flex;
-  background-color: #9d57b9;
+  /* background-color: #9d57b9; */
 
-  /* background-color: #B68C71; */
+  background-color: #B68C71;
   align-items: center;
   justify-content: space-between;
   height: 10vh;
