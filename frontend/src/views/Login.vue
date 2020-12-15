@@ -1,6 +1,6 @@
 <template>
   <div id="login" class="text-center">
-    <!-- <img src="" alt=""> -->
+    <img src="@/assets/goat.png" alt="goat img" class="goat-pic">
     <div class="form-container" >
     <form class="form-signin" @submit.prevent="login">
       <div id="login-form-sub-container">
@@ -141,23 +141,28 @@ export default {
 
 .form-container {
   border: #324B50 solid 1px;
-  margin: 0% 20% 20% 20%;
-  border-radius: 5px;
-  background-color: white;
-  /*  */
-  
-  
+  margin: 0% 20% 0% 20%;
+  border-radius: 10px;
+  background-color: rgb(201, 220, 224);
 }
 
 #login {
-  background-color: #7f5a41a6;
+  background-color: #21677ca6;
   width: 100vw;
   height: 100vh;
-  padding-top: 20%;
+  padding-top: 7%;
 }
 
-/* #login:hover {
+.goat-pic {
+  max-width: 20vw;
+  max-height: 20vh;
+  display: none;
 
-} */
+}
+
+
+#need-act-link:hover + .goat-pic {
+  display: block;
+}
 
 </style>
