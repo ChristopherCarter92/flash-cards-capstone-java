@@ -3,7 +3,7 @@
   <div class="home">
     <h1 id="home-title">Home</h1>
     <h1 id="allDecks">My Decks</h1>
-    <b-button id="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
+    <b-button class="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
     <deck-list></deck-list>
   </div>
 </template>
@@ -58,7 +58,19 @@ export default {
   justify-self: center;
 }
 
-@media screen and (max-width: 680px) {
+button {
+  margin-bottom: 20px;
+   width: 50%;
+   flex-direction: column;
+  grid-area: "addDeckButton";
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  align-items: center;
+}
+
+@media screen and (max-width: 576px) {
 
 .home {
   display: grid;
@@ -77,19 +89,19 @@ export default {
 }
 
 #allDecks {
-  display: flex;
+  
   justify-content: center;
   grid-area: "myDecks";
 }
 
-#add-deck-buttons {
-  display: flex;
-  justify-content: center;
-  grid-area: "addDeckButton";
+button {
+  
+   width: 70%;
+ 
 }
 
 deck-list {
-  display: flex;
+  
   justify-content: right;
   grid-area: "deck";
 }
