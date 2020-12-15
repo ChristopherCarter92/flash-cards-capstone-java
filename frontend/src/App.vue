@@ -5,7 +5,10 @@
         <img src="@/assets/logo.png" alt="Flopped">
       </div>
       <div id="nav-btns">
-        <b-button class="nav-btn stylized-btn" v-on:click="$router.push({name: 'home'})">Home</b-button>
+        <b-button class="nav-btn stylized-btn"
+         v-show="$store.state.token != ''"
+         v-on:click="$router.push({name: 'home'})"
+         >Home</b-button>
         <b-button class="nav-btn stylized-btn"
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
