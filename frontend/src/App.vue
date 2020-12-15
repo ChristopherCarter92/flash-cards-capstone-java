@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <div id="logo">
-        <img src="@/assets/logo.png" alt="Flopped">
+      <div >
+        <!-- <img src="@/assets/logo.png" alt="Flopped"> -->
+        <b-button class="stylized-btn white">Notes With Goats</b-button>
       </div>
       <div id="nav-btns">
         <b-button class="nav-btn stylized-btn"

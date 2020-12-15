@@ -1,5 +1,7 @@
 <template>
   <div id="login" class="text-center">
+    <!-- <img src="" alt=""> -->
+    <div class="form-container" >
     <form class="form-signin" @submit.prevent="login">
       <div id="login-form-sub-container">
          <h1 id="login-title-txt" class="h3 mb-3 font-weight-normal">Sign In</h1>
@@ -39,6 +41,7 @@
       <router-link id="need-act-link" :to="{ name: 'register' }">Need an account?</router-link>
      
     </form>
+    </div>
   </div>
 </template>
 
@@ -85,6 +88,12 @@ export default {
 </script>
 
 <style scoped>
+
+* {
+ box-sizing: border-box; 
+
+}
+
 .form-signin {
   display: flex;
   flex-direction: column;
@@ -125,8 +134,30 @@ export default {
 #need-act-link {
   color: #324B50;
   font-size: 1.2em;
-  margin: 1% 0 0 0;
+  margin: 1% 0 7% 0;
   text-decoration: underline;
+  
 }
+
+.form-container {
+  border: #324B50 solid 1px;
+  margin: 0% 20% 20% 20%;
+  border-radius: 5px;
+  background-color: white;
+  /*  */
+  
+  
+}
+
+#login {
+  background-color: #7f5a41a6;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 20%;
+}
+
+/* #login:hover {
+
+} */
 
 </style>
