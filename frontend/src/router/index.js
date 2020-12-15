@@ -14,6 +14,7 @@ import CreateDeck from '@/views/CreateDeck.vue';
 import Deck from '@/views/Deck.vue';
 import DeckList from '@/components/DeckList.vue';
 import ModifyDeck from '@/views/ModifyDeck.vue';
+import Landing from '@/views/LandingPage.vue';
 
 
 Vue.use(Router)
@@ -31,6 +32,14 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/notes-with-goats',
+      name: 'landing',
+      component: Landing,
+      meta: {
+        requiresAuth: false
+      }
+    },
     {
       path: '/',
       name: 'home',
