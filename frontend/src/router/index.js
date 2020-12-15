@@ -7,7 +7,6 @@ import Login from '../views/Login.vue';
 import Logout from '../views/Logout.vue';
 import Register from '../views/Register.vue';
 import store from '../store/index';
-//import Cards from '../views/Cards.vue';
 import Study from '@/views/Study.vue';
 import EditCards from '@/views/EditCards.vue';
 import CreateDeck from '@/views/CreateDeck.vue';

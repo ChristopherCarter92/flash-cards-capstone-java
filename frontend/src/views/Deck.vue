@@ -29,7 +29,7 @@
       <h1 id="deck-title" >{{findCurrentDeckTitle}}</h1>
     <deck-list ></deck-list>
 
-      <b-col id="card-list">
+      <b-col class="card-list">
     <card-list
       v-bind:currentDeckId="$route.params.deckId"
       v-bind:key="$route.params.deckId"
@@ -147,6 +147,7 @@ b-container {
   flex-direction: row;
   justify-content: center;
 }
+
 .buttons {
   display: flex;
   flex-direction: column;

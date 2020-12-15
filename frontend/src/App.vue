@@ -2,7 +2,6 @@
   <div id="app">
     <div id="nav">
       <div >
-        <!-- <img src="@/assets/logo.png" alt="Flopped"> -->
         <b-button class="stylized-btn white">Notes With Goats</b-button>
       </div>
       <div id="nav-btns">
@@ -54,7 +53,14 @@ export default {
 }
 #welcome-message {
   font-size: 3vh;
+  width: auto;
 }
+
+#display-user-top {
+  background-color: #21677ca6;
+  width: auto;
+}
+
 #nav {
   display: flex;
   /* background-color: #9d57b9; */
@@ -63,7 +69,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   height: 10vh;
-}
+  }
 .nav-btn {
   margin: 0 0.5em 0 0;;
 }
