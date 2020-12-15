@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <h1>{{findCurrentDeckTitle}}</h1>
-    <b-button
+
+  <div id="deck-div">
+
+    <div>
+    <h1 id="deck-title" >{{findCurrentDeckTitle}}</h1>
+    <b-button id="edit-deck-button"
       v-on:click="
         $router.push({
           name: 'modifyDeck',
@@ -10,18 +13,24 @@
       "
       >Edit Deck</b-button
     >
-    <b-button v-on:click="deleteThisDeck">Delete Deck</b-button>
-    <deck-list></deck-list>
-    <b-button v-on:click.prevent="
+    <b-button id="delete-deck-button" v-on:click="deleteThisDeck">Delete Deck</b-button>
+    <deck-list ></deck-list>
+    <b-button id="study-session-button" v-on:click.prevent="
         $router.push({
           name: 'study-session',
           params: {deckId: $route.params.deckId},
         })
       ">Start A Study Session</b-button>
+      
+
+      <div id="card-list">
     <card-list
       v-bind:currentDeckId="$route.params.deckId"
       v-bind:key="$route.params.deckId"
     ></card-list>
+    </div>
+    </div>
+
   </div>
 </template>
 
@@ -57,11 +66,6 @@ export default {
       return this.$store.state.decks;
     }
 
-    
-
-
-    
-
   },
 
   methods: {
@@ -92,4 +96,126 @@ export default {
 </script>
 
 <style>
+#deck-title {
+  color: #324B50;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+#edit-deck-button {
+  width: 50%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  
+
+}
+
+#delete-deck-button {
+  width: 50%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  
+}
+
+#study-session-button {
+   width: 50%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  
+}
+
+#deck-list {
+   width: 50%; 
+  margin: 1em 0 1em 0;
+  /* background-color: #569FAD; */
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  justify-content: center;
+
+}
+
+#deck-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#card-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+
+@media screen and (max-width: 680px) {
+#deck-title {
+  color: #324B50;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+#edit-deck-button {
+  width: 70%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  
+
+}
+
+#delete-deck-button {
+  width: 70%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  
+}
+
+#study-session-button {
+   width: 70%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  
+}
+
+#deck-list {
+   width: 70%; 
+  margin: 1em 0 1em 0;
+  /* background-color: #569FAD; */
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+
+}
+
+#deck-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#card-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+}
+
 </style>
