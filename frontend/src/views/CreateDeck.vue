@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1 id="create-new-deck">Create New Deck</h1>
+    <h1>Create New Deck</h1>
     <edit-deck v-bind:currentDeckId="defaultDeckId" />
 </div>
 
@@ -37,12 +37,8 @@ export default {
   div h1 {
       display: flex;
       justify-content: center;
+       color: #324B50;
   }
-
-  #create-new-deck {
-     margin: 0em 0em 0em 12em;
-     color: #324B50;
-    }
   
 }
 
