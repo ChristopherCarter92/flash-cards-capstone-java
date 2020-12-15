@@ -5,13 +5,13 @@
         <img src="@/assets/logo.png" alt="Flopped">
       </div>
       <div id="nav-btns">
-        <b-button class="nav-btn" v-on:click="$router.push({name: 'home'})">Home</b-button>
-        <b-button class="nav-btn"
+        <b-button class="nav-btn stylized-btn" v-on:click="$router.push({name: 'home'})">Home</b-button>
+        <b-button class="nav-btn stylized-btn"
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
           v-on:click="$router.push({name: 'logout'})"
           >Logout</b-button>
-          <b-button class="nav-btn"
+          <b-button class="nav-btn stylized-btn"
           v-bind:to="{ name: 'login' }" 
           v-else
           v-on:click="$router.push({name: 'login'})"
@@ -75,12 +75,6 @@ export default {
 }
 #nav-btns {
   display: flex;
-}
-.nav-btn {
-  opacity: 0.7;
-}
-.nav-btn:hover {
-  opacity: 0.5;
 }
 
 #display-user-top {
