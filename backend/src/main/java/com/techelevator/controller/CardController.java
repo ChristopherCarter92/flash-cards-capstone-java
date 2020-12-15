@@ -40,12 +40,17 @@ public class CardController {
         return cardDAO.getCards(currentUser.getId());
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping(path = "/cards/{id}")
     public void removeCard(@PathVariable int id, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        boolean deleted = cardDAO.deleteCard(id, currentUser.getId());
-        if(!deleted) {
+        Card currentCard = cardDAO.getCard(id);
+        if (currentCard.getUserId() == currentUser.getId()) {
+            try { cardDAO.deleteCard(id); } catch (Exception e) {
+                throw new ResourceAccessException("This card cannot be deleted!");
+            }
+        } else {
             throw new ResourceAccessException("You are not authorized to delete that card");
         }
     }

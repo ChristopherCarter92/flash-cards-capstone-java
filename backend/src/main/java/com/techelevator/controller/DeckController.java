@@ -27,13 +27,13 @@ public class DeckController {
         this.cardDAO = cardDAO;
     }
 
-    @GetMapping(path="/decks/{deckId}")
+    @GetMapping(path = "/decks/{deckId}")
     public Deck fetchDeckById(@PathVariable int deckId, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
         return deckDAO.getDeck(deckId, currentUser.getUsername());
     }
 
-    @GetMapping(path="/decks")
+    @GetMapping(path = "/decks")
     public List<DeckDTO> fetchDecksInfo(Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
         return deckDAO.getDecksInfo(currentUser.getUsername());
@@ -53,11 +53,12 @@ public class DeckController {
     @ResponseStatus(HttpStatus.CREATED)
     public void addCardsToDeck(@PathVariable int deckId, @RequestBody List<CardDTO> cardDTOs, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        for(CardDTO item : cardDTOs) {
+        for (CardDTO item : cardDTOs) {
             Card card = cardDAO.createCard(item, currentUser.getId().intValue());
             deckDAO.addCardToDeck(card.getCardId(), deckId);
         }
     }
+
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/decks/{deckId}/cardIds")
     public void addCardIdsToDeck(@PathVariable int deckId, @RequestBody List<Integer> cardIds, Principal principal) {
@@ -105,8 +106,15 @@ public class DeckController {
     @DeleteMapping("/decks/{deckId}")
     public void removeDeck(@PathVariable int deckId, Principal principal) {
         User currentUser = userDAO.findByUsername(principal.getName());
-        deckDAO.deleteDeck(deckId);
-
+        Deck currentDeck = deckDAO.getDeck(deckId, currentUser.getUsername());
+         if (currentDeck.getUsername().equals(currentUser.getUsername())) {
+            try {
+                deckDAO.deleteDeck(deckId);
+            } catch (Exception e) {
+                throw new ResourceAccessException("This deck cannot be deleted!");
+            }
+        } else {
+            throw new ResourceAccessException("You are not authorized to delete that deck");
+        }
     }
-
 }
