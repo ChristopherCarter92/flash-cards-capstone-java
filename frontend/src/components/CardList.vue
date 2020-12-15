@@ -59,6 +59,7 @@ export default {
   color: #324B50;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 </style>
 

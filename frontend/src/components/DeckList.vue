@@ -41,6 +41,8 @@ export default {
   justify-content: center;
   grid-area: "deck";
   margin-bottom: 20px;
+  
+  
 }
   
 /* } */

@@ -2,10 +2,10 @@
 
   
 
-    <main class="deck-div">
-    
-    
-    <section class="buttons" >
+    <b-container>
+      <b-row>
+    <b-col class="buttons" cols="2" >
+      
       <b-button id="study-session-button" v-on:click.prevent="
         $router.push({
           name: 'study-session',
@@ -21,22 +21,24 @@
       "
       >Edit Deck</b-button>
     <b-button id="delete-deck-button" v-on:click="deleteThisDeck">Delete Deck</b-button>
-    </section>
-    <section>
+    <img class="goat-image" src="@/assets/goat.png" alt="zenGoat"/>
+    </b-col>
+   
+
+    <b-col class="cards-and-deck-titles">
       <h1 id="deck-title" >{{findCurrentDeckTitle}}</h1>
     <deck-list ></deck-list>
-      
-      
 
-      <div id="card-list">
+      <b-col id="card-list">
     <card-list
       v-bind:currentDeckId="$route.params.deckId"
       v-bind:key="$route.params.deckId"
     ></card-list>
+      </b-col>
+    </b-col>
+     </b-row>
     
-    </div>
-    </section>
-    </main>
+    </b-container>
 
   
 </template>
@@ -104,6 +106,11 @@ export default {
 
 <style scoped>
 
+.goat-image {
+    max-width: 100%;
+
+  height: auto;
+}
 
 #deck-title {
   color: #324B50;
@@ -125,11 +132,15 @@ export default {
 
 }
 
-main {
+b-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+
+/* b-col.buttons {
+  col: 0;
+} */
 
 #card-list {
   display: flex;
@@ -140,9 +151,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 33%;
- 
-
 }
 
 button {
@@ -157,6 +165,24 @@ button {
 
 
 @media screen and (max-width: 680px) {
+.goat-image {
+    max-width: 100%;
+
+  height: 50px;
+}
+
+  b-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #deck-title {
   color: #324B50;
   display: flex;
@@ -189,6 +215,8 @@ button {
   flex-direction: row;
   justify-content: center;
 }
+
+/* .cards-and-deck-titles {} */
 }
 
 </style>
