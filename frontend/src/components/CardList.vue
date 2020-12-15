@@ -7,7 +7,7 @@
         <p>{{ `Tag(s): ${card.tags}` }}</p>
       </div>
       <div>
-        <b-button v-on:click="
+        <b-button class="card-list-edit-button" v-on:click="
         $router.push({name: 'update', params: {deckId: currentDeckId, cardId: card.cardId}})
       ">Edit Card</b-button>
       </div>
@@ -50,5 +50,15 @@ export default {
 </script>
 
 <style>
+.card-list-edit-button {
+   width: 20%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+  flex-direction: row;
+  justify-content: center;
+}
 </style>
 

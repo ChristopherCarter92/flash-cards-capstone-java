@@ -1,26 +1,28 @@
 <template>
 
-  <div id="deck-div">
+  <div >
 
-    <div>
+    <div class="deck-div">
     <h1 id="deck-title" >{{findCurrentDeckTitle}}</h1>
-    <b-button id="edit-deck-button"
+    
+    <div class="buttons" >
+      <b-button id="study-session-button" v-on:click.prevent="
+        $router.push({
+          name: 'study-session',
+          params: {deckId: $route.params.deckId},
+        })
+      ">Start A Study Session</b-button>
+      <b-button id="edit-deck-button"
       v-on:click="
         $router.push({
           name: 'modifyDeck',
           params: { deckId: $route.params.deckId },
         })
       "
-      >Edit Deck</b-button
-    >
+      >Edit Deck</b-button>
     <b-button id="delete-deck-button" v-on:click="deleteThisDeck">Delete Deck</b-button>
     <deck-list ></deck-list>
-    <b-button id="study-session-button" v-on:click.prevent="
-        $router.push({
-          name: 'study-session',
-          params: {deckId: $route.params.deckId},
-        })
-      ">Start A Study Session</b-button>
+      </div>
       
 
       <div id="card-list">
@@ -98,13 +100,14 @@ export default {
 <style>
 #deck-title {
   color: #324B50;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 
 }
 
 #edit-deck-button {
-  width: 50%;
+  width: 20%;
   margin: 1em 0 1em 0;
   background-color: #569FAD;
   border: 1px solid transparent;
@@ -115,7 +118,7 @@ export default {
 }
 
 #delete-deck-button {
-  width: 50%;
+  width: 20%;
   margin: 1em 0 1em 0;
   background-color: #569FAD;
   border: 1px solid transparent;
@@ -125,7 +128,7 @@ export default {
 }
 
 #study-session-button {
-   width: 50%;
+  width: 20%;
   margin: 1em 0 1em 0;
   background-color: #569FAD;
   border: 1px solid transparent;
@@ -135,7 +138,7 @@ export default {
 }
 
 #deck-list {
-   width: 50%; 
+  
   margin: 1em 0 1em 0;
   /* background-color: #569FAD; */
   border: 1px solid transparent;
@@ -145,7 +148,7 @@ export default {
 
 }
 
-#deck-div {
+.deck-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -153,14 +156,20 @@ export default {
 #card-list {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 
 @media screen and (max-width: 680px) {
 #deck-title {
   color: #324B50;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 
 }
