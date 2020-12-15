@@ -152,10 +152,21 @@ export default {
       return cardObjectList;
     },
 
+    checkForNewCard() {
+      let counter = 0;
+      this.newCards.forEach(element => {
+        if (element.question !== '' || element.answer !== '' || element.tags !== '') {
+          counter++;
+        }
+        return counter;
+      });
+    },
+
     createDeck() {
-      if (this.currentDeckId === 0) {
-        //language for creating new deck
-        DeckServices.addDeck(this.currentDeck, this.currentDeck).then(
+      if (this.cardsInDeck.length > 0 || this.checkForNewCard > 0) {
+        if (this.currentDeckId === 0) {
+           //language for creating new deck
+           DeckServices.addDeck(this.currentDeck, this.currentDeck).then(
           (response) => {
             if (response.status === 201) {
               DeckServices.addMultipleCardsToDeck(
@@ -201,6 +212,10 @@ export default {
           }
         });
       }
+      } else {
+        this.errorMsg = 'You must have at least one card in your deck!'
+      }
+     
     },
   },
   computed: {
