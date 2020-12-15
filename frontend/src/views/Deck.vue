@@ -4,7 +4,7 @@
 
     <b-container>
       <b-row>
-    <b-col class="buttons" cols="2" >
+    <b-col class="buttons" sm="2" >
       
       <b-button id="study-session-button" v-on:click.prevent="
         $router.push({
@@ -164,11 +164,10 @@ button {
 }
 
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 576px) {
 .goat-image {
     max-width: 100%;
-
-  height: 50px;
+  height: auto;
 }
 
   b-container {
@@ -198,7 +197,6 @@ button {
 #deck-list {
    width: 70%; 
   margin: 1em 0 1em 0;
-  /* background-color: #569FAD; */
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
