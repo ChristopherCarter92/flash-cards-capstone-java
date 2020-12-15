@@ -15,6 +15,7 @@
           v-on:click="$router.push({name: 'logout'})"
           >Logout</b-button>
           <b-button class="nav-btn stylized-btn"
+          v-show="$store.state.token != ''"
           v-bind:to="{ name: 'login' }" 
           v-else
           v-on:click="$router.push({name: 'login'})"

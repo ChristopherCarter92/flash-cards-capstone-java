@@ -1,7 +1,7 @@
 <template>
    <div>
       <landing />
-      <button class="stylized-btn white">Hey Oh</button>
+ 
    </div>
 </template>
 
