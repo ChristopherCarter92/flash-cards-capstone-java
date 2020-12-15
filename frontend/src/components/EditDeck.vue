@@ -1,46 +1,50 @@
 <template>
   <div id="edit-deck-component-container">
+
     <div id="add-deck-title">
       <form>
-        <label for="deckTitle">Title: </label>
+        <label id="label-for-title" for="deckTitle">Title: </label>
         <input type="text" v-model="currentDeck.title" id="deckTitle" />
       </form>
     </div>
+
     <div id="save-card-btn-editDeck-ele">
-      <b-button v-on:click.prevent="createDeck">Save Deck</b-button>
+      <div id="save-btn-inner-div">
+        <b-button id="save-card-btn" v-on:click.prevent="createDeck">Save Deck</b-button>
       <p v-show="errorMsg !== ''">{{ errorMsg }}</p>
+      
+      </div>
+      
     </div>
 
     <div id="add-card-ele-editDeck">
       <div v-for="i in newCards" v-bind:key="i.name">
-        <form id="new-card-form">
-          <textarea placeholder="Question" v-model="i.question" type="text" />
-          <textarea placeholder="Answer" v-model="i.answer" type="text" />
-          <label for="tags">Tags: </label>
+        <form class="new-card-form">
+          <textarea placeholder="Question" v-model="i.question" type="text" id="edit-form-question" />
+          <textarea placeholder="Answer" v-model="i.answer" type="text" id="edit-form-answer" />
           <input 
             v-on:change="updateTags($event,i)"
             placeholder="keyword1 keyword2 keyword3 etc"
             id="tags"
           />
         </form>
-        <br />
+        
       </div>
     </div>
 
-    <div id="all-cards-editDeck-ele">
-      <b-input type="text" v-model="search" placeholder="search cards by Tag" />
-
+    <div class="all-cards-editDeck-ele">
+      <b-input id="search-bar" type="text" v-model="search" placeholder="search cards by Tag" />
       <!--replaced this.$store.state.cards with filteredCards for search capabilities-->
       <div
-        id="single-card-editDeck-ele"
+        class="single-card-editDeck-ele"
         v-for="card in filteredCards"
         v-bind:key="card.cardId"
       >
-        <div>
-          <p>{{ `Question: ${card.question}` }}</p>
-          <p>{{ `Answer: ${card.answer}` }}</p>
-          <p>{{ `Tag(s): ${card.tags}` }}</p>
-          <b-form-checkbox v-model="cardsInDeck" v-bind:value="card.cardId"
+        <div class="edit-deck-single-card-from-store">
+          <p><span>Question:</span>{{ ` ${card.question}` }}</p>
+          <p><span>Answer:</span>{{ ` ${card.answer}` }}</p>
+          <p><span>Tags:</span>{{ ` ${card.tags}` }}</p>
+          <b-form-checkbox id="edit-deck-checkbox" v-model="cardsInDeck" v-bind:value="card.cardId"
             >In This Deck</b-form-checkbox
           >
         </div>
@@ -213,6 +217,52 @@ export default {
 </script>
 
 <style>
+
+#edit-form-question {
+  flex-grow: 1;
+}
+
+#edit-form-answer {
+  flex-grow: 1;
+}
+
+#tags {
+  flex-grow: 2;
+}
+
+.edit-deck-single-card-from-store{
+  display: flex;
+  flex-direction: column;
+  
+  
+}
+
+.edit-deck-single-card-from-store p {
+  margin: 0.5em;
+}
+
+.edit-deck-single-card-from-store span {
+  font-weight: bold;
+}
+
+
+#search-bar {
+  width: 80%;
+  margin: 1em;
+  border: 1px solid black;
+}
+#save-card-btn{
+  margin: 0.2em;
+  background-color:  #B68C71;
+  color: black;
+  
+
+}
+#label-for-title {
+  margin: 0.5em;
+  font-weight: bold;
+  font-size: large;
+}
 #edit-deck-component-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -220,12 +270,17 @@ export default {
     "title title"
     "submit submit"
     "addNewCards addExisting";
+    background-image: url(../assets/goat.png);
+    background-repeat: no-repeat;
+    background-size: 6%;
+    background-attachment: local;
+    background-position: 60% .5%;
 }
 
 #add-card-ele-editDeck {
   grid-area: addNewCards;
-  border: solid black 1px;
-  margin: 1em;
+  border-radius: 3px;
+  
 }
 
 #add-deck-title {
@@ -233,7 +288,11 @@ export default {
   display: flex;
   flex-direction: column;
   border: solid black 1px;
+  background-color: #95B0B6;
+  border-radius: 3px;
   margin: 1em;
+  
+  
 }
 
 #add-deck-title form {
@@ -241,32 +300,70 @@ export default {
   margin: 1em;
 }
 
-#single-card-editDeck-ele {
-  border: solid black 1px;
+
+.all-cards-editDeck-ele {
+  grid-area: addExisting;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:  #95b0b6;
   margin: 1em;
+  border-radius: 3px;
+  border: 1px solid black;
 }
 
-#all-cards-editDeck-ele {
-  grid-area: addExisting;
+.single-card-editDeck-ele {
+  border: solid black 1px;
+  margin: 1em;
+  background-color: white;
+  border-radius: 3px;
+  width: 99%;
+
 }
 
 #save-card-btn-editDeck-ele {
   grid-area: submit;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  border: solid black 1px;
   margin: 1em;
+  
+}
+#save-btn-inner-div {
+  background-color: #95B0B6;
+  border-radius: 3px;
+  align-self: center;
 }
 
-#new-card-form {
+.new-card-form {
   display: flex;
   border: solid 1px black;
   padding: 20px;
   border-radius: 10px;
   background-color: #95b0b6;
   align-content: space-between;
+  margin: 1em;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 768px) {
+  #edit-deck-component-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "title"
+    "submit"
+    "addNewCards" 
+    "addExisting";
+    background-image: url(../assets/goat.png);
+    background-repeat: no-repeat;
+    background-size: 10%;
+    background-attachment: local;
+    background-position: 65% .6%;
 }
+
+}
+
+
+
+
 </style>
