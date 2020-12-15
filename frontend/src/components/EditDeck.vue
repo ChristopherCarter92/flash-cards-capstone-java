@@ -36,15 +36,16 @@
       <b-input id="search-bar" type="text" v-model="search" placeholder="search cards by Tag" />
       <!--replaced this.$store.state.cards with filteredCards for search capabilities-->
       <div
+        v-bind:class="{first: cardsInDeck.includes(card.cardId)}"
         class="single-card-editDeck-ele"
         v-for="card in filteredCards"
         v-bind:key="card.cardId"
       >
-        <div class="edit-deck-single-card-from-store">
+        <div v-bind:class="checkBoxClass(card.cardId)">
           <p><span>Question:</span>{{ ` ${card.question}` }}</p>
           <p><span>Answer:</span>{{ ` ${card.answer}` }}</p>
           <p><span>Tags:</span>{{ ` ${card.tags}` }}</p>
-          <b-form-checkbox id="edit-deck-checkbox" v-model="cardsInDeck" v-bind:value="card.cardId"
+          <b-form-checkbox v-model="cardsInDeck" v-bind:value="card.cardId" unchecked-value="not_checked"
             >In This Deck</b-form-checkbox
           >
         </div>
@@ -109,6 +110,15 @@ export default {
   props: ["currentDeckId"],
 
   methods: {
+
+    checkBoxClass(cardId) {
+      if (this.cardsInDeck.includes(cardId)) {
+        return 'checkBoxChecked';
+      } else {
+        return 'checkBoxUnchecked';
+      }
+    },
+
     updateTags(event, info){
      
       let tags = event.target.value.toLowerCase().replaceAll(/[^a-z ]/g,'');
@@ -201,13 +211,15 @@ export default {
         }
       });
     },
+
+
   },
 
   created() {
     if (this.currentDeckId !== 0) {
       DeckServices.getDeck(this.currentDeckId).then((response) => {
-        this.cardsInDeck = response.data.allCardIds;
         this.currentDeck.title = response.data.title;
+        this.cardsInDeck = response.data.allCardIds;
       });
     }
 
@@ -230,18 +242,26 @@ export default {
   flex-grow: 2;
 }
 
-.edit-deck-single-card-from-store{
+.checkBoxChecked .checkBoxUnchecked {
   display: flex;
   flex-direction: column;
   
   
 }
 
-.edit-deck-single-card-from-store p {
+.checkBoxChecked p {
   margin: 0.5em;
 }
 
-.edit-deck-single-card-from-store span {
+.checkBoxChecked span {
+  font-weight: bold;
+}
+
+.checkBoxUnchecked p {
+margin: 0.5em;
+}
+
+.checkBoxUnchecked span {
   font-weight: bold;
 }
 
@@ -250,7 +270,9 @@ export default {
   width: 80%;
   margin: 1em;
   border: 1px solid black;
+  order: -5;
 }
+
 #save-card-btn{
   margin: 0.2em;
   background-color:  #B68C71;
@@ -312,14 +334,20 @@ export default {
   border: 1px solid black;
 }
 
-.single-card-editDeck-ele {
+.single-card-editDeck-ele{
+  display: flex;
+  flex-direction: column;
   border: solid black 1px;
   margin: 1em;
   background-color: white;
   border-radius: 3px;
   width: 99%;
-
 }
+
+.first {
+  order: -1;
+}
+
 
 #save-card-btn-editDeck-ele {
   grid-area: submit;

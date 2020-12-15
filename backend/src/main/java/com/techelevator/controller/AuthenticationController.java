@@ -54,8 +54,13 @@ public class AuthenticationController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public void register(@Valid @RequestBody RegisterUserDTO newUser) {
-        if (!userDAO.create(newUser.getUsername(), newUser.getPassword(), newUser.getRole())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User registration failed.");
+        try {
+           userDAO.findByUsername(newUser.getUsername());
+           throw new UserAlreadyExistsException();
+        } catch(UsernameNotFoundException e) {
+            if (!userDAO.create(newUser.getUsername(), newUser.getPassword(), newUser.getRole())) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User registration failed. Please make sure your password and confirm password match.");
+            }
         }
     }
 
