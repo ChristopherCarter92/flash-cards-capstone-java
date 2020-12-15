@@ -1,6 +1,6 @@
 <template>
-<div id="deck-list">
-    <div id="deck-title" v-for="decks in $store.state.decks" v-bind:key="decks.deckId">
+<div >
+    <div class="deck-display" v-for="decks in $store.state.decks" v-bind:key="decks.deckId">
         <b-button v-on:click="$router.push({name: 'currentDeck', params: {deckId: decks.deckId}})">
             {{decks.title}}
         </b-button>
@@ -36,7 +36,7 @@ export default {
   "deck deck";
 }
 
-#deck-title {
+.deck-display {
   display: flex;
   justify-content: center;
   grid-area: "deck";

@@ -45,16 +45,12 @@ public class JdbcCardDAO implements CardDAO {
     }
 
     @Override
-    public boolean deleteCard(long cardId, long userId) {
-        String sql = "DELETE FROM cards WHERE card_id = ? AND user_id = ?;";
-        int returnedValue = jdbcTemplate.update(sql, cardId, userId);
-        boolean canDelete = false;
-        if(returnedValue == 1){
-            canDelete = true;
-        }
-        return canDelete;
+    public void deleteCard(long cardId) {
+        String sql = "DELETE FROM card_deck WHERE card_id = ?;";
+        jdbcTemplate.update(sql, cardId);
 
-        //will return zero for not deleted and 1 for deleted. make this return a boolean and then throw error in controller
+        String sql1 = "DELETE FROM cards WHERE card_id = ?;";
+        jdbcTemplate.update(sql1, cardId);
     }
 
     @Override

@@ -6,7 +6,7 @@
     <label for="answer">Answer: </label>
     <textarea v-model="currentCard.answer" type="text" id="answer" />
     <label for="tags">Tags: </label>
-    <textarea v-model="currentCard.tags" type="tags" id="tags" />
+    <input v-model="currentCard.tags" v-on:change="updateTags($event, currentCard)" type="tags" id="tags-update-view" />
     <b-button v-on:click.prevent="editCard">Update Card</b-button>
     <!-- button to call to update api then refresh store with updated cards SET CARDS -->
   </form>
@@ -50,6 +50,14 @@ export default {
     
     
     methods: {
+      updateTags(event, info){
+     
+      let tags = event.target.value.toLowerCase().replaceAll(/[^a-z ]/g,'');
+      tags = tags.replaceAll(/ +/g, ' ');
+      info.tags = tags;
+      event.target.value = tags;
+
+    },
 
        editCard() {
         CardServices.updateCard(this.$route.params.cardId, this.currentCard).then((response) => { 
