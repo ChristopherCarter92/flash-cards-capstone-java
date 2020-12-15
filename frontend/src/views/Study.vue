@@ -1,19 +1,24 @@
 <template>
-  <div id="card-container-card-view">
-    <div v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId">
-      <study-cards
-        v-on:clicked-wrong="onClickWrong(card.cardId)"
-        v-on:clicked-right="onClickRight"
-        v-bind:this-card="card"
-      />
-    </div>
-    <div class="score-card" v-show="scoreCard">
-      <h3>
-        You got {{ cardsInCurrentDeck.length - cardsToReview.length }} right out
-        of {{ cardsInCurrentDeck.length }}!
-      </h3>
-      <h5>Save the cards you got wrong for review?</h5>
-      <b-button v-on:click.prevent="saveReviewDeck">Save Review Deck</b-button>
+  <div>
+    <b-button class="end-session-btn" v-on:click.prevent="endSession">End Study Session</b-button>
+    <div id="card-container-card-view">
+      <div v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId" v-show="!scoreCard">
+        <study-cards
+          v-on:clicked-wrong="onClickWrong(card.cardId)"
+          v-on:clicked-right="onClickRight"
+          v-bind:this-card="card"
+        />
+      </div>
+      <div class="score-card" v-show="scoreCard">
+        <h3>
+          You got {{ cardsInCurrentDeck.length - cardsToReview.length }} right
+          out of {{ cardsInCurrentDeck.length }}!
+        </h3>
+        <h5>Save the cards you got wrong for review?</h5>
+        <b-button v-on:click.prevent="saveReviewDeck"
+          >Save Review Deck</b-button
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +46,10 @@ export default {
 
   methods: {
 
+    endSession() {
+      this.scoreCard = true;
+    },
+
     onClickWrong(cardId) {
       this.cardsAnswered++;
       this.cardsToReview.push(cardId);
@@ -57,22 +66,20 @@ export default {
     },
 
     saveReviewDeck() {
-        DeckServices.addDeck(this.reviewDeck).then(
-          (response) => {
-            if (response.status === 201) {
-              DeckServices.addMultipleCardsToDeck(
-                response.data.deckId,
-                this.cardsToReview
-              ).then((response2) => {
-                if (response2 === 201) {
-                    DeckServices.getAllDecks().then(() => {
-                    this.$router.push({ name: "home" });
-                  });
-                }
+      DeckServices.addDeck(this.reviewDeck).then((response) => {
+        if (response.status === 201) {
+          DeckServices.addMultipleCardsToDeck(
+            response.data.deckId,
+            this.cardsToReview
+          ).then((response2) => {
+            if (response2 === 201) {
+              DeckServices.getAllDecks().then(() => {
+                this.$router.push({ name: "home" });
               });
             }
-          }
-        );
+          });
+        }
+      });
     },
   },
 
@@ -89,7 +96,6 @@ export default {
     });
   },
 };
-
 </script>
 
 <style>
