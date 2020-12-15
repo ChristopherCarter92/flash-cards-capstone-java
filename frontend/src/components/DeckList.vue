@@ -25,9 +25,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
-@media screen and (max-width: 680px) {
+/* @media screen and (max-width: 680px) { */
 
 #deck-list {
   display: grid;
@@ -40,8 +40,9 @@ export default {
   display: flex;
   justify-content: center;
   grid-area: "deck";
+  margin-bottom: 20px;
 }
   
-}
+/* } */
 
 </style>
