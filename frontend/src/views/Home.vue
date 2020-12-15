@@ -49,7 +49,7 @@ export default {
 }
 
 #show-cards-button {
-  width: 50%; 
+  width: 30%; 
   margin: 1em 0 1em 0;
   background-color: #569FAD;
   border: 1px solid transparent;
@@ -59,15 +59,16 @@ export default {
 }
 
 button {
-  margin-bottom: 20px;
-   width: 50%;
-   flex-direction: column;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+   width: 30%;
   grid-area: "addDeckButton";
-  background-color: #569FAD;
+  background-color: #B68C71;
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
-  align-items: center;
+
 }
 
 @media screen and (max-width: 576px) {
