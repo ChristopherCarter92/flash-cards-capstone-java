@@ -103,7 +103,7 @@ export default {
     },
 
     updateReviewDeck() {
-      DeckServices.addMultipleCardsToDeck(this.findExistingReviewDeckId.value, this.cardsToReview);
+      DeckServices.addMultipleCardsToDeck(this.findExistingReviewDeckId, this.cardsToReview);
       this.returnToDeckView();
     },
 
