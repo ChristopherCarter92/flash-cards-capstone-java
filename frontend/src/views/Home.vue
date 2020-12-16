@@ -4,7 +4,9 @@
     
     <h1 id="allDecks">My Decks</h1>
     <b-button class="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
+    <div id="deck-list-container" >
     <deck-list></deck-list>
+    </div>
   </div>
 
 </template>
@@ -71,6 +73,12 @@ button {
   color: #324B50;
   /* font-weight: bolder; */
 
+}
+
+#deck-list-container {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 576px) {

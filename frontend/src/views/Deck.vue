@@ -117,7 +117,7 @@ export default {
   height: auto;
 }
 
-.deck-title {
+#deck-title {
   color: #324B50;
   display: flex;
   flex-direction: row;
@@ -157,14 +157,6 @@ b-container {
   
 }
 
-.buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 20%;
-  margin-top: 20px;
-  
-}
 
 button {
   
@@ -174,6 +166,15 @@ button {
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
+}
+
+.cards-and-deck-titles {
+  color: #324B50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
 }
 
 
@@ -189,19 +190,7 @@ button {
   justify-content: center;
 }
 
-.buttons {
-  
-  flex-direction: column;
-  align-items: center;
-}
 
-.cards-and-deck-titles {
-  color: #324B50;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-}
 button {
   width: 70%;
 }
