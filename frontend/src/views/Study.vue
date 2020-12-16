@@ -53,6 +53,20 @@ export default {
     };
   },
 
+  computed: {
+
+    findExistingReviewDeckId() {
+      let value = 0;
+      for (let deck of this.$store.state.decks) {
+        if (deck.title === `${this.$store.state.user.username}'s Review Deck`){
+          value = deck.deckId;
+        }
+      }
+      return value;
+    }
+
+  },
+
   methods: {
     endSession() {
       this.scoreCard = true;
@@ -89,7 +103,7 @@ export default {
     },
 
     updateReviewDeck() {
-      DeckServices.addMultipleCardsToDeck(this.currentDeckId, this.cardsToReview);
+      DeckServices.addMultipleCardsToDeck(this.findExistingReviewDeckId.value, this.cardsToReview);
       this.returnToDeckView();
     },
 
