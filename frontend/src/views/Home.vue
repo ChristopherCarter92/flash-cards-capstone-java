@@ -51,18 +51,10 @@ export default {
   flex-direction: column;
 }
 
-#show-cards-button {
-  width: 30%; 
-  margin: 1em 0 1em 0;
-  background-color: #569FAD;
-  border: 1px solid transparent;
-  padding: 7px;
-  color: #324B50;
-  justify-self: center;
-}
+
 
 button {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
    width: 30%;
@@ -71,7 +63,7 @@ button {
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
-  /* font-weight: bolder; */
+  font-weight: bolder;
 
 }
 

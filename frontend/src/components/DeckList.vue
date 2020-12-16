@@ -1,5 +1,5 @@
 <template>
-<div >
+<div class="deck-list-decklist" >
     <div class="deck-display" v-for="decks in $store.state.decks" v-bind:key="decks.deckId">
         <b-button class="deck-buttons" v-on:click="$router.push({name: 'currentDeck', params: {deckId: decks.deckId}})">
             {{decks.title}}
@@ -46,16 +46,22 @@ export default {
 
 .deck-buttons {
      margin-bottom: 20px;
-  width: 100%;
+  width: 10em;
   background-color: #569FAD;
   border: 1px solid transparent;
   padding: 7px;
   color:#324B50;
   margin: 1em 0 1em 0;
   /* font-weight: bold; */
-  
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+}
+
+.deck-list-decklist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
   
 /* } */

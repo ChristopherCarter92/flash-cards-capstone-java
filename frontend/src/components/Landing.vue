@@ -39,7 +39,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(#7F5A41, white);
+  background-image: linear-gradient(#569FAD, white);
 }
 
 #landing-title {

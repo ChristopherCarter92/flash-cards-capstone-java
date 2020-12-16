@@ -59,7 +59,7 @@ export default {
 }
 
 #display-user-top {
-  background-color: #21677ca6;
+  background-color: #569FAD;
   width: auto;
 }
 

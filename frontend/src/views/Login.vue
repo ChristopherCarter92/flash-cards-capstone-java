@@ -1,5 +1,6 @@
 <template>
-    <form class="form-signin" @submit.prevent="login">
+<div id="login-goat">
+  <form class="form-signin" @submit.prevent="login">
       <div id="login-form-sub-container">
          <h1 id="login-title-txt" class="h3 mb-3 font-weight-normal">Sign In</h1>
       <div
@@ -37,6 +38,8 @@
       <router-link id="need-act-link" :to="{ name: 'register' }">Need an account?</router-link>
      
     </form>
+</div>
+    
 </template>
 
 <script>
@@ -85,13 +88,25 @@ export default {
 
 * {
  box-sizing: border-box; 
+ margin: 0;
+ padding: 0;
 
 }
+#login-goat {
+  background-image: linear-gradient(#569FAD, white);
+
+}
+
 
 .form-signin {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../assets/goat.png");
+background-repeat: no-repeat;
+background-size: 10%;
+background-attachment: local;
+background-position: 50% 10%;
 }
 
 #login-title-txt {
@@ -138,6 +153,19 @@ export default {
   margin: 0% 20% 0% 20%;
   border-radius: 10px;
   background-color: rgb(201, 220, 224);
+}
+
+@media screen and (max-width: 992px) {
+  .form-signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../assets/goat.png");
+background-repeat: no-repeat;
+background-size: 15%;
+background-attachment: local;
+background-position: 50% 1%;
+}
 }
 
 
