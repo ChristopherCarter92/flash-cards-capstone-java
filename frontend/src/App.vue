@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <div >
-        <b-button class="stylized-btn white"
+      <div>
+        <b-button id="logo" class="stylized-btn white"
         v-on:click="$router.push({name: 'landing'})">Notes With Goats</b-button>
       </div>
       <div id="nav-btns">
@@ -54,6 +54,7 @@ export default {
  box-sizing: border-box; 
 
 }
+
 #app {
   height: 100vh;
 }
@@ -81,18 +82,8 @@ export default {
   margin: 0 0.5em 0 0;;
 }
 
-#logo {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: flex-center;
 
-}
-#logo img{
-  max-width: 20vh;
-  max-height: 20vh;
-  margin: 0.5em 0 0.5em 0.5em;
-  display: block;
-}
+
 #nav-btns {
   display: flex;
 }
@@ -108,5 +99,8 @@ export default {
   #display-user-top {
     justify-content: center;
   }
+  #logo {
+  font-size: 0.7em;
+}
 }
 </style>
