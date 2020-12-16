@@ -76,7 +76,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 .card-list-edit-button-container {
   display: flex;

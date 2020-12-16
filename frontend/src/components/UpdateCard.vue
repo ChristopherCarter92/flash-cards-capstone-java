@@ -117,7 +117,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 .update-card-background {
   background-color: #21677ca6;
