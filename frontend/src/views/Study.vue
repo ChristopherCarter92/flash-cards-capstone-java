@@ -173,4 +173,5 @@ export default {
 .score-card h5 {
   text-align: center;
 }
+
 </style>

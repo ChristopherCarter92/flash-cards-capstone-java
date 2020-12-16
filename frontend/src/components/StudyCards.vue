@@ -9,8 +9,8 @@
     <div class="card-face" v-show="!faceUp">
       <h2>{{ thisCard.answer }}</h2>
       <div class="study-buttons">
-        <b-button v-on:click.prevent="toggleRight">I got it right!</b-button>
-        <b-button v-on:click.prevent="toggleWrong">I need to study :( </b-button>
+        <b-button class="correct" v-on:click.prevent="toggleRight">I got it right!</b-button>
+        <b-button class="incorrect" v-on:click.prevent="toggleWrong">I need to study :( </b-button>
       </div>
       <b-button class="flip-button" v-on:click.prevent="flipCard"
         >Show Question</b-button
@@ -99,4 +99,28 @@ h2 {
   color: #324b50;
   width: 50%;
 }
+.study-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-items: space-around;
+}
+
+.correct {
+  margin-bottom: 20px;
+  width: 80%;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+}
+.incorrect {
+  margin-bottom: 20px;
+  width: 80%;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+}
+
+
 </style>
