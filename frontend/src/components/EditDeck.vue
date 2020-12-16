@@ -399,6 +399,17 @@ margin: 0.5em;
   margin: 1em;
 }
 
+#add-extra-card-btn {
+  width: 20%;
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+}
+
+
+
 @media screen and (max-width: 768px) {
   #edit-deck-component-container {
   display: grid;
