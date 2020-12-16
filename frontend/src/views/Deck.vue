@@ -173,6 +173,7 @@ button {
 }
 
 .cards-and-deck-titles {
+  margin-top: 20px;
   color: #324B50;
   display: flex;
   flex-direction: column;
