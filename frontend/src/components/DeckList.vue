@@ -45,7 +45,7 @@ export default {
 }
 
 .deck-buttons {
-     margin-bottom: 20px;
+  margin-bottom: 20px;
   width: 10em;
   background-color: #569FAD;
   border: 1px solid transparent;

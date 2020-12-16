@@ -1,10 +1,15 @@
 <template>
 
   <div class="home">
+    <div class="title-and-goat-pic">
+      <h1 id="home-title">My Decks</h1>
+       <img class="goat-image" src="@/assets/goat.png" alt="zenGoat"/>
+       <b-button class="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
+    </div>
     
-    <h1 id="allDecks">My Decks</h1>
-    <b-button class="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
-    <div id="deck-list-container" >
+
+    
+    <div id="deck-list-container">
     <deck-list></deck-list>
     </div>
   </div>
@@ -46,9 +51,29 @@ export default {
   flex-direction: column;
 }
 
-.allCards {
+
+.title-and-goat-pic {
   display: flex;
   flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  justify-self: center;
+  
+}
+
+#home-title {
+  text-align: center;
+  align-items: center;
+  justify-self: center;
+}
+
+.goat-image {
+  width: 20%;
+  height: auto;
+}
+
+.add-deck-button {
+  margin-top: 20px;
 }
 
 
@@ -75,7 +100,7 @@ button {
 
 @media screen and (max-width: 576px) {
 
-.home {
+/* .home {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas: 
@@ -83,22 +108,18 @@ button {
   "myDecks",
   "addDeckButton",
   "deck";
-}
+} */
 
-#home-title { 
-  display: flex;
-  justify-content: center;
-  grid-area: "title";
-}
 
-#allDecks {
+
+#home-title {
   
   justify-content: center;
   grid-area: "myDecks";
 }
 
 button {
-  
+   margin-top: 10px;
    width: 70%;
  
 }
