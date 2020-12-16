@@ -1,7 +1,7 @@
 <template>
 
-
-    <b-container>
+  <div id="deck-whole-page">
+    <b-container >
       <b-row>
     <b-col class="left-buttons" sm="2" >
       
@@ -42,6 +42,7 @@
      </b-row>
     
     </b-container>
+    </div>
 
   
 </template>
@@ -111,6 +112,12 @@ export default {
 
 <style scoped>
 
+#deck-whole-page {
+    background-image: linear-gradient(#569FAD, white);
+
+}
+
+
 .goat-image {
     max-width: 100%;
 
@@ -143,6 +150,7 @@ b-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+
   
 }
 
