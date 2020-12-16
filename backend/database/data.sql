@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-INSERT INTO public.users (user_id, username, password_hash, role) VALUES (1, 'MarK', '$2a$10$T.dutnoA.zFw5NBEM0NaC.y6kwrwLcYEisyZl/E3pcZ4mzDsb1k62', 'ROLE_USER');
+INSERT INTO public.users (user_id, username, password_hash, role) VALUES (1, 'Mark', '$2a$10$T.dutnoA.zFw5NBEM0NaC.y6kwrwLcYEisyZl/E3pcZ4mzDsb1k62', 'ROLE_USER');
 
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (1, 'After Storm creates bolts of lightning, thunder is often heard due to this order of events?', 'lightning heats air, air expands, expansion creates waves, the waves create sound', 'science', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (2, 'Why is lightning always seen before thunder is heard?', 'Light travels faster than sound', 'science', 1);

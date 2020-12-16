@@ -205,7 +205,7 @@ export default {
             ).then(() => {
               DeckServices.getAllDecks().then(() => {
                 CardServices.getAllCards().then(() => {
-                  this.$router.push({ name: "home" });
+                  this.$router.push({ name: "currentDeck" });
                 });
               });
             });
