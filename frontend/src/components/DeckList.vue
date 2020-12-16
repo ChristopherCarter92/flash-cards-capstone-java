@@ -37,6 +37,7 @@ export default {
 }
 
 .deck-display {
+  margin-top: 25px;
   display: flex;
   justify-content: center;
   grid-area: "deck";

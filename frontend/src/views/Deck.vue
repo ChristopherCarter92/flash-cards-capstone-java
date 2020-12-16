@@ -154,6 +154,10 @@ b-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  background-color: #95b0b6;
+  border-radius: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
   
 }
 
@@ -169,11 +173,13 @@ button {
 }
 
 .cards-and-deck-titles {
+  margin-top: 20px;
   color: #324B50;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  background-color: #95b0b6;
+  border-radius: 3px;
 
 }
 
