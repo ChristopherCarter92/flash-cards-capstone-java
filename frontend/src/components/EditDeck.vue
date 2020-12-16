@@ -28,8 +28,8 @@
             class="tags"
           />
         </form>
-        
       </div>
+       <b-button id="add-extra-card-btn" v-on:click.prevent="createAnotherCard">Add another Card</b-button>
     </div>
 
     <div class="all-cards-editDeck-ele">
@@ -161,6 +161,15 @@ export default {
         }
       });
        return counter;
+    },
+
+    createAnotherCard() {
+      this.newCards.push({
+         name: `card${this.newCards.length + 1}`,
+          question: '',
+          answer: '',
+          tags: ''
+      });
     },
 
     createDeck() {
