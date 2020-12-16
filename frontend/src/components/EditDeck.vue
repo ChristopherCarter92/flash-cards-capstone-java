@@ -33,7 +33,12 @@
     </div>
 
     <div class="all-cards-editDeck-ele">
-      <b-input id="search-bar" type="text" v-model="search" placeholder="search cards by Tag" />
+      <div id="editDeck-search-and-goat">
+        <img src="../assets/goat.png" alt="goat pic">
+        <b-input id="search-bar" type="text" v-model="search" placeholder="search cards by Tag" />
+
+      </div>
+      
       <!--replaced this.$store.state.cards with filteredCards for search capabilities-->
       <div
         v-bind:class="{first: cardsInDeck.includes(card.cardId)}"
@@ -41,13 +46,14 @@
         v-for="card in filteredCards"
         v-bind:key="card.cardId"
       >
-        <div v-bind:class="checkBoxClass(card.cardId)">
+        <div class="edit-deck-card-info-ele">
           <p><span>Question:</span>{{ ` ${card.question}` }}</p>
           <p><span>Answer:</span>{{ ` ${card.answer}` }}</p>
           <p><span>Tags:</span>{{ ` ${card.tags}` }}</p>
-          <b-form-checkbox v-model="cardsInDeck" v-bind:value="card.cardId" unchecked-value="not_checked"
-            >In This Deck</b-form-checkbox
-          >
+          <div class="checkbox-in-editDeck">
+            <b-form-checkbox  v-model="cardsInDeck" v-bind:value="card.cardId" >In This Deck</b-form-checkbox>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -111,13 +117,6 @@ export default {
 
   methods: {
 
-    checkBoxClass(cardId) {
-      if (this.cardsInDeck.includes(cardId)) {
-        return 'checkBoxChecked';
-      } else {
-        return 'checkBoxUnchecked';
-      }
-    },
 
     updateTags(event, info){
      
@@ -255,6 +254,33 @@ export default {
 </script >
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#editDeck-search-and-goat {
+  display: flex;
+  order: -9;
+
+}
+
+.checkbox-in-editDeck {
+  margin: 0 0 0 2em;
+  align-self: flex-start;
+
+}
+#add-extra-card-btn {
+  width: 40%;
+  align-self: center;
+
+}
+
+#editDeck-search-and-goat img {
+  width: 10%;
+  margin: 0.3em;
+  
+}
 
 .edit-form-question {
   flex-grow: 1;
@@ -268,26 +294,16 @@ export default {
   flex-grow: 2;
 }
 
-.checkBoxChecked .checkBoxUnchecked {
+.edit-deck-card-info-ele {
   display: flex;
   flex-direction: column;
-  
-  
 }
 
-.checkBoxChecked p {
+.edit-deck-card-info-ele p {
   margin: 0.5em;
 }
 
-.checkBoxChecked span {
-  font-weight: bold;
-}
-
-.checkBoxUnchecked p {
-margin: 0.5em;
-}
-
-.checkBoxUnchecked span {
+.edit-deck-card-info-ele span {
   font-weight: bold;
 }
 
@@ -296,13 +312,14 @@ margin: 0.5em;
   width: 80%;
   margin: 1em;
   border: 1px solid black;
-  order: -5;
+  
 }
 
 #save-card-btn{
   margin: 0.2em;
   background-color:  #B68C71;
   color: black;
+  padding: 1em;
   
 }
 
@@ -319,16 +336,14 @@ margin: 0.5em;
     "title title"
     "submit submit"
     "addNewCards addExisting";
-    background-image: url(../assets/goat.png);
-    background-repeat: no-repeat;
-    background-size: 6%;
-    background-attachment: local;
-    background-position: 60% .5%;
+    
 }
 
 #add-card-ele-editDeck {
   grid-area: addNewCards;
   border-radius: 3px;
+  display: flex;
+  flex-direction: column;
 }
 
 #add-deck-title {
@@ -379,7 +394,7 @@ margin: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 4em;
+  margin: 1em;
   
 }
 
@@ -419,12 +434,24 @@ margin: 0.5em;
     "submit"
     "addNewCards" 
     "addExisting";
-    background-image: url(../assets/goat.png);
-    background-repeat: no-repeat;
-    background-size: 10%;
-    background-attachment: local;
-    background-position: 65% .6%;
+    
 }
+.new-card-form {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: #95b0b6;
+  align-content: space-between;
+  margin: 1em 0 1em 0;
+}
+#editDeck-search-and-goat img {
+  width: 50px;
+  margin: 0.3em;
+  
+}
+
 
 }
 </style>
