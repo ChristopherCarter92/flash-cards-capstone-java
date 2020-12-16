@@ -98,8 +98,12 @@ export default {
   
 }
 .card-list-cards {
-  border: 1px solid black;
-  padding: 7px;
+  border: solid 1px black;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  align-content: space-between;
+  margin: 1em;
 }
 
 .card-face-card-list {
