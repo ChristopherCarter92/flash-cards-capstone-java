@@ -107,13 +107,13 @@ INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (102,
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (103, 'In this environment, a cell would fill with water until it burst.', 'hypotonic', 'science', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (104, 'In this environment, a cell would stay the same size and shape.', 'isotonic', 'science', 1);
 
-INSERT INTO public.decks (deck_id, username, title) VALUES (1, 'Test', 'Marvel Science');
-INSERT INTO public.decks (deck_id, username, title) VALUES (2, 'Test', 'Ice Skating History');
-INSERT INTO public.decks (deck_id, username, title) VALUES (3, 'Test', 'Story Elements');
-INSERT INTO public.decks (deck_id, username, title) VALUES (4, 'Test', 'Unit Rates');
-INSERT INTO public.decks (deck_id, username, title) VALUES (5, 'Test', 'Environmental Science');
-INSERT INTO public.decks (deck_id, username, title) VALUES (6, 'Test', 'Respiratory System');
-INSERT INTO public.decks (deck_id, username, title) VALUES (7, 'Test', 'Cells');
+INSERT INTO public.decks (deck_id, username, title) VALUES (1, 'Mark', 'Marvel Science');
+INSERT INTO public.decks (deck_id, username, title) VALUES (2, 'Mark', 'Ice Skating History');
+INSERT INTO public.decks (deck_id, username, title) VALUES (3, 'Mark', 'Story Elements');
+INSERT INTO public.decks (deck_id, username, title) VALUES (4, 'Mark', 'Unit Rates');
+INSERT INTO public.decks (deck_id, username, title) VALUES (5, 'Mark', 'Environmental Science');
+INSERT INTO public.decks (deck_id, username, title) VALUES (6, 'Mark', 'Respiratory System');
+INSERT INTO public.decks (deck_id, username, title) VALUES (7, 'Mark', 'Cells');
 
 INSERT INTO public.card_deck (deck_id, card_id) VALUES (2, 3);
 
