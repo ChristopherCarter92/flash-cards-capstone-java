@@ -29,7 +29,7 @@
           />
         </form>
       </div>
-       <b-button id="add-extra-card-btn" v-on:click.prevent="createAnotherCard">Add another Card</b-button>
+       <b-button id="add-extra-card-btn" v-on:click.prevent="createAnotherCard">Add Another Card</b-button>
     </div>
 
     <div class="all-cards-editDeck-ele">
