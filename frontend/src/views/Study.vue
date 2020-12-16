@@ -1,8 +1,14 @@
 <template>
   <div>
-    <b-button class="end-session-btn" v-on:click.prevent="endSession">End Study Session</b-button>
+    <b-button class="end-session-btn" v-on:click.prevent="endSession"
+      >End Study Session</b-button
+    >
     <div id="card-container-card-view">
-      <div v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId" v-show="!scoreCard">
+      <div
+        v-for="card in cardsInCurrentDeck"
+        v-bind:key="card.cardId"
+        v-show="!scoreCard"
+      >
         <study-cards
           v-on:clicked-wrong="onClickWrong(card.cardId)"
           v-on:clicked-right="onClickRight"
@@ -15,7 +21,7 @@
           out of {{ cardsInCurrentDeck.length }}!
         </h3>
         <h5>Save the cards you got wrong for review?</h5>
-        <b-button v-on:click.prevent="saveReviewDeck"
+        <b-button v-on:click.prevent="handleReviewDeck"
           >Save Review Deck</b-button
         >
         <b-button v-on:click.prevent="returnToDeckView"
@@ -48,7 +54,6 @@ export default {
   },
 
   methods: {
-
     endSession() {
       this.scoreCard = true;
     },
@@ -68,25 +73,44 @@ export default {
       }
     },
 
-    saveReviewDeck() {
+    handleReviewDeck() {
+      let counter = 0;
+      for (let i = 0; i < this.$store.state.decks.length; i++) {
+        if (this.$store.state.decks[i].title === this.reviewDeck.title) {
+          counter++;
+        } 
+        console.log(counter);
+      }
+      if (counter > 0) {
+        this.updateReviewDeck();
+      } else {
+        this.addReviewDeck();
+      }
+    },
+
+    updateReviewDeck() {
+      DeckServices.addMultipleCardsToDeck(this.currentDeckId, this.cardsToReview);
+      this.returnToDeckView();
+    },
+
+    addReviewDeck() {
       DeckServices.addDeck(this.reviewDeck).then((response) => {
         if (response.status === 201) {
           DeckServices.addMultipleCardsToDeck(
             response.data.deckId,
             this.cardsToReview
           ).then(() => {
-              DeckServices.getAllDecks().then(() => {
-              this.$router.push({ name: 'currentDeck', params: this.currentDeckId });
-              });
+            DeckServices.getAllDecks().then(() => {
+              this.returnToDeckView();
+            });
           });
         }
       });
     },
 
     returnToDeckView() {
-      this.$router.push({ name: 'currentDeck', params: this.currentDeckId });
+      this.$router.push({ name: "currentDeck", params: this.currentDeckId });
     },
-
   },
 
   created() {
