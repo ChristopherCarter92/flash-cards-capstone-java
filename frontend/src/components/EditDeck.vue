@@ -155,15 +155,16 @@ export default {
     checkForNewCard() {
       let counter = 0;
       this.newCards.forEach(element => {
-        if (element.question !== '' || element.answer !== '' || element.tags !== '') {
+        if (element.question !== '' && element.answer !== '' && element.tags !== '') {
           counter++;
+          console.log(counter);
         }
-        return counter;
       });
+       return counter;
     },
 
     createDeck() {
-      if (this.cardsInDeck.length > 0 || this.checkForNewCard > 0) {
+        if (this.cardsInDeck.length > 0 || this.checkForNewCard() > 0) {
         if (this.currentDeckId === 0) {
            //language for creating new deck
            DeckServices.addDeck(this.currentDeck, this.currentDeck).then(
@@ -211,10 +212,11 @@ export default {
             });
           }
         });
-      }
+      } 
       } else {
         this.errorMsg = 'You must have at least one card in your deck!'
       }
+      
      
     },
   },
