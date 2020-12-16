@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId">
+    <div class="card-face-card-list" v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId">
       <div>
         <p>{{ `Question: ${card.question}` }}</p>
         <p>{{ `Answer: ${card.answer}` }}</p>
@@ -87,7 +87,7 @@ export default {
 }
 
 .card-list-edit-button {
-   width: 20%;
+  width: 20%;
   margin: 1em 0 1em 0;
   background-color: #569FAD;
   border: 1px solid transparent;
@@ -96,5 +96,26 @@ export default {
   
   
 }
+
+.card-face-card-list {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: 2em 2em 2em 2em;
+  border-radius: 5px;
+  border: solid #95b0b6 5px;
+  background-color: rgb(220, 231, 241);
+  width: 90%;
+
+}
+
+.card-face-card-list p {
+  display: flex;
+  justify-content: center;
+  margin: 1em 1em 1em 1em;
+  font-weight: bold;
+}
+
+
 </style>
 
