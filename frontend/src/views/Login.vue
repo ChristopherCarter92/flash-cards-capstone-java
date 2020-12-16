@@ -1,7 +1,4 @@
 <template>
-  <div id="login" class="text-center">
-    <img src="@/assets/goat.png" alt="goat img" class="goat-pic">
-    <div class="form-container" >
     <form class="form-signin" @submit.prevent="login">
       <div id="login-form-sub-container">
          <h1 id="login-title-txt" class="h3 mb-3 font-weight-normal">Sign In</h1>
@@ -24,7 +21,6 @@
         v-model="user.username"
         required
         autofocus
-        
       />
       <label for="password" class="sr-only">Password</label>
       <input
@@ -41,8 +37,6 @@
       <router-link id="need-act-link" :to="{ name: 'register' }">Need an account?</router-link>
      
     </form>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -146,23 +140,5 @@ export default {
   background-color: rgb(201, 220, 224);
 }
 
-#login {
-  background-color: #21677ca6;
-  width: 100vw;
-  height: 100vh;
-  padding-top: 7%;
-}
-
-.goat-pic {
-  max-width: 20vw;
-  max-height: 20vh;
-  display: none;
-
-}
-
-
-#need-act-link:hover + .goat-pic {
-  display: block;
-}
 
 </style>
