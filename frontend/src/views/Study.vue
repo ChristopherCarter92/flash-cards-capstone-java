@@ -143,6 +143,19 @@ export default {
 </script>
 
 <style>
+
+.end-session-btn {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: 10em;
+  background-color: #B68C71;
+  border: 1px solid transparent;
+  padding: 7px;
+  color:#324B50;
+  margin: 1em 0 1em 0;
+}
+
 .score-card {
   display: flex;
   flex-direction: column;
