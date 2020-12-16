@@ -4,9 +4,9 @@
     <b-container >
       <b-row>
     <b-col class="left-buttons" sm="2" >
-      
+      <div class="deck-buttons-deck-view">
     <deck-list ></deck-list>
-     
+     </div>
     <img class="goat-image" src="@/assets/goat.png" alt="zenGoat"/>
     </b-col>
    
@@ -146,6 +146,8 @@ export default {
 
 }
 
+
+
 b-container {
   display: flex;
   flex-direction: row;
@@ -162,7 +164,7 @@ b-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #95b0b6;
+  background-color: white;
   border-radius: 3px;
   padding-left: 3px;
   padding-right: 3px;
@@ -186,8 +188,10 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #95b0b6;
+  background-color:white;
   border-radius: 3px;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 
