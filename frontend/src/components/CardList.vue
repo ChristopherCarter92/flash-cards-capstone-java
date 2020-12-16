@@ -98,7 +98,8 @@ export default {
   
 }
 .card-list-cards {
-  border: solid 1px black;
+  border-radius: 5px;
+  border: solid #95b0b6 5px;
   padding: 20px;
   border-radius: 10px;
   background: white;
@@ -128,7 +129,8 @@ export default {
 
 @media screen and (max-width: 576px) {
 .card-list-cards {
-  border: solid 1px black;
+  border-radius: 5px;
+  border: solid #95b0b6 5px;
   padding: 20px;
   border-radius: 10px;
   background: white;
