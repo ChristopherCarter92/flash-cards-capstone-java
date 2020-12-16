@@ -54,17 +54,15 @@ export default {
   },
 
   computed: {
-
     findExistingReviewDeckId() {
       let value = 0;
       for (let deck of this.$store.state.decks) {
-        if (deck.title === `${this.$store.state.user.username}'s Review Deck`){
+        if (deck.title === `${this.$store.state.user.username}'s Review Deck`) {
           value = deck.deckId;
         }
       }
       return value;
-    }
-
+    },
   },
 
   methods: {
@@ -92,7 +90,7 @@ export default {
       for (let i = 0; i < this.$store.state.decks.length; i++) {
         if (this.$store.state.decks[i].title === this.reviewDeck.title) {
           counter++;
-        } 
+        }
         console.log(counter);
       }
       if (counter > 0) {
@@ -103,7 +101,10 @@ export default {
     },
 
     updateReviewDeck() {
-      DeckServices.addMultipleCardsToDeck(this.findExistingReviewDeckId, this.cardsToReview);
+      DeckServices.addMultipleCardsToDeck(
+        this.findExistingReviewDeckId,
+        this.cardsToReview
+      );
       this.returnToDeckView();
     },
 
@@ -143,16 +144,15 @@ export default {
 </script>
 
 <style>
-
 .end-session-btn {
   margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 20px;
   width: 10em;
-  background-color: #B68C71;
+  background-color: #b68c71;
   border: 1px solid transparent;
   padding: 7px;
-  color:#324B50;
+  color: #324b50;
   margin: 1em 0 1em 0;
 }
 
@@ -173,5 +173,4 @@ export default {
 .score-card h5 {
   text-align: center;
 }
-
 </style>
