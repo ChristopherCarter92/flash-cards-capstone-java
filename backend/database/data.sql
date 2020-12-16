@@ -1,11 +1,11 @@
 BEGIN TRANSACTION;
 
-INSERT INTO public.users (user_id, username, password_hash, role) VALUES (1, 'Test', '$2a$10$T.dutnoA.zFw5NBEM0NaC.y6kwrwLcYEisyZl/E3pcZ4mzDsb1k62', 'ROLE_USER');
+INSERT INTO public.users (user_id, username, password_hash, role) VALUES (1, 'MarK', '$2a$10$T.dutnoA.zFw5NBEM0NaC.y6kwrwLcYEisyZl/E3pcZ4mzDsb1k62', 'ROLE_USER');
 
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (1, 'After Storm creates bolts of lightning, thunder is often heard due to this order of events?', 'lightning heats air, air expands, expansion creates waves, the waves create sound', 'science', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (2, 'Why is lightning always seen before thunder is heard?', 'Light travels faster than sound', 'science', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (3, 'What natural force must Storm overcome when she builds up enough wind power to fly?', 'Gravity', 'science', 1);
-INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (4, 'Through which medium would the sound waves of Beast’s roar travel the slowest?', 'Gas', 'Science', 1);
+INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (4, 'Through which medium would the sound waves of Beast’s roar travel the slowest?', 'Gas', 'science', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (5, 'Why would sound waves travel slowest through matter made of gas?', 'Molecules are farther apart', 'science', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (6, 'If Beast were to roar in outer space, he could be heard for _____ .', '0', 'science', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (7, 'Why couldn''t Beast''s roar be heard in outer space?', 'There is no matter to carry sound waves', 'science', 1);
@@ -20,7 +20,7 @@ INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (15, 
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (16, 'Immigrants from this country were the first to introduce ice skating to North America.', 'Scotland', 'history', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (17, 'Ice skating is a fun sport enjoyed during the winter months--and all year round, indoors--by friends and family alike!', 'TRUE', 'history', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (18, 'The element in the text that is developed through dialogue, action, and thinking is the ___.', 'character', 'english', 1);
-INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (19, 'A story taking place at the zoo on a sunny afternoon describes the _______.', 'setting', 'English', 1);
+INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (19, 'A story taking place at the zoo on a sunny afternoon describes the _______.', 'setting', 'english', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (20, '________ exists when a character has a struggle or the plot requires a decision to be made.', 'Problem, Conflict', 'english', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (21, 'A change of events that answers the problem is called a _______.', 'solution, resolution', 'english', 1);
 INSERT INTO public.cards (card_id, question, answer, tags, user_id) VALUES (22, 'Movement through time through the text is called _________.', 'events', 'english', 1);
