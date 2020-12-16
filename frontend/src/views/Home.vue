@@ -1,11 +1,12 @@
 <template>
 
   <div class="home">
-    <h1 id="home-title">Home</h1>
+    
     <h1 id="allDecks">My Decks</h1>
     <b-button class="add-deck-button" v-on:click="$router.push({name: 'createDeck'})">Add Deck</b-button>
     <deck-list></deck-list>
   </div>
+
 </template>
 
 <script>
@@ -68,6 +69,7 @@ button {
   border: 1px solid transparent;
   padding: 7px;
   color: #324B50;
+  /* font-weight: bolder; */
 
 }
 
@@ -106,6 +108,8 @@ deck-list {
   justify-content: right;
   grid-area: "deck";
 }
+
+
   
 }
 

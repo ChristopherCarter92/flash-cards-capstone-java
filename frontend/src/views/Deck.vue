@@ -114,7 +114,7 @@ export default {
   height: auto;
 }
 
-#deck-title {
+.deck-title {
   color: #324B50;
   display: flex;
   flex-direction: row;
@@ -123,7 +123,7 @@ export default {
 }
 
 
-#deck-list {
+.deck-list {
   
   margin: 1em 0 1em 0;
   /* background-color: #569FAD; */
@@ -131,6 +131,7 @@ export default {
   padding: 7px;
   color: #324B50;
   justify-content: center;
+  
 
 }
 
@@ -138,22 +139,18 @@ b-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  
 }
 
 /* b-col.buttons {
   col: 0;
 } */
 
-#card-list {
+.card-list {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: solid 1px black;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #95b0b6;
-  align-content: space-between;
-  margin: 1em;
+  
 }
 
 .buttons {

@@ -49,7 +49,8 @@ export default {
   background-color: #569FAD;
   border: 1px solid transparent;
   padding: 7px;
-  color: #324B50;
+  color:#324B50;
+  /* font-weight: bold; */
   
   flex-direction: column;
   align-items: center;
