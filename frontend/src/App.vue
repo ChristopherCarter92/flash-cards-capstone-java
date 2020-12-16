@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <div >
-        <b-button class="stylized-btn white">Notes With Goats</b-button>
+        <b-button class="stylized-btn white"
+        v-on:click="$router.push({name: 'landing'})">Notes With Goats</b-button>
       </div>
       <div id="nav-btns">
         <b-button class="nav-btn stylized-btn"
@@ -52,8 +53,9 @@ export default {
 
 }
 #welcome-message {
-  font-size: 3vh;
+  font-size: 120%;
   width: auto;
+  margin: 0 0.5em 0 0;
 }
 
 #display-user-top {
@@ -68,7 +70,7 @@ export default {
   background-color: #B68C71;
   align-items: center;
   justify-content: space-between;
-  height: 10vh;
+  height: 55px;
   }
 .nav-btn {
   margin: 0 0.5em 0 0;;
@@ -93,7 +95,8 @@ export default {
 #display-user-top {
   display: flex;
   justify-content: flex-end;
-  margin: 0 0.5em 0 0;
+  margin: 0 0 0 0;
+  height: 40px;
 }
 
 @media screen and (max-width: 680px) {
