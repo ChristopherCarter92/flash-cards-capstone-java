@@ -148,12 +148,20 @@ b-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  border: solid 1px black;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #95b0b6;
+  align-content: space-between;
+  margin: 1em;
 }
 
 .buttons {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-top: 20px;
+  
 }
 
 button {

@@ -80,8 +80,9 @@ export default {
 
 .card-list-edit-button-container {
   display: flex;
+  justify-content: space-around;
   
-  justify-content: center;
+  
   
 }
 
