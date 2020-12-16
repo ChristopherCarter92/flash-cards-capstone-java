@@ -379,7 +379,7 @@ margin: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 1em;
+  margin: 4em;
   
 }
 
