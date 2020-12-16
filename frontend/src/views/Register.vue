@@ -1,5 +1,5 @@
 <template>
-  <div id="register" class="text-center">
+  <div id="register" >
     <form class="form-register" @submit.prevent="register">
       <div id="register-form-container">
         <h1 id="header" class="h3 mb-3 font-weight-normal">Create Account</h1>
@@ -99,7 +99,12 @@ export default {
 
 <style scoped>
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+#register {
+  background-image: linear-gradient(#569FAD, white);
 }
 
 #header {
@@ -111,7 +116,12 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  margin: 10% 0 0 0;
+  margin: 0 0 0 0;
+  background-image: url("../assets/goat.png");
+background-repeat: no-repeat;
+background-size: 10%;
+background-attachment: local;
+background-position: 50% 6%;
 }
 
 #register-button {
@@ -142,13 +152,27 @@ export default {
   background-color: #95b0b6;
   border-radius: 5px;
   border: 10px solid transparent;
+  margin: 10% 0 0 0;
 }
 
 #have-account-link {
   color: #324b50;
   font-size: 1.2em;
-  margin: 1% 0 0 0;
   text-decoration: underline;
   text-decoration-color: #324b50;
+  margin: 1% 0 0 0;
+}
+
+@media screen and (max-width: 992px) {
+  .form-register  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../assets/goat.png");
+background-repeat: no-repeat;
+background-size: 13%;
+background-attachment: local;
+background-position: 50% 1%;
+}
 }
 </style>
