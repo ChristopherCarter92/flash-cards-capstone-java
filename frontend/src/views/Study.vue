@@ -21,10 +21,10 @@
           out of {{ cardsInCurrentDeck.length }}!
         </h3>
         <h5>Save the cards you got wrong for review?</h5>
-        <b-button v-on:click.prevent="handleReviewDeck"
+        <b-button class="save-review" v-on:click.prevent="handleReviewDeck"
           >Save Review Deck</b-button
         >
-        <b-button v-on:click.prevent="returnToDeckView"
+        <b-button class="return-to-deck" v-on:click.prevent="returnToDeckView"
           >Return To Deck</b-button
         >
       </div>
@@ -172,5 +172,23 @@ export default {
 }
 .score-card h5 {
   text-align: center;
+}
+
+.save-review {
+  margin-bottom: 20px;
+  width: 30%;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
+}
+
+.return-to-deck {
+  margin-bottom: 20px;
+  width: 30%;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
 }
 </style>
