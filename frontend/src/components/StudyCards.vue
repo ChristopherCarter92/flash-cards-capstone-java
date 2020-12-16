@@ -73,6 +73,7 @@ h2 {
   border-radius: 5px;
   border: solid #95b0b6 5px;
   justify-content: center;
+  justify-items: center;
 }
 
 .flip-button {
@@ -101,15 +102,18 @@ h2 {
 }
 .study-buttons {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  flex-direction: column;
   justify-items: space-around;
+  
 }
 
 .correct {
   margin-bottom: 20px;
+  
   width: 80%;
   background-color: #569FAD;
-  border: 1px solid transparent;
+  border: 5px solid transparent;
   padding: 7px;
   color: #324B50;
 }
@@ -117,7 +121,7 @@ h2 {
   margin-bottom: 20px;
   width: 80%;
   background-color: #569FAD;
-  border: 1px solid transparent;
+  border: 5px solid transparent;
   padding: 7px;
   color: #324B50;
 }

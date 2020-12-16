@@ -48,7 +48,7 @@ export default {
   margin-bottom: 20px;
   width: 10em;
   background-color: #569FAD;
-  border: 1px solid black;
+  border: 1px solid transparent;
   padding: 7px;
   color:#324B50;
   margin: 1em 0 1em 0;
@@ -56,6 +56,10 @@ export default {
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+}
+
+.left-buttons .deck-buttons {
+border: 1px solid black;
 }
 
 .deck-list-decklist {
