@@ -20,12 +20,12 @@
     <div id="add-card-ele-editDeck">
       <div v-for="i in newCards" v-bind:key="i.name">
         <form class="new-card-form">
-          <textarea placeholder="Question" v-model="i.question" type="text" id="edit-form-question" />
-          <textarea placeholder="Answer" v-model="i.answer" type="text" id="edit-form-answer" />
+          <textarea placeholder="Question" v-model="i.question" type="text" class="edit-form-question" />
+          <textarea placeholder="Answer" v-model="i.answer" type="text" class="edit-form-answer" />
           <input 
             v-on:change="updateTags($event,i)"
             placeholder="keyword1 keyword2 keyword3 etc"
-            id="tags"
+            class="tags"
           />
         </form>
         
@@ -241,19 +241,19 @@ export default {
     //api call to figur eout what cards are in this deck (get deck by id)
   },
 };
-</script>
+</script >
 
-<style>
+<style scoped>
 
-#edit-form-question {
+.edit-form-question {
   flex-grow: 1;
 }
 
-#edit-form-answer {
+.edit-form-answer {
   flex-grow: 1;
 }
 
-#tags {
+.tags {
   flex-grow: 2;
 }
 
@@ -293,13 +293,14 @@ margin: 0.5em;
   background-color:  #B68C71;
   color: black;
   
-
 }
+
 #label-for-title {
   margin: 0.5em;
   font-weight: bold;
   font-size: large;
 }
+
 #edit-deck-component-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -317,7 +318,6 @@ margin: 0.5em;
 #add-card-ele-editDeck {
   grid-area: addNewCards;
   border-radius: 3px;
-  
 }
 
 #add-deck-title {
@@ -328,8 +328,7 @@ margin: 0.5em;
   background-color: #95B0B6;
   border-radius: 3px;
   margin: 1em;
-  
-  
+   
 }
 
 #add-deck-title form {
@@ -372,6 +371,7 @@ margin: 0.5em;
   margin: 1em;
   
 }
+
 #save-btn-inner-div {
   background-color: #95B0B6;
   border-radius: 3px;
