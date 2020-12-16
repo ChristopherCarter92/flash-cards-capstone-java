@@ -104,6 +104,7 @@ export default {
   background: white;
   align-content: space-between;
   margin: 1em;
+  width: 50em;
 }
 
 .card-face-card-list {
@@ -123,6 +124,21 @@ export default {
   justify-content: center;
   margin: 1em 1em 1em 1em;
   font-weight: bold;
+}
+
+@media screen and (max-width: 576px) {
+.card-list-cards {
+  border: solid 1px black;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  align-content: space-between;
+  margin: 1em;
+  width: 20em;
+}
+
+
+
 }
 
 
