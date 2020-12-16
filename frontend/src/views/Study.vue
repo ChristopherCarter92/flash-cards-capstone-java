@@ -18,6 +18,9 @@
         <b-button v-on:click.prevent="saveReviewDeck"
           >Save Review Deck</b-button
         >
+        <b-button v-on:click.prevent="returnToDeckView"
+          >Return To Deck</b-button
+        >
       </div>
     </div>
   </div>
@@ -71,16 +74,19 @@ export default {
           DeckServices.addMultipleCardsToDeck(
             response.data.deckId,
             this.cardsToReview
-          ).then((response2) => {
-            if (response2 === 201) {
+          ).then(() => {
               DeckServices.getAllDecks().then(() => {
-                this.$router.push({ name: "home" });
+              this.$router.push({ name: 'currentDeck', params: this.currentDeckId });
               });
-            }
           });
         }
       });
     },
+
+    returnToDeckView() {
+      this.$router.push({ name: 'currentDeck', params: this.currentDeckId });
+    },
+
   },
 
   created() {

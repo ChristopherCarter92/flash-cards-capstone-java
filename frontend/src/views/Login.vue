@@ -134,7 +134,7 @@ export default {
 #need-act-link {
   color: #324B50;
   font-size: 1.2em;
-  margin: 1% 0 7% 0;
+  margin: 1% 0% 7% 0%;
   text-decoration: underline;
   
 }
