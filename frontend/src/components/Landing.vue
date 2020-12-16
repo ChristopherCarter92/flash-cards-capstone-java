@@ -1,71 +1,98 @@
 <template>
-  <div id="landing">
-    <div class="container-fluid">
-      <div class="col-sm body">
-        <h1>Notes With Goats</h1>
-        <div class="animation-box">
-          <img src="../assets/walkthrough.gif" alt="">
-           
-        </div>
-        <div id="get-started-btn-container">
-          <b-button id="get-started-btn" v-on:click.prevent="$router.push({name: 'login'})">Get Started</b-button>
-        </div>
-       
+  <div id="main-landing-container">
+    <div id="landing-title">
+      <h1>Notes With Goats</h1>
+
+    </div>
+    <div id="landing-content">
+      <div id="landing-gif">
+        <img src="../assets/walkthrough.gif" alt="product demo">
+        <b-button id="landing-get-started" v-on:click.prevent="$router.push({name: 'login'})"> Get Started</b-button>
       </div>
-      <div class="col-sm body-w-goat">
-        <img src="@/assets/goat.png" alt="zenGoat" class="theGoat" />
+      <div id = "goat-pic-landing">
+        <img id = "goat-pic-landing" src="../assets/goat.png" alt="goat picture">
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+
+}
 </script>
 
 <style scoped>
-#landing {
-  background-color: #7f5a41;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#get-started-btn {
-  height: 100%;
+h1 {
+  color: #324B50;
+  font-size: 7em;;
 }
 
-#get-started-btn-container {
+#main-landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(#7F5A41, white);
+}
+
+#landing-title {
+  margin: 3em 3em 5em 3em;
+}
+
+#landing-content {
   margin: 1em;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: 
+  "gif goat" ;
+}
+
+#goat-pic-landing {
+  
+  grid-area: goat;
+  justify-self: left;
+  width: 20em;
   
 }
 
-.container-fluid {
-  display: grid;
-  grid-template: 1fr 1fr;
-  grid-template-areas: "body body-w-goat";
-  padding: 5px;
-}
-
-.body {
-  grid-area: body;
-}
-
-.body-w-goat {
-  grid-area: body-w-goat;
-}
-
-.theGoat {
+#landing-gif {
+  width: auto;
+  height: auto;
+  grid-area: gif;
+  justify-self: right;
   display: flex;
-  max-width: 100vh;
-  max-height: 100vh;
   flex-direction: column;
 }
 
-.animation-box {
-    border: black solid 5px;
-    
-    
+#landing-gif img {
+  margin: 1em 5em 1em 1em;
+  align-self: center;
 }
-.animation-box img {
-  box-sizing: border-box;
-  width: 100%;
+
+
+#landing-get-started {
+  margin: 1em;
+  width: 50%;
+  align-self: center;
+  background-color: #569FAD;
+  border: 1px solid transparent;
+  padding: 7px;
+  color: #324B50;
 }
+
+@media screen and (max-width: 768px) {
+
+}
+
+
+  
+
+
 </style>
