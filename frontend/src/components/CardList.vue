@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="card-face-card-list" v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId">
+
+    <div class="card-list-cards" v-for="card in cardsInCurrentDeck" v-bind:key="card.cardId">
+
       <div>
         <p>{{ `Question: ${card.question}` }}</p>
         <p>{{ `Answer: ${card.answer}` }}</p>
@@ -94,7 +96,10 @@ export default {
   padding: 7px;
   color: #324B50;
   
-  
+}
+.card-list-cards {
+  border: 1px solid black;
+  padding: 7px;
 }
 
 .card-face-card-list {

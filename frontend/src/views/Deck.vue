@@ -1,12 +1,22 @@
 <template>
 
-  
 
     <b-container>
       <b-row>
-    <b-col class="buttons" sm="2" >
+    <b-col class="left-buttons" sm="2" >
       
-      <b-button id="study-session-button" v-on:click.prevent="
+    <deck-list ></deck-list>
+     
+    <img class="goat-image" src="@/assets/goat.png" alt="zenGoat"/>
+    </b-col>
+   
+
+    <b-col class="cards-and-deck-titles">
+
+       <h1 id="deck-title" >{{findCurrentDeckTitle}}</h1>
+     
+
+     <b-button id="study-session-button" v-on:click.prevent="
         $router.push({
           name: 'study-session',
           params: {deckId: $route.params.deckId},
@@ -21,13 +31,6 @@
       "
       >Edit Deck</b-button>
     <b-button id="delete-deck-button" v-on:click="deleteThisDeck">Delete Deck</b-button>
-    <img class="goat-image" src="@/assets/goat.png" alt="zenGoat"/>
-    </b-col>
-   
-
-    <b-col class="cards-and-deck-titles">
-      <h1 id="deck-title" >{{findCurrentDeckTitle}}</h1>
-    <deck-list ></deck-list>
 
       <b-col class="card-list">
     <card-list
@@ -119,6 +122,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  
 
 }
 
@@ -157,6 +161,7 @@ b-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 20%;
   margin-top: 20px;
   
 }
@@ -185,12 +190,12 @@ button {
 }
 
 .buttons {
-  display: flex;
+  
   flex-direction: column;
   align-items: center;
 }
 
-#deck-title {
+.cards-and-deck-titles {
   color: #324B50;
   display: flex;
   flex-direction: row;
@@ -200,7 +205,6 @@ button {
 button {
   width: 70%;
 }
-
 
 #deck-list {
    width: 70%; 

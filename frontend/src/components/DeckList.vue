@@ -45,11 +45,12 @@ export default {
 
 .deck-buttons {
      margin-bottom: 20px;
-  width: 20%;
+  width: 100%;
   background-color: #569FAD;
   border: 1px solid transparent;
   padding: 7px;
   color:#324B50;
+  margin: 1em 0 1em 0;
   /* font-weight: bold; */
   
   flex-direction: column;
