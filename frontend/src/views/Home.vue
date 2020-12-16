@@ -49,6 +49,7 @@ export default {
 .home {
   display: flex;
   flex-direction: column;
+  background-image: linear-gradient(#569FAD, white);
 }
 
 
