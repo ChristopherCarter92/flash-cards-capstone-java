@@ -3,8 +3,14 @@
     <div class="container-fluid">
       <div class="col-sm body">
         <h1>Notes With Goats</h1>
-        <div class="animation-box"></div>
-        <b-button v-on:click.prevent="$router.push({name: 'login'})">Get Started</b-button>
+        <div class="animation-box">
+          <img src="../assets/walkthrough.gif" alt="">
+           
+        </div>
+        <div id="get-started-btn-container">
+          <b-button id="get-started-btn" v-on:click.prevent="$router.push({name: 'login'})">Get Started</b-button>
+        </div>
+       
       </div>
       <div class="col-sm body-w-goat">
         <img src="@/assets/goat.png" alt="zenGoat" class="theGoat" />
@@ -20,6 +26,15 @@ export default {};
 <style scoped>
 #landing {
   background-color: #7f5a41;
+}
+
+#get-started-btn {
+  height: 100%;
+}
+
+#get-started-btn-container {
+  margin: 1em;
+  
 }
 
 .container-fluid {
@@ -46,8 +61,11 @@ export default {};
 
 .animation-box {
     border: black solid 5px;
-    width: 100px;
-    height: 100px;
-    background-color: cornsilk;
+    
+    
+}
+.animation-box img {
+  box-sizing: border-box;
+  width: 100%;
 }
 </style>
