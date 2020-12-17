@@ -32,7 +32,7 @@
           ></textarea>
         </div>
         <div class="update-btn">
-          <b-button v-on:click.prevent="editCard">Update Card</b-button>
+          <b-button id="update-button-update-card" v-on:click.prevent="editCard">Update Card</b-button>
         </div>
         <!-- button to call to update api then refresh store with updated cards SET CARDS -->
       </form>
@@ -162,5 +162,14 @@ textarea {
   display: flex;
   justify-content: center;
   margin: 0% 0% 1% 0%;
+}
+
+#update-button-update-card {
+  margin: 1em 0 1em 0;
+  background-color: #569FAD;
+  border: 1px solid black;
+  padding: 7px;
+  color:white;
+  font-weight: bold;
 }
 </style>
