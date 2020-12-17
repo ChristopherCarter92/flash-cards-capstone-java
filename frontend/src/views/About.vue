@@ -6,8 +6,8 @@
     <div id="bios">
       <div class="creator-bio">
         <img src="@/assets/MJ.jpg" alt="mj-img" />
-        <div class="bio-text">
-            <h4>Megan Janes</h4>
+        <div class="bio-text-left">
+          <h4>Megan Janes</h4>
           <p>
             Born and raised in Cleveland, Ohio - Megan Janes is an
             ever-resilient Browns fan with a love for the Great Lakes and winter
@@ -24,8 +24,8 @@
 
       <div class="creator-bio">
         <img src="@/assets/JT.jpg" alt="jt-img" />
-        <div class="bio-text">
-            <h4>Julianna Tilson</h4>
+        <div class="bio-text-right">
+          <h4>Julianna Tilson</h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
             non. Cumque, veniam. Mollitia, cum facere, temporibus dignissimos
@@ -37,21 +37,25 @@
 
       <div class="creator-bio">
         <img src="@/assets/CC.jpg" alt="cc-img" />
-        <div class="bio-text">
-            <h4>Christopher Carter</h4>
+        <div class="bio-text-left">
+          <h4>Christopher Carter</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
-            non. Cumque, veniam. Mollitia, cum facere, temporibus dignissimos
-            quisquam magnam nulla architecto dolores repellat dolor voluptatem
-            vitae et consequuntur voluptas non!
+            Christopher Carter is Cincinnati born and raised. He studied music
+            performance at Northwestern University in Evanston Illinois, dabbled
+            in audio technologies, and followed his curiosity to Tech Elevator
+            where he has spent the last 14 weeks studying software development.
+            He enjoys performing, painting, cooking, web design, weight-lifting
+            and hiking. Currently located in Louisville Kentucky, he is
+            passionate about all things creative and expressive, and is actively
+            looking for work as a new developer.
           </p>
         </div>
       </div>
 
       <div class="creator-bio">
         <img src="@/assets/NES.jpg" alt="nick-img" />
-        <div class="bio-text">
-            <h4>Nicholas Simmons</h4>
+        <div class="bio-text-right">
+          <h4>Nicholas Simmons</h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
             non. Cumque, veniam. Mollitia, cum facere, temporibus dignissimos
@@ -63,8 +67,8 @@
 
       <div class="creator-bio">
         <img src="@/assets/RPB.jpg" alt="rpb-img" />
-        <div class="bio-text">
-            <h4>Ryan Beech</h4>
+        <div class="bio-text-left">
+          <h4>Ryan Beech</h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
             non. Cumque, veniam. Mollitia, cum facere, temporibus dignissimos
@@ -88,7 +92,6 @@ export default {};
   box-sizing: border-box;
 }
 
-
 img {
   width: 245px;
 }
@@ -107,14 +110,21 @@ img {
   flex-direction: column;
 }
 
-.bio-text {
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-   justify-content: center;
+.bio-text-left {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-
+.bio-text-right {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: end;
+}
 
 .creator-bio {
   display: flex;
@@ -129,6 +139,4 @@ img {
 .creator-bio:nth-child(4) img {
   order: 2;
 }
-
-
 </style>
