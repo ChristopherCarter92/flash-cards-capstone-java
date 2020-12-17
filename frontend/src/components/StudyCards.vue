@@ -80,7 +80,7 @@ h2 {
   width: 70%;
   margin: 1em 0 1em 0;
   background-color: #569fad;
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color: #324b50;
 }
@@ -95,7 +95,7 @@ h2 {
   text-align: center;
   margin: 1em 0 0 0;
   background-color: #569fad;
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color: #324b50;
   width: 50%;
@@ -111,17 +111,17 @@ h2 {
 .correct {
   margin-bottom: 20px;
   
-  width: 80%;
+  width: 10em;
   background-color: #569FAD;
-  border: 5px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color: #324B50;
 }
 .incorrect {
   margin-bottom: 20px;
-  width: 80%;
+  width: 10em;
   background-color: #569FAD;
-  border: 5px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color: #324B50;
 }

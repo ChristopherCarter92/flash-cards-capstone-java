@@ -86,7 +86,7 @@ button {
    width: 30%;
   grid-area: "addDeckButton";
   background-color: #B68C71;
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color: #324B50;
   font-weight: bolder;

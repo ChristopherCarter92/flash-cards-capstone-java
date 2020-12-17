@@ -48,7 +48,7 @@ export default {
   margin-bottom: 20px;
   width: 10em;
   background-color: #569FAD;
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color:#324B50;
   margin: 1em 0 1em 0;

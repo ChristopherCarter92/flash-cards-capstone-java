@@ -114,10 +114,7 @@ export default {
 <style scoped>
 
 #my-decks-title {
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
+  text-align: center;
 }
 
 #deck-whole-page {
@@ -146,7 +143,7 @@ export default {
   
   margin: 1em 0 1em 0;
   /* background-color: #569FAD; */
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color: #324B50;
   justify-content: center;
@@ -185,7 +182,7 @@ button {
   margin-bottom: 20px;
   width: 80%;
   background-color: #569FAD;
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color: #324B50;
 }
@@ -224,7 +221,7 @@ button {
 #deck-list {
    width: 70%; 
   margin: 1em 0 1em 0;
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 7px;
   color: #324B50;
 
