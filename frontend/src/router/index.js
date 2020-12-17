@@ -14,7 +14,7 @@ import Deck from '@/views/Deck.vue';
 import DeckList from '@/components/DeckList.vue';
 import ModifyDeck from '@/views/ModifyDeck.vue';
 import Landing from '@/views/LandingPage.vue';
-
+import About from '@/views/About.vue';
 
 Vue.use(Router)
 
@@ -117,6 +117,15 @@ const router = new Router({
       component: Deck,
       meta: {
         requiresAuth: true
+      }
+    },
+
+    {
+      path: '/about',
+      name: 'about',
+      component: About,
+      meta: {
+        requiresAuth: false
       }
     }
   ]
