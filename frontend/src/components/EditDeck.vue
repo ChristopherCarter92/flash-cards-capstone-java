@@ -401,7 +401,9 @@ export default {
 }
 
 #save-btn-inner-div {
-  background-color: #95B0B6;
+  display: flex;
+  flex-direction: column;
+  
   border-radius: 3px;
   align-self: center;
 }

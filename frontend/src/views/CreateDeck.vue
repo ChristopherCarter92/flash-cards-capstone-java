@@ -31,6 +31,9 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+    text-align: center;
+}
 
 @media screen and (max-width: 680px) {
 
