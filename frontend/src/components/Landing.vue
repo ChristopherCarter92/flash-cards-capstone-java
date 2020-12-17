@@ -66,6 +66,7 @@ export default {
   padding: 7px;
   color: #324B50;
   border: solid black 1px;
+  font-weight: bold;
 }
 
 h1 {
@@ -126,7 +127,8 @@ h1 {
   background-color: #569FAD;
   border: 1px solid transparent;
   padding: 7px;
-  color: #324B50;
+  color:white;
+  font-weight: bold;
   font-size: 2em;
   border: solid black 1px;
   

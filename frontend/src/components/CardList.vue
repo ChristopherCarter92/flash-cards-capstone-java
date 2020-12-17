@@ -94,7 +94,8 @@ export default {
   background-color: #569FAD;
   border: 1px solid black;
   padding: 7px;
-  color: #324B50;
+  color:white;
+  font-weight: bold;
   
 }
 .card-list-cards {

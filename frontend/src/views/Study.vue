@@ -154,6 +154,7 @@ export default {
   padding: 7px;
   color: #324b50;
   margin: 1em 0 1em 0;
+  font-weight: bold;
 }
 
 .score-card {
@@ -180,7 +181,8 @@ export default {
   background-color: #569FAD;
   border: 1px solid black;
   padding: 7px;
-  color: #324B50;
+  color:white;
+  font-weight: bold;
 }
 
 .return-to-deck {
@@ -189,6 +191,7 @@ export default {
   background-color: #569FAD;
   border: 1px solid black;
   padding: 7px;
-  color: #324B50;
+  color:white;
+  font-weight: bold;
 }
 </style>

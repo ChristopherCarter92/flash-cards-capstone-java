@@ -82,7 +82,8 @@ h2 {
   background-color: #569fad;
   border: 1px solid black;
   padding: 7px;
-  color: #324b50;
+  color:white;
+  font-weight: bold;
 }
 
 #delete-button {
@@ -115,7 +116,8 @@ h2 {
   background-color: #569FAD;
   border: 1px solid black;
   padding: 7px;
-  color: #324B50;
+  color:white;
+  font-weight: bold;
 }
 .incorrect {
   margin-bottom: 20px;
@@ -123,7 +125,8 @@ h2 {
   background-color: #569FAD;
   border: 1px solid black;
   padding: 7px;
-  color: #324B50;
+  color:white;
+  font-weight: bold;
 }
 
 
