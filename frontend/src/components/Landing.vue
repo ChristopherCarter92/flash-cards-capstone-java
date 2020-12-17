@@ -18,7 +18,11 @@
       <div id = "goat-pic-landing">
         <img id = "goat-pic-landing" src="../assets/goat.png" alt="goat picture">
       </div>
+      
     </div>
+    <footer>
+        <p> <router-link v-bind:to="{name: 'about'}">Click</router-link> to learn more about the masterminds behind this App!</p>
+      </footer>
 
   </div>
 </template>
@@ -34,6 +38,13 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+footer {
+  margin-top: 3em;
+  
+  display: flex;
+  justify-content: center;
+  
 }
 #landing-title {
   width: 100vw;
@@ -112,11 +123,13 @@ h1 {
   justify-self: right;
   display: flex;
   flex-direction: column;
+  
 }
 
 #landing-gif img {
   margin: 1em 5em 1em 1em;
   align-self: center;
+  border: 1px solid black;
 }
 
 
