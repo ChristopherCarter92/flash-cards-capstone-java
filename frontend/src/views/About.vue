@@ -70,10 +70,15 @@
         <div class="bio-text-left">
           <h4>Ryan Beech</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
-            non. Cumque, veniam. Mollitia, cum facere, temporibus dignissimos
-            quisquam magnam nulla architecto dolores repellat dolor voluptatem
-            vitae et consequuntur voluptas non!
+            Do you have a Minnesota tattoo? Ryan Beech doesn't either, but his
+            pride for his home state is at that level. His previous career as an
+            ultrasound technician had him harnessing the power of sonar to keep
+            people healthy and happy. Years of interest in technology at work
+            and at home as a PC gamer culminated in Ryan taking a huge risk:
+            picking up his life, moving to Ohio, and joining a coding bootcamp
+            in Cincinnati. Ryan is now a junior developer, putting his
+            programming skills to work on many side projects, including this
+            one!
           </p>
         </div>
       </div>
