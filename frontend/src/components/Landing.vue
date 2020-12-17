@@ -7,7 +7,7 @@
 
     <div id="landing-title">
       <h1>Notes With Goats</h1>
-      <p>Need some practice with vocabulary? Wish you could access your flashcards from any device? Now you can! Introducing "Notes with Goats." A fun, animal themed environment where Mr. Griffy the watchful goat can keep an eye on your study session.</p>
+      <p>Need some practice with vocabulary? Wish you could access your flashcards from any device? Now you can! Introducing "Notes with Goats." A fun, animal themed environment where Mr. Griffy the intellectual goat can keep an eye on your study session.</p>
     </div>
     
     <div id="landing-content">
