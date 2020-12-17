@@ -27,10 +27,11 @@
         <div class="bio-text-right">
           <h4>Julianna Tilson</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
-            non. Cumque, veniam. Mollitia, cum facere, temporibus dignissimos
-            quisquam magnam nulla architecto dolores repellat dolor voluptatem
-            vitae et consequuntur voluptas non!
+            Hi! My name is Julianna, I'm a Java student at Tech Elevator with a graduation date of December 2020.
+            Until Graduation?
+            -I'm learning the fundamentals of Java in a developer bootcamp, honing my skills so that upon graduation I will be fully equipped and prepared to join a development team.
+            My Aspirations?
+            - I plan to continue my professional and personal development so I can bring the most up to date professional skills to my future team.
           </p>
         </div>
       </div>
@@ -57,10 +58,7 @@
         <div class="bio-text-right">
           <h4>Nicholas Simmons</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
-            non. Cumque, veniam. Mollitia, cum facere, temporibus dignissimos
-            quisquam magnam nulla architecto dolores repellat dolor voluptatem
-            vitae et consequuntur voluptas non!
+           Nicholas has spent the last 15 years as an investigator for a law firm before deciding to become a software developer after he lost a dare with a hypnotist. He is 6’0” tall and used to get regular haircuts before the pandemic. Nick is looking forward to his new career as a software developer and to continue to learn new technologies as the field continually evolves.
           </p>
         </div>
       </div>
