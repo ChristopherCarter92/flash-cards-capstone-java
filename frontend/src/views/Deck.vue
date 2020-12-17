@@ -5,6 +5,7 @@
       <b-row>
     <b-col class="left-buttons" sm="2" >
       <div class="deck-buttons-deck-view">
+        <h1 id="my-decks-title" >My Decks</h1>
     <deck-list ></deck-list>
      </div>
     <img class="goat-image" src="@/assets/goat.png" alt="zenGoat"/>
@@ -111,6 +112,13 @@ export default {
 </script>
 
 <style scoped>
+
+#my-decks-title {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+}
 
 #deck-whole-page {
     background-image: linear-gradient(#569FAD, white);
