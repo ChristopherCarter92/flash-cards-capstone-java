@@ -128,8 +128,9 @@ background-position: 50% 6%;
   width: 70%;
   margin: 1em 0 1em 0;
   background-color: #569fad;
-  color: #324b50;
-  border: 1px solid transparent;
+  color: white;
+  border: 1px solid black;
+  font-weight: bold;
   font-size: 100%;
   padding: 7px;
 }
