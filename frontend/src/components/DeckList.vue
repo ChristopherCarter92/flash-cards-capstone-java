@@ -53,10 +53,12 @@ export default {
   color:white;
   font-weight: bold;
   margin: 1em 0 1em 0;
-  /* font-weight: bold; */
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  display: flex;
+  
 }
 
 .left-buttons .deck-buttons {
