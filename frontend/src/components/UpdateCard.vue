@@ -118,11 +118,13 @@ export default {
 </script>
 
 <style scoped>
-
-.update-card-background {
-  background-color: #21677ca6;
-  padding: 1%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+
 
 form {
   width: 80%;
@@ -151,11 +153,10 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2em 20em 0 20em;
-  border-radius: 5px;
-  border: solid #95b0b6 5px;
+  padding-top: 1em;
   justify-content: center;
-  background-color: rgb(159, 187, 212);
+  background-color: #95B0B6;
+  height: 100vh;
 }
 
 .update-btn {
